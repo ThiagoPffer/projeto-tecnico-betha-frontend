@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR" ng-app="projetoTecnico">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto técnico</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        .main-container{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            width: 600px;
+            margin: 25% auto;
+        }
+
+        .main-container input{
+            width: 100%;
+            height: 50px;
+            padding: 0 10px;
+        }
+
+        .default-btn{
+            color: white;
+            background: crimson;
+            height: 50px;
+            width: 100%;
+            border: 0;
+            margin-top: 25px;
+            cursor: pointer;
+        }
+
+        .default-btn:hover{
+            opacity: .8;
+        }
+    </style>
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular/angular-route.min.js"></script>
+    <script>
+        var appModule = angular.module("projetoTecnico", []);
+        appModule.controller("appCtrl", function($scope, $http) {
+            $scope.login = "Tela de login";
+            var logar = function(funcionario) {
+                console.log(funcionario);
+                $http.post("http://localhost:8080/login", funcionario).then(function(response) {
+                    console.log(response.headers);
+                }).catch(function(err) {
+                    console.log("ERRO: " + err);
+                });
+            }
+            $scope.teste = function(funcionario) {
+                logar(funcionario);
+            }
+        });
+    </script>
+
+</head>
+<body ng-controller="appCtrl">
+    <div class="main-container">
+        <h2>{{login}}</h2>
+        <form>
+            <label for="email-input">Email:</label>
+            <input type="email" ng-model="funcionario.email" id="email-input">
+            <label for="senha-input">Senha:</label>
+            <input type="passowrd" ng-model="funcionario.senha" id="senha-input">
+            <button class="default-btn" type="submit" ng-click="teste(funcionario)">Enviar</button>
+        </form>
+    </div>
+</body>
+</html>
