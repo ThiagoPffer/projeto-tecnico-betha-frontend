@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="lib/mdi/css/materialdesignicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
     <title>Projeto técnico</title>
     <style>
@@ -23,6 +24,7 @@
             background-position: center;
             background-repeat: no-repeat;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
@@ -38,7 +40,7 @@
         }
 
         .login_window_logo{
-            margin-bottom: 90px;
+            margin-bottom: 40px;
         }
 
         .login_window form{
@@ -49,33 +51,18 @@
             width: 100%;
         }
     </style>
+
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/angular/angular-route.min.js"></script>
-    <script>
-        var appModule = angular.module("projetoTecnico", []);
-        appModule.controller("appCtrl", function($scope, $http) {
-            
-            var login = function(funcionario) {
-                console.log(funcionario);
-                $http.post("http://localhost:8080/login", funcionario).then(function(response) {
-                    console.log(response);
-
-                }).catch(function(err) {
-                    console.log("ERRO: " + err.status);
-                });
-            }
-
-            $scope.logar = function(funcionario) {
-                login(funcionario);
-            }
-        });
-    </script>
-
+    <script src="js/app.js"></script>
+    <script src="js/controllers/appCtrl.js"></script>
 </head>
 <body ng-controller="appCtrl">
     <main class="login_window">
         <img class="login_window_logo" src="img/logo-betha.svg" alt="logo betha">
-
+        <div ng-class="display_none" class="default-error">
+            <span class="mdi mdi-alert-outline"></span>{{mensagemErro}}
+        </div>
         <form>
             <div class="input-group">
                 <label class="default-label" for="email-login">Email</label>
@@ -89,5 +76,6 @@
             <button type="submit" class="default-button--filled" ng-click="logar(funcionario)">Entrar</button>
         </form>
     </main>
+    <!-- <footer ng-include="'view/footer.html'"></footer> -->
 </body>
 </html>

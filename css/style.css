@@ -5,7 +5,9 @@
     --cinza-medio: #8A8A8A;
     --cinza-escuro: #464646;
     --amarelo: #FFB800;
-    --vermelho: #FF0000;
+    --vermelho: #dd1111;
+    --vermelho-claro: #f89c9c;
+    --vermelho-escuro: #830707;
     --verde: #0DBC3E;
 }
 
@@ -61,6 +63,10 @@ textarea {
 }
 
 /* <===========================::Utilities===========================> */
+
+.d-none{
+    display: none;
+}
 
 .overflow-x{
     overflow-x: auto;
@@ -219,6 +225,17 @@ textarea {
 .default-button--outline:hover{
     color: white;
     background-color: var(--primaria);
+}
+
+.default-error{
+    background: var(--vermelho-claro);
+    color: var(--vermelho-escuro);
+    border: var(--vermelho-escuro) solid 1px;
+    border-radius: 4px;
+    padding: 15px;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 35px;
 }
 
 /* <===========================::Side Menu::===========================> */
