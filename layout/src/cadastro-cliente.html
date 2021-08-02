@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-bt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+    <title>ProjetoTecnico</title>
+
+    <style>
+        /* ===========================::NOVA ORDEM::=========================== */
+        .mt-32{
+            margin-top: 32px;
+        }
+
+        .mt-64{
+            margin-top: 64px;
+        }
+
+        .gap-x{
+            gap: 0 46px;
+        }
+
+        .gap-y{
+            gap: 56px 0;
+        }
+
+        .gap{
+            gap: 56px 46px;
+        }
+
+        .cadastro-item-container{
+            display: flex;
+            flex-direction: column;
+            background: white;
+            gap: 26px 0;
+            width: 440px;
+            height: auto;
+            border: 1px solid var(--primaria);
+            padding: 30px;
+            box-shadow: rgba(0, 0, 0, 0.1) 2px 5px 8px;
+        }
+
+        .cadastro-item-button-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 440px;
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+    <aside class="side-menu left" id="sideMenu">
+        <header class="side-menu__header">
+            <div class="row-container">
+                <img src="img/profile.jpg" alt="Foto de perfil do usuário">
+                <div class="side-menu__info">
+                    <h4>User Name</h4>
+                    <p>Recepcionista</p>
+                </div>
+            </div>
+        </header>
+        <div class="side-menu__body">
+            <ul class="side-menu__list">
+                <li class="side-menu__item">
+                    <a href="#">
+                        <span class="mdi mdi-home-outline"></span><p>Página principal</p>
+                    </a>
+                </li>
+                <li class="side-menu__item">
+                    <a href="#">
+                        <span class="mdi mdi-chevron-down"></span><p>Ordens de Serviço</p>
+                    </a>
+                </li>
+                <li class="side-menu__item active">
+                    <a href="#">
+                        <span class="mdi mdi-chevron-down"></span><p>Clientes</p>
+                    </a>
+                </li>
+                <li class="side-menu__item">
+                    <a href="#">
+                        <span class="mdi mdi-chevron-down"></span><p>Conta</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <main class="main-page">
+        <h2 class="main-page-title">Novo Cliente</h2>
+        <section class="cadastro-ordem-container column-container">
+            <div class="input-group d-width">
+                <label class="default-label" for="cliente-name">Nome completo:</label>
+                <input class="default-input" id="cliente-name" type="text" placeholder="Digite nome e sobrenome...">
+            </div>
+            <div class="row-container gap-x">
+                <div class="input-group d-width">
+                    <label class="default-label" for="cliente-email">Email:</label>
+                    <input class="default-input" id="cliente-email" type="email" placeholder="Digite o email do cliente...">
+                </div>
+                <div class="input-group d-width">
+                    <label class="default-label" for="cliente-email-confirm">Confirmar email:</label>
+                    <input class="default-input" id="cliente-email-confirm" type="email" placeholder="Digite novamente o email do cliente...">
+                </div>
+            </div>
+            <div class="input-group d-width">
+                <label class="default-label" for="cliente-phone">Telefone:</label>
+                <input class="default-input" id="cliente-phone" type="text" placeholder="(99) 99999-9999">
+            </div>
+        </section>
+        <h3 class="main-page-subtitle">Endereço:</h3>
+        <section class="cadastro-ordem-container column-container">
+            <div class="row-container gap-x">
+                <div class="input-group d-width">
+                    <label class="default-label" for="endereco-street">Logradouro:</label>
+                    <input class="default-input" id="endereco-street" type="text" placeholder="Ex: Rua Fulano Beltrano...">
+                </div>
+                <div class="input-group d-width">
+                    <label class="default-label" for="endereco-city">Cidade:</label>
+                    <input class="default-input" id="endereco-city" type="text" placeholder="Insira a cidade do cliente...">
+                </div>
+            </div>
+            <div class="row-container gap-x">
+                <div class="input-group d-width">
+                    <label class="default-label" for="endereco-number">Número:</label>
+                    <input class="default-input" id="endereco-number" type="text" placeholder="Número residencial...">
+                </div>
+                <div class="input-group d-width">
+                    <label class="default-label" for="endereco-state">Estado:</label>
+                    <input class="default-input" id="endereco-state" type="text" placeholder="Insira a UF do cliente...">
+                </div>
+            </div>
+            <div class="input-group d-width">
+                <label class="default-label" for="endereco-district">Bairro:</label>
+                <input class="default-input" id="endereco-district" type="text" placeholder="Insira o bairro do cliente...">
+            </div>
+        </section>
+        <div class="row-container gap-x">
+            <button type="submit" class="default-button--filled d-width mt-64">Confirmar cadastro</button>
+            <button type="submit" class="default-button--outline sm-width mt-64">Cancelar</button>
+        </div>
+    </main>
+</body>
+</html>

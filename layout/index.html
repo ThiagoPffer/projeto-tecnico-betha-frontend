@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-BR" ng-app="projetoTecnico">
+<html lang="pt-bt">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="src/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
-    <title>Projeto técnico</title>
+    <title>ProjetoTecnico</title>
+
     <style>
         /* ===========================::LOGIN::=========================== */
 
@@ -19,7 +20,7 @@
 
         body{
             background-color: var(--primaria);
-            background-image: url("img/logo-bg.png");
+            background-image: url("src/img/logo-bg.png");
             background-position: center;
             background-repeat: no-repeat;
             display: flex;
@@ -49,44 +50,25 @@
             width: 100%;
         }
     </style>
-    <script src="lib/angular/angular.min.js"></script>
-    <script src="lib/angular/angular-route.min.js"></script>
-    <script>
-        var appModule = angular.module("projetoTecnico", []);
-        appModule.controller("appCtrl", function($scope, $http) {
-            
-            var login = function(funcionario) {
-                console.log(funcionario);
-                $http.post("http://localhost:8080/login", funcionario).then(function(response) {
-                    console.log(response);
-
-                }).catch(function(err) {
-                    console.log("ERRO: " + err.status);
-                });
-            }
-
-            $scope.logar = function(funcionario) {
-                login(funcionario);
-            }
-        });
-    </script>
-
 </head>
-<body ng-controller="appCtrl">
+<body>
     <main class="login_window">
-        <img class="login_window_logo" src="img/logo-betha.svg" alt="logo betha">
+        <img class="login_window_logo" src="src/img/logo-betha.svg" alt="logo betha">
 
-        <form>
+        <form action="/" method="POST">
+            
             <div class="input-group">
                 <label class="default-label" for="email-login">Email</label>
-                <input class="default-input" id="email-login" ng-model="funcionario.email" type="email" placeholder="Insira seu email...">
+                <input class="default-input" id="email-login" type="email" placeholder="Insira seu email...">
             </div>
             <div class="input-group">
                 <label class="default-label" for="password-login">Senha</label>
-                <input class="default-input" id="password-login" ng-model="funcionario.senha" type="password" placeholder="Insira sua senha...">
+                <input class="default-input" id="password-login" type="password" placeholder="Insira sua senha...">
                 <a class="simple-link" href="/">Esqueci minha senha</a>
             </div>
-            <button type="submit" class="default-button--filled" ng-click="logar(funcionario)">Entrar</button>
+            
+
+            <button type="submit" class="default-button--filled">Entrar</button>
         </form>
     </main>
 </body>
