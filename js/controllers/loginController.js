@@ -12,7 +12,7 @@ appModule.controller("loginController", function($scope, $location, login) {
             const authToken = response.headers().authorization;
             localStorage.setItem("authToken", authToken);
             $location.path("/home");
-        }).catch(function(err) {
+        }, function(err) {
             showElement();
             $scope.mensagemErro = "ERRO: Email ou senha inválidos"; //VER COM O MICHEL
             console.log(err);
