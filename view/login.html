@@ -1,0 +1,20 @@
+<main class="login_background">
+    <div class="login_window">
+        <img class="login_window_logo" src="img/logo-betha.svg" alt="logo betha">
+        <div ng-class="display_none" class="default-error">
+            <span class="mdi mdi-alert-outline"></span>{{mensagemErro}}
+        </div>
+        <form>
+            <div class="input-group">
+                <label class="default-label" for="email-login">Email</label>
+                <input class="default-input" id="email-login" ng-model="funcionario.email" type="email" placeholder="Insira seu email...">
+            </div>
+            <div class="input-group">
+                <label class="default-label" for="password-login">Senha</label>
+                <input class="default-input" id="password-login" ng-model="funcionario.senha" type="password" placeholder="Insira sua senha...">
+                <a class="simple-link" href="/">Esqueci minha senha</a>
+            </div>
+            <button type="submit" class="default-button--filled" ng-click="submit(funcionario)">Entrar</button>
+        </form>
+    </div>
+</main>
