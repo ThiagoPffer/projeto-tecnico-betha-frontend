@@ -1,4 +1,4 @@
-appModule.controller("appCtrl", function($scope, $http) {
+appModule.controller("appCtrl", function($scope, $http, $window) {
             
     var authToken = "";
 
@@ -8,14 +8,11 @@ appModule.controller("appCtrl", function($scope, $http) {
     var login = function(funcionario) {
         $scope.display_none = "d-none";
         $http.post("http://localhost:8080/login", funcionario).then(function(response) {
-            var headers = response.headers();
-            authToken = headers.authorization;
-
-            console.log(authToken);
-
+            authToken =  response.headers().authorization;
+            $window.location.href = "layout/src/home.html";
         }).catch(function(err) {
             showElement();
-            $scope.mensagemErro = "ERRO: Email ou senha inválidos";
+            $scope.mensagemErro = "ERRO: Email ou senha inválidos"; //VER COM O MICHEL
             console.log(err);
         });
     }
