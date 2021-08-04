@@ -14,7 +14,7 @@ appModule.controller("loginController", function($scope, $location, login) {
             $location.path("/home");
         }, function(err) {
             showElement();
-            $scope.mensagemErro = "ERRO: Email ou senha inválidos"; //VER COM O MICHEL
+            $scope.mensagemErro = "ERRO "+err.status+": "+err.data.message;
             console.log(err);
         });
     }

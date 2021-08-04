@@ -11,6 +11,11 @@ appModule.config(function($routeProvider, $locationProvider) {
         controller: "loginController"
     });
 
+    $routeProvider.when("/nova-ordem", {
+        templateUrl: "view/cadastro-ordem.html",
+        controller: "loginController"
+    });
+
     if(localStorage.getItem("authToken") === null){
         $routeProvider.otherwise({redirectTo: "/login"});
     } else {
