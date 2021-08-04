@@ -8,7 +8,7 @@ appModule.config(function($routeProvider, $locationProvider) {
 
     $routeProvider.when("/home", {
         templateUrl: "view/home.html",
-        controller: "loginController"
+        controller: "homeController"
     });
 
     $routeProvider.when("/nova-ordem", {
@@ -16,7 +16,7 @@ appModule.config(function($routeProvider, $locationProvider) {
         controller: "loginController"
     });
 
-    if(localStorage.getItem("authToken") === null){
+    if(localStorage.getItem("authToken") == null){
         $routeProvider.otherwise({redirectTo: "/login"});
     } else {
         $routeProvider.otherwise({redirectTo: "/home"});
