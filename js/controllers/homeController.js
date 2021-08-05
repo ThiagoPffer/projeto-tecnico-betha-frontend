@@ -1,11 +1,4 @@
-appModule.controller("homeController", function($scope, token) {
+appModule.controller("homeController", function($http, $scope, token, config) {
     console.log(token.getToken() != null);
-    
-    $scope.teste = function() {
-        token.verifyToken().then(function(response) {
-            console.log(response);
-        }, function(err) {
-            console.log(err);
-        });
-    }
+
 });
