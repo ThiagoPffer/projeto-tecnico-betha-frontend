@@ -1,4 +1,4 @@
-appModule.controller("loginController", function($scope, $location, login) {
+appModule.controller("loginController", function($scope, $location, login, funcionarioService) {
             
     $scope.mensagemErro = "";
     $scope.display_none = "d-none";
@@ -11,6 +11,14 @@ appModule.controller("loginController", function($scope, $location, login) {
         login.authenticate(funcionario).then(function(response) {
             const authToken = response.headers().authorization;
             localStorage.setItem("authToken", authToken);
+
+            funcionarioService.getFuncionario(funcionario.email).then(function(response) {
+                funcionarioService.sendToLocalStorage(response.data);
+                console.log(response);
+            }, function(err) {
+                console.log(err);
+            });
+
             $location.path("/home");
         }, function(err) {
             showElement();

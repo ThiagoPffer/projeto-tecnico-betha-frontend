@@ -16,7 +16,7 @@ appModule.config(function($routeProvider, $locationProvider) {
         controller: "loginController"
     });
 
-    if(localStorage.getItem("authToken") == null){
+    if(localStorage.getItem("authToken") === null){
         $routeProvider.otherwise({redirectTo: "/login"});
     } else {
         $routeProvider.otherwise({redirectTo: "/home"});

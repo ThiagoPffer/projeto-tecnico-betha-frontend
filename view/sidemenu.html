@@ -2,12 +2,12 @@
     <div class="row-container">
         <img src="img/profile.jpg" alt="Foto de perfil do usuário">
         <div class="side-menu__info">
-            <h4>User Name</h4>
-            <p>Recepcionista</p>
+            <h4>{{userName}}</h4>
+            <p>{{userType}}</p>
         </div>
     </div>
 </header>
-<div class="side-menu__body">
+<div class="side-menu__body" ng-if="verificaTela()">
     <ul class="side-menu__list">
         <li class="side-menu__item active">
             <a href="#">
