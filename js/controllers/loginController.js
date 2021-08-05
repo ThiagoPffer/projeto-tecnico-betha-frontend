@@ -14,16 +14,15 @@ appModule.controller("loginController", function($scope, $location, login, funci
 
             funcionarioService.getFuncionario(funcionario.email).then(function(response) {
                 funcionarioService.sendToLocalStorage(response.data);
-                console.log(response);
+                $location.path("/home");
             }, function(err) {
-                console.log(err);
+                showElement();
+                $scope.mensagemErro = "ERRO "+err.status+": "+err.data.message;
             });
-
-            $location.path("/home");
+            
         }, function(err) {
             showElement();
             $scope.mensagemErro = "ERRO "+err.status+": "+err.data.message;
-            console.log(err);
         });
     }
 
