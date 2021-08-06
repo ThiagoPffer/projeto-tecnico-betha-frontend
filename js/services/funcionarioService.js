@@ -1,7 +1,7 @@
-appModule.factory("funcionarioService", function($http, config) {
+appModule.factory("funcionarioService", function($http, properties) {
     
     var _getFuncionario = function(email) {
-        return $http.get(config.baseUrl + "/funcionarios/email?value=" + email);
+        return $http.get(properties.baseUrl + "/funcionarios/email?value=" + email);
     }
     
     var _getFromLocalStorage = function() {
@@ -12,9 +12,15 @@ appModule.factory("funcionarioService", function($http, config) {
         localStorage.setItem("loggedUser", JSON.stringify(data));
     }
 
+    var _clearLocalStorage = function() {
+        localStorage.removeItem("loggedUser");
+        localStorage.removeItem("authToken");
+    }
+
     return {
         getFuncionario: _getFuncionario,
         getFromLocalStorage: _getFromLocalStorage,
-        sendToLocalStorage: _sendToLocalStorage
+        sendToLocalStorage: _sendToLocalStorage,
+        clearLocalStorage: _clearLocalStorage
     };
 });

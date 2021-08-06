@@ -1,3 +1,3 @@
-appModule.controller("homeController", function($http, $scope, token, config) {
+appModule.controller("homeController", function($http, $scope, token) {
 
 });

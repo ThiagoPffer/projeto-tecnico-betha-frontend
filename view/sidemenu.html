@@ -9,25 +9,49 @@
 </header>
 <div class="side-menu__body">
     <ul class="side-menu__list">
-        <li class="side-menu__item active">
+        <li class="side-menu__item">
             <a href="#">
                 <span class="mdi mdi-home-outline"></span><p>Página principal</p>
             </a>
         </li>
-        <li class="side-menu__item">
-            <a href="#">
-                <span class="mdi mdi-chevron-down"></span><p>Ordens de Serviço</p>
+        <accordion>
+            <a>
+                <span class="mdi mdi-chevron-down"></span>Ordens de Serviço
             </a>
-        </li>
-        <li class="side-menu__item">
-            <a href="#">
-                <span class="mdi mdi-chevron-down"></span><p>Clientes</p>
+            <ul class="side-menu__list">
+                <li class="side-menu__subitem"><a href="#">
+                    <span class="mdi mdi-file-document-multiple-outline"></span>Ordens cadastradas
+                </a></li>
+                <li class="side-menu__subitem"><a href="#/nova-ordem">
+                    <span class="mdi mdi-file-plus-outline"></span>Nova ordem
+                </a></li>
+            </ul>
+        </accordion>
+        <accordion>
+            <a>
+                <span class="mdi mdi-chevron-down"></span>Clientes
             </a>
-        </li>
-        <li class="side-menu__item">
-            <a href="#">
-                <span class="mdi mdi-chevron-down"></span><p>Conta</p>
+            <ul class="side-menu__list">
+                <li class="side-menu__subitem"><a href="#">
+                    <span class="mdi mdi-account-multiple-outline"></span>Clientes cadastrados
+                </a></li>
+                <li class="side-menu__subitem"><a href="#/nova-ordem">
+                    <span class="mdi mdi-account-plus-outline"></span>Novo cliente
+                </a></li>
+            </ul>
+        </accordion>
+        <accordion>
+            <a>
+                <span class="mdi mdi-chevron-down"></span>Conta
             </a>
-        </li>
+            <ul class="side-menu__list">
+                <li class="side-menu__subitem"><a href="#">
+                    <span class="mdi mdi-account"></span>Dados da conta
+                </a></li>
+                <li class="side-menu__subitem" ng-click="logOut()" ><a>
+                    <span class="mdi mdi-exit-to-app"></span>Sair da conta
+                </a></li>
+            </ul>
+        </accordion>
     </ul>
 </div>
