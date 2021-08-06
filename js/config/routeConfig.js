@@ -13,7 +13,7 @@ appModule.config(function($routeProvider, $locationProvider) {
 
     $routeProvider.when("/nova-ordem", {
         templateUrl: "view/cadastro-ordem.html",
-        controller: "loginController"
+        controller: "cadastroOrdemController"
     });
 
     if(localStorage.getItem("authToken") === null){
