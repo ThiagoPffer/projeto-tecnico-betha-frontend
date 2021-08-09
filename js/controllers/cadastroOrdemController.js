@@ -1,5 +1,7 @@
 appModule.controller("cadastroOrdemController", function($scope, clienteService, ordemService) {
 
+    $scope.exibirErro = false;
+
     $scope.pesquisar = function(keyCode) {
         if(keyCode === 13){
             pesquisarCliente();
@@ -11,7 +13,9 @@ appModule.controller("cadastroOrdemController", function($scope, clienteService,
     }
 
     $scope.enviar = function() {
-        enviarOrdem();
+        if(!isOrdemInvalida()){
+            enviarOrdem();
+        }
     }
 
     var pesquisarCliente = function() {
@@ -54,5 +58,20 @@ appModule.controller("cadastroOrdemController", function($scope, clienteService,
         "idCliente": undefined,
         "itens": [] 
     };
+
+
+    var isOrdemInvalida = function() {
+        if(ordemservico.idCliente === undefined || ordemservico.itens.length === 0){
+            return erro("Favor inserir todos os dados da ordem para lançá-la. A ordem deve conter um cliente e ao menos um equipamento cadastrado.");
+        } else {
+            return false;
+        }
+    }
+
+    var erro = function(message) {
+        $scope.mensagemErro = message;
+        $scope.exibirErro = true;
+        return true;
+    }
 
 });

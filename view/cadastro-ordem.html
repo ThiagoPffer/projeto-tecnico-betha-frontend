@@ -9,6 +9,7 @@
             </div>
             <button type="button" class="default-button--filled d-width mt-32">Cadastrar novo cliente</button>
         </div>
+        
         <section ng-if="isClienteAvailable" class="column-container">
             <h3 class="main-page-subtitle">Cliente selecionado:</h3>
             <div class="row-container">
@@ -28,6 +29,7 @@
                 <p>{{cliente.endereco}}</p>
             </div>
         </section>
+
         <section class="column-container">
             <h3 class="main-page-subtitle">Equipamentos</h3>
             <div class="row-container wrap gap">
@@ -63,6 +65,11 @@
                 </div>
             </div>
         </section>
+
+        <div ng-show="exibirErro" class="default-error">
+            <span class="mdi mdi-alert-outline"></span>{{mensagemErro}}
+        </div>
     </section>
+
     <button ng-click="enviar()" type="submit" class="default-button--filled d-width mt-64">Enviar ordem de serviço</button>
 </main>
