@@ -6,6 +6,14 @@ appModule.controller("cadastroOrdemController", function($scope, clienteService,
         }
     }
 
+    $scope.adicionar = function(item) {
+        adicionarItem(item);
+    }
+
+    $scope.enviar = function() {
+        enviarOrdem();
+    }
+
     var pesquisarCliente = function() {
         clienteService.getCliente($scope.pesquisa.email).then(function(response) {
             $scope.cliente = response.data;
@@ -14,18 +22,23 @@ appModule.controller("cadastroOrdemController", function($scope, clienteService,
             
             console.log($scope.cliente);
             console.log(ordemservico);
+            $scope.isClienteAvailable = true;
         }, function(err) {
             console.log(err) //TRATAR ERRO DE REQUISICAO EXIBINDO MENSAGEM NA TELA
+            $scope.isClienteAvailable = false;
         });
     };
 
-    $scope.adicionarItem = function(item) {
+    var adicionarItem = function(item) {
         item.orcamento = 0.00;
-        ordemservico.itens.push(item);
+        ordemservico.itens.push(angular.copy(item));
+        delete($scope.item);
+
+        $scope.ordemservico = ordemservico;
         console.log(ordemservico);
     }
 
-    $scope.enviarOrdem = function() {
+    var enviarOrdem = function() {
         ordemService.insertOrdem(ordemservico).then(function(response) {
             console.log(response);
         }, function(err) {
@@ -41,4 +54,5 @@ appModule.controller("cadastroOrdemController", function($scope, clienteService,
         "idCliente": undefined,
         "itens": [] 
     };
+
 });

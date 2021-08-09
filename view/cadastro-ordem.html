@@ -9,7 +9,7 @@
             </div>
             <button type="button" class="default-button--filled d-width mt-32">Cadastrar novo cliente</button>
         </div>
-        <section class="column-container">
+        <section ng-if="isClienteAvailable" class="column-container">
             <h3 class="main-page-subtitle">Cliente selecionado:</h3>
             <div class="row-container">
                 <h4>Nome:</h4>       
@@ -31,6 +31,21 @@
         <section class="column-container">
             <h3 class="main-page-subtitle">Equipamentos</h3>
             <div class="row-container wrap gap">
+                <div ng-repeat="item in ordemservico.itens" class="item-salvo-container">
+                    <div class="input-group d-width">
+                        <h4 class="default-label">Equipamento:</h4>
+                        <p>{{item.equipamento}}</p>
+                    </div>
+                    <div class="input-group d-width">
+                        <h4 class="default-label">Descrição do equipamento:</h4>
+                        <p>{{item.descricao}}</p>
+                    </div>
+                    <div class="input-group d-width">
+                        <h4 class="default-label">Avarias encontradas:</h4>
+                        <p>{{item.avaria}}</p>
+                    </div>
+                </div>
+
                 <div class="cadastro-item-container">
                     <div class="input-group d-width">
                         <label class="default-label" for="equipamento-name">Equipamento</label>
@@ -44,15 +59,10 @@
                         <label class="default-label" for="equipamento-avarias">Avarias encontradas:</label>
                         <textarea ng-model="item.avaria" class="default-textarea" id="equipamento-avarias" name="equipamento-avarias" rows="10" placeholder="Digite as avarias descritas pelo cliente..." onresize="false"></textarea>
                     </div>
-                    <button ng-click="adicionarItem(item)" type="submit" class="default-button--outline">Salvar</button>
-                </div>
-                
-                <div class="cadastro-item-button-container">
-                    <img src="img/plus.png" alt="Adicionar novo equipamento">
-                    <button class="default-button--outline sm-width mt-32">Novo Equipamento</button>
+                    <button ng-click="adicionar(item)" type="submit" class="default-button--outline">Salvar</button>
                 </div>
             </div>
         </section>
     </section>
-    <button ng-click="enviarOrdem()" type="submit" class="default-button--filled d-width mt-64">Enviar ordem de serviço</button>
+    <button ng-click="enviar()" type="submit" class="default-button--filled d-width mt-64">Enviar ordem de serviço</button>
 </main>
