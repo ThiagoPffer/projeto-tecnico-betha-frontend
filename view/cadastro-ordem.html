@@ -5,7 +5,7 @@
         <div class="row-container gap-y">
             <div class="input-group d-width">
                 <label class="default-label" for="cliente-search">Cliente:</label>
-                <input ng-model="ordemservico.cliente" ng-keyup="pesquisar($event.keyCode)" class="default-input" id="cliente-search" type="email" placeholder="Digite o email do cliente e pressione 'Enter'">
+                <input ng-model="pesquisa.email" ng-keyup="pesquisar($event.keyCode)" class="default-input" id="cliente-search" type="email" placeholder="Digite o email do cliente e pressione 'Enter'">
             </div>
             <button type="button" class="default-button--filled d-width mt-32">Cadastrar novo cliente</button>
         </div>
@@ -34,24 +34,25 @@
                 <div class="cadastro-item-container">
                     <div class="input-group d-width">
                         <label class="default-label" for="equipamento-name">Equipamento</label>
-                        <input class="default-input" id="equipamento-name" type="text" placeholder="Digite um nome para o equipamento...">
+                        <input ng-model="item.equipamento" class="default-input" id="equipamento-name" type="text" placeholder="Digite um nome para o equipamento...">
                     </div>
                     <div class="input-group d-width">
                         <label class="default-label" for="equipamento-desc">Descrição do equipamento:</label>
-                        <textarea class="default-textarea" id="equipamento-desc" name="equipamento-desc" rows="10" placeholder="Descreva o equipamento entregue pelo cliente..." onresize="false"></textarea>
+                        <textarea ng-model="item.descricao" class="default-textarea" id="equipamento-desc" name="equipamento-desc" rows="10" placeholder="Descreva o equipamento entregue pelo cliente..." onresize="false"></textarea>
                     </div>
                     <div class="input-group d-width">
                         <label class="default-label" for="equipamento-avarias">Avarias encontradas:</label>
-                        <textarea class="default-textarea" id="equipamento-avarias" name="equipamento-avarias" rows="10" placeholder="Digite as avarias descritas pelo cliente..." onresize="false"></textarea>
+                        <textarea ng-model="item.avaria" class="default-textarea" id="equipamento-avarias" name="equipamento-avarias" rows="10" placeholder="Digite as avarias descritas pelo cliente..." onresize="false"></textarea>
                     </div>
+                    <button ng-click="adicionarItem(item)" type="submit" class="default-button--outline">Salvar</button>
                 </div>
                 
                 <div class="cadastro-item-button-container">
                     <img src="img/plus.png" alt="Adicionar novo equipamento">
-                    <button type="submit" class="default-button--outline sm-width mt-32">Novo Equipamento</button>
+                    <button class="default-button--outline sm-width mt-32">Novo Equipamento</button>
                 </div>
             </div>
         </section>
     </section>
-    <button type="submit" class="default-button--filled d-width mt-64">Enviar ordem de serviço</button>
+    <button ng-click="enviarOrdem()" type="submit" class="default-button--filled d-width mt-64">Enviar ordem de serviço</button>
 </main>

@@ -1,26 +1,4 @@
-appModule.controller("cadastroOrdemController", function($scope, clienteService) {
-    var emailCliente;
-    var enderecoCliente;
-
-    $scope.cliente = {};
-
-    $scope.ordemservico = {
-        "cliente": emailCliente 
-    };
-
-    var pesquisarCliente = function() {
-        emailCliente = $scope.ordemservico.cliente;
-        clienteService.getCliente(emailCliente).then(function(response) {
-            $scope.cliente = response.data;
-            enderecoCliente = $scope.cliente.endereco;
-            console.log($scope.cliente);
-            console.log(enderecoCliente);
-            var toString = `${enderecoCliente.logradouro}, número ${enderecoCliente.numero}, bairro ${enderecoCliente.bairro}, ${enderecoCliente.cidade}, ${enderecoCliente.estado}`;
-            $scope.cliente.endereco = toString;
-        }, function(err) {
-            console.log(err)
-        });
-    };
+appModule.controller("cadastroOrdemController", function($scope, clienteService, ordemService) {
 
     $scope.pesquisar = function(keyCode) {
         if(keyCode === 13){
@@ -28,4 +6,39 @@ appModule.controller("cadastroOrdemController", function($scope, clienteService)
         }
     }
 
+    var pesquisarCliente = function() {
+        clienteService.getCliente($scope.pesquisa.email).then(function(response) {
+            $scope.cliente = response.data;
+            ordemservico.idCliente = $scope.cliente.id; //CONSTRUÇAO OBJ ORDEM: SETANDO ID DO CLIENTE
+            $scope.cliente.endereco = toStringEndereco($scope.cliente.endereco);
+            
+            console.log($scope.cliente);
+            console.log(ordemservico);
+        }, function(err) {
+            console.log(err) //TRATAR ERRO DE REQUISICAO EXIBINDO MENSAGEM NA TELA
+        });
+    };
+
+    $scope.adicionarItem = function(item) {
+        item.orcamento = 0.00;
+        ordemservico.itens.push(item);
+        console.log(ordemservico);
+    }
+
+    $scope.enviarOrdem = function() {
+        ordemService.insertOrdem(ordemservico).then(function(response) {
+            console.log(response);
+        }, function(err) {
+            console.log(err);
+        })
+    }
+
+    var toStringEndereco = function(enderecoCliente) {
+        return `${enderecoCliente.logradouro}, número ${enderecoCliente.numero}, bairro ${enderecoCliente.bairro}, ${enderecoCliente.cidade}, ${enderecoCliente.estado}`;
+    }
+
+    var ordemservico = {
+        "idCliente": undefined,
+        "itens": [] 
+    };
 });
