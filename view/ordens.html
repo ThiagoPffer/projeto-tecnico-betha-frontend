@@ -3,11 +3,13 @@
     <h2 class="main-page-title">Ordens de Serviço</h2>
     <section class="ordens-container column-container gap-x">
         <div class="search-input-group">
-            <div class="input-group d-width">
-                <label class="default-label" for="ordem-search">Buscar ordem de serviço</label>
-                <input class="default-input" id="ordem-search" type="text" placeholder="Buscar por email de cliente">
+            <div class="input-group">
+                <label class="default-label" for="cliente-search">Cliente:</label>
+                <div class="search-elements">
+                    <input ng-model="pesquisa.email" ng-keyup="pesquisar($event.keyCode)" class="default-input search d-width" id="cliente-search" type="email" placeholder="Digite o email do cliente e pressione 'Enter'">
+                    <button ng-click="pesquisar(13)" type="submit" class="default-button--filled content-width"><span class="mdi mdi-magnify"></span> Buscar</button>
+                </div>
             </div>
-            <button class="default-button--filled xsm-width">Buscar</button>
         </div>
         <table class="default-table">
             <tr class="default-tableRow">

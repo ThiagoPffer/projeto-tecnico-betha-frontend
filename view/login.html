@@ -1,7 +1,7 @@
 <main class="login_background">
     <div class="login_window">
         <img class="login_window_logo" src="img/logo-betha.svg" alt="logo betha">
-        <div ng-class="display_none" class="default-error">
+        <div ng-show="showError" class="default-error">
             <span class="mdi mdi-alert-outline"></span>{{mensagemErro}}
         </div>
         <div ng-show="loginForm.email.$invalid && loginForm.email.$dirty" class="default-error">

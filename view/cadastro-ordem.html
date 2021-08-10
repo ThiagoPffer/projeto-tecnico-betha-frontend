@@ -2,29 +2,32 @@
 <main class="main-page">
     <h2 class="main-page-title">Nova Ordem de Serviço</h2>
     <section class="cadastro-ordem-container column-container gap-x">
-        <div class="row-container gap-y">
-            <div class="input-group d-width">
+        <div class="search-input-group">
+            <div class="input-group">
                 <label class="default-label" for="cliente-search">Cliente:</label>
-                <input ng-model="pesquisa.email" ng-keyup="pesquisar($event.keyCode)" class="default-input" id="cliente-search" type="email" placeholder="Digite o email do cliente e pressione 'Enter'">
+                <div class="search-elements">
+                    <input ng-model="pesquisa.email" ng-keyup="pesquisar($event.keyCode)" class="default-input search d-width" id="cliente-search" type="email" placeholder="Digite o email do cliente e pressione 'Enter'">
+                    <button ng-click="pesquisar(13)" type="submit" class="default-button--filled content-width"><span class="mdi mdi-magnify"></span> Buscar</button>
+                </div>
+                <button type="button" class="noBg-button content-width"><span class="mdi mdi-account-plus-outline"></span> Cadastrar novo cliente</button>
             </div>
-            <button type="button" class="default-button--filled d-width mt-32">Cadastrar novo cliente</button>
         </div>
         
-        <section ng-if="isClienteAvailable" class="column-container">
+        <section ng-if="isClienteAvailable" class="dados-cliente-container column-container">
             <h3 class="main-page-subtitle">Cliente selecionado:</h3>
-            <div class="row-container">
+            <div class="info-row">
                 <h4>Nome:</h4>       
                 <p>{{cliente.nome}}</p>
             </div>
-            <div class="row-container">
+            <div class="info-row">
                 <h4>Email:</h4>
                 <p>{{cliente.email}}</p>
             </div>
-            <div class="row-container">
+            <div class="info-row">
                 <h4>Telefone:</h4>
                 <p>{{cliente.telefone}}</p>
             </div>
-            <div class="row-container">
+            <div class="info-row">
                 <h4>Endereço:</h4>
                 <p>{{cliente.endereco}}</p>
             </div>

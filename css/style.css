@@ -69,6 +69,10 @@ textarea {
 
 /* <===========================::Utilities===========================> */
 
+.mt-0{
+    margin-top: 0;
+}
+
 .mt-32{
     margin-top: 32px;
 }
@@ -153,6 +157,14 @@ textarea {
     text-transform: uppercase;
 }
 
+.lg-width{
+    max-width: 880px;
+}
+
+.md-width{
+    max-width: 620px;
+}
+
 .d-width{
     max-width: 440px;
 }
@@ -164,7 +176,24 @@ textarea {
 .xsm-width{
     max-width: 200px;
 }
-/* ===========================::Defaults::=========================== */
+
+.content-width{
+    max-width: fit-content;
+}
+
+.full-width{
+    width: 100%;
+}
+
+/* <===========================::Defaults::===========================> */
+
+.mdi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4em;
+    margin-right: 8px;
+}
 
 .simple-link{
     color: var(--primaria);
@@ -173,6 +202,25 @@ textarea {
 
 .simple-link:hover{
     color: var(--primaria-escuro);
+}
+
+.info-row{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.info-row h4{
+    color: var(--cinza-escuro);
+    font-size: 1.125em;
+    margin-right: 5px;
+}
+
+.info-row p{
+    color: var(--cinza-escuro);
+    font-size: 1.125em;
+    margin-right: 5px;
 }
 
 .input-group{
@@ -190,15 +238,30 @@ textarea {
     width: 100%;
 }
 
-.input-group .simple-link{
+.input-group .search-group{
+    width: 100%;
+}
+
+.input-group .simple-link,
+.input-group .noBg-button{
     margin-top: 4px;
+}
+
+.search-elements{
+    display: flex;
+    flex-direction: row;
+    gap: 0 20px;
+    width: 100%;
 }
 
 .default-label{
     font-size: 1.25em;
     color: var(--cinza-escuro);
-    font-weight: 400;
     margin-bottom: 8px;
+}
+
+.default-label.bold{
+    font-weight: bold;
 }
 
 .default-input{
@@ -210,7 +273,7 @@ textarea {
     border-radius: 4px;
     width: 100%;
     padding: 10px 15px;
-    transition: .2s;
+    transition: .2s ease-out;
 }
 
 .default-textarea{
@@ -221,7 +284,7 @@ textarea {
     border-radius: 4px;
     width: 100%;
     padding: 10px 15px;
-    transition: .2s;
+    transition: .2s ease-out;
 }
 
 .default-input::placeholder,
@@ -235,6 +298,10 @@ textarea {
 }
 
 .default-button--filled{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     font-size: 1em;
     font-weight: 400;
     color: white;
@@ -244,9 +311,10 @@ textarea {
     border: none;
     border-radius: 4px;
     width: 100%;
-    padding: 10px 15px;
+    padding: 10px 35px;
     box-shadow: rgba(0, 0, 0, 0.25) 0 4px 4px 0;
-    transition: .4s;
+    position: relative;
+    transition: .2s ease-out;
 }
 
 .default-button--filled:hover{
@@ -258,15 +326,20 @@ textarea {
 }
 
 .default-button--outline{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     font-size: 1em;
     font-weight: 500;
     color: var(--primaria);
+    background: white;
     height: 50px;
     border: 1px solid var(--primaria);
     border-radius: 4px;
     width: 100%;
-    padding: 10px 15px;
-    transition: ease-out .2s;
+    padding: 10px 35px;
+    transition: .2s ease-out;
 }
 
 .default-button--outline:hover{
@@ -279,7 +352,31 @@ textarea {
     background-color: none;
 }
 
+.noBg-button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--primaria);
+    background: none;
+    height: 50px;
+    min-height: 50px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px 15px;
+    transition: .2s ease-out;
+}
+
+.noBg-button:hover{
+    border: 1px solid var(--primaria);
+}
+
 .default-error{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     background: var(--vermelho-claro);
     color: var(--vermelho-escuro);
     border: var(--vermelho-escuro) solid 1px;
@@ -295,10 +392,12 @@ textarea {
     border-collapse: collapse;
     border-spacing: 0;
     border-left: 2px solid var(--primaria);
+    margin-left: -110px;
 }
 
 .default-tableRow{
     height: 50px;
+    transition: .2s ease-out;
 }
 
 .default-tableRow:nth-child(even){
@@ -311,12 +410,12 @@ textarea {
 
 .default-tableRow th:first-child,
 .default-tableRow td:first-child{
-    text-align: left;
     padding-left: 35px;
 }
 
 .default-tableRow th,
 .default-tableRow td{
+    text-align: left;
     border: none;
     width: 20%;
 }
@@ -326,7 +425,7 @@ textarea {
 }
 
 .default-tableRow td{
-    text-align: center;
+    color: var(--cinza-escuro);
     cursor: pointer;
 }
 
@@ -357,6 +456,7 @@ textarea {
     background: var(--primaria);
     color: white;
 }
+
 /* <===========================::Side Menu::===========================> */
 
 .side-menu {
@@ -371,7 +471,6 @@ textarea {
     left: 0;
     overflow-x: hidden;
     z-index: 100;
-    transition: 0.5s;
 }
 
 .side-menu__header {
@@ -468,15 +567,6 @@ textarea {
     background-color: white;
 }
 
-.side-menu__item .mdi,
-.side-menu__subitem .mdi {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4em;
-    margin-right: 8px;
-}
-
 .side-menu__subitem {
     display: flex;
     align-items: center;
@@ -514,6 +604,7 @@ textarea {
 .main-page-subtitle{
     color: var(--primaria-escuro);
     font-size: 1.5em;
+    font-weight: 500;
     margin-bottom: 32px;
 }
 
@@ -608,4 +699,43 @@ textarea {
     justify-content: center;
     width: 440px;
     padding: 30px;
+}
+
+.dados-cliente-container{
+    background: white;
+    width: fit-content;
+    padding: 25px;
+    border-radius: 4px;
+    border: 1px solid var(--verde);
+    animation-name: card-animation;
+    animation-duration: .6s;
+    z-index: 0;
+}
+
+.item-salvo-container{
+    display: flex;
+    flex-direction: column;
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 2px 5px 8px;
+    gap: 26px 0;
+    width: 440px;
+    height: fit-content;
+    padding: 30px;
+    animation-name: card-animation;
+    animation-duration: .6s;
+}
+
+@keyframes card-animation {
+    from {
+        opacity: 0;
+        transform: translateY(-140px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.item-salvo-container p{
+    color: var(--cinza-medio);
 }

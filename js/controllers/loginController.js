@@ -5,6 +5,7 @@ appModule.controller("loginController", function($scope, $location, login, funci
     $scope.submit = function(funcionario) {
         formSubmit(funcionario);
     }
+    $scope.showError = false;
     
     var formSubmit = function(funcionario) {
         $scope.display_none = "d-none";
@@ -16,7 +17,7 @@ appModule.controller("loginController", function($scope, $location, login, funci
                 funcionarioService.sendToLocalStorage(response.data);
                 $location.path("/home");
             }, function(err) {
-                showElement();
+                $scope.showError = true;
                 $scope.mensagemErro = "ERRO "+err.status+": "+err.data.message;
             });
             
@@ -25,8 +26,4 @@ appModule.controller("loginController", function($scope, $location, login, funci
             $scope.mensagemErro = "ERRO "+err.status+": "+err.data.message;
         });
     }
-
-    var showElement = function(){
-        $scope.display_none = " ";
-    };
 });
