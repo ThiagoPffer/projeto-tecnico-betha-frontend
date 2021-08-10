@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-bt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+    <title>ProjetoTecnico</title>
+
+    <style>
+
+    </style>
+</head>
+<body>
+    <aside class="side-menu left" id="sideMenu">
+        <header class="side-menu__header">
+            <div class="row-container">
+                <img src="img/profile.jpg" alt="Foto de perfil do usuário">
+                <div class="side-menu__info">
+                    <h4>User Name</h4>
+                    <p>Recepcionista</p>
+                </div>
+            </div>
+        </header>
+        <div class="side-menu__body">
+            <ul class="side-menu__list">
+                <li class="side-menu__item">
+                    <a href="#">
+                        <span class="mdi mdi-home-outline"></span><p>Página principal</p>
+                    </a>
+                </li>
+                <li class="side-menu__item active">
+                    <a href="#">
+                        <span class="mdi mdi-chevron-down"></span><p>Ordens de Serviço</p>
+                    </a>
+                </li>
+                <li class="side-menu__item">
+                    <a href="#">
+                        <span class="mdi mdi-chevron-down"></span><p>Clientes</p>
+                    </a>
+                </li>
+                <li class="side-menu__item">
+                    <a href="#">
+                        <span class="mdi mdi-chevron-down"></span><p>Conta</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <main class="main-page">
+        <h2 class="main-page-title">Ordens de Serviço</h2>
+        <section class="ordens-container column-container gap-x">
+            <div class="search-input-group">
+                <div class="input-group d-width">
+                    <label class="default-label" for="ordem-search">Buscar ordem de serviço</label>
+                    <input class="default-input" id="ordem-search" type="text" placeholder="Buscar por email de cliente">
+                </div>
+                <button class="default-button--filled xsm-width">Buscar</button>
+            </div>
+            <table class="default-table">
+                <tr class="default-tableRow">
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Itens</th>
+                    <th>Situação</th>
+                    <th>Orçamento</th>
+                    <th>Pagamento</th>
+                </tr>
+                <tr class="default-tableRow">
+                        <td>1</td>
+                        <td>Thiago Piffer</td>
+                        <td>2</td>
+                        <td>EM_ANALISE</td>
+                        <td>R$ 256,00</td>
+                        <td>PENDENTE</td>
+                </tr>
+                <tr class="default-tableRow">
+                    <td>1</td>
+                    <td>Thiago Piffer</td>
+                    <td>2</td>
+                    <td>EM_ANALISE</td>
+                    <td>R$ 256,00</td>
+                    <td>PENDENTE</td>
+                </tr>
+                <tr class="default-tableRow">
+                    <td>1</td>
+                    <td>Thiago Piffer</td>
+                    <td>2</td>
+                    <td>EM_ANALISE</td>
+                    <td>R$ 256,00</td>
+                    <td>PENDENTE</td>
+                </tr>
+                <tr class="default-tableRow">
+                    <td>1</td>
+                    <td>Thiago Piffer</td>
+                    <td>2</td>
+                    <td>EM_ANALISE</td>
+                    <td>R$ 256,00</td>
+                    <td>PENDENTE</td>
+                </tr>
+                <tr class="default-tableRow">
+                    <td>1</td>
+                    <td>Thiago Piffer</td>
+                    <td>2</td>
+                    <td>EM_ANALISE</td>
+                    <td>R$ 256,00</td>
+                    <td>PENDENTE</td>
+                </tr>
+                <tr class="default-tableRow">
+                    <td>1</td>
+                    <td>Thiago Piffer</td>
+                    <td>2</td>
+                    <td>EM_ANALISE</td>
+                    <td>R$ 256,00</td>
+                    <td>PENDENTE</td>
+                </tr>
+                <tr class="default-tableRow">
+                    <td>1</td>
+                    <td>Thiago Piffer</td>
+                    <td>2</td>
+                    <td>EM_ANALISE</td>
+                    <td>R$ 256,00</td>
+                    <td>PENDENTE</td>
+                </tr>
+                <tr class="default-tableRow">
+                    <td>1</td>
+                    <td>Thiago Piffer</td>
+                    <td>2</td>
+                    <td>EM_ANALISE</td>
+                    <td>R$ 256,00</td>
+                    <td>PENDENTE</td>
+                </tr>
+                <tr class="default-tableRow">
+                    <td>1</td>
+                    <td>Thiago Piffer</td>
+                    <td>2</td>
+                    <td>EM_ANALISE</td>
+                    <td>R$ 256,00</td>
+                    <td>PENDENTE</td>
+                </tr>
+            </table>
+            <div class="default-pagination">
+                <a class="default-pagination-button selected" href="#">1</a>
+                <a class="default-pagination-button" href="#">2</a>
+                <a class="default-pagination-button" href="#">3</a>
+                <a class="default-pagination-button" href="#">4</a>
+                <a class="default-pagination-button" href="#"><span class="mdi mdi-chevron-right"></span></a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

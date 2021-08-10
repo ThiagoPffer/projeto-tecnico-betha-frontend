@@ -16,6 +16,11 @@ appModule.config(function($routeProvider, $locationProvider) {
         controller: "cadastroOrdemController"
     });
 
+    $routeProvider.when("/ordens", {
+        templateUrl: "view/ordens.html",
+        controller: "ordensServicoController"
+    });
+
     if(localStorage.getItem("authToken") === null){
         $routeProvider.otherwise({redirectTo: "/login"});
     } else {

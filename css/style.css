@@ -160,6 +160,10 @@ textarea {
 .sm-width{
     max-width: 300px;
 }
+
+.xsm-width{
+    max-width: 200px;
+}
 /* ===========================::Defaults::=========================== */
 
 .simple-link{
@@ -175,6 +179,14 @@ textarea {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 100%;
+}
+
+.search-input-group{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 0 20px;
     width: 100%;
 }
 
@@ -278,6 +290,73 @@ textarea {
     transition: .4s;
 }
 
+.default-table{
+    background: white;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-left: 2px solid var(--primaria);
+}
+
+.default-tableRow{
+    height: 50px;
+}
+
+.default-tableRow:nth-child(even){
+    background: var(--cinza-claro);
+}
+
+.default-tableRow:hover{
+    background: rgb(230, 230, 230);
+}
+
+.default-tableRow th:first-child,
+.default-tableRow td:first-child{
+    text-align: left;
+    padding-left: 35px;
+}
+
+.default-tableRow th,
+.default-tableRow td{
+    border: none;
+    width: 20%;
+}
+
+.default-tableRow th{
+    background: white;
+}
+
+.default-tableRow td{
+    text-align: center;
+    cursor: pointer;
+}
+
+.default-pagination{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.default-pagination-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cinza-escuro);
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid var(--primaria);
+    transition: .1s ease-out;
+}
+
+.default-pagination-button:hover{
+    background: var(--primaria-escuro);
+    color: white;
+}
+
+.default-pagination-button.selected{
+    background: var(--primaria);
+    color: white;
+}
 /* <===========================::Side Menu::===========================> */
 
 .side-menu {
@@ -307,10 +386,6 @@ textarea {
     height: 60px;
     width: 60px;
     border-radius: 6em;
-}
-
-.side-menu__header .button--close {
-    margin-right: 10px;
 }
 
 .side-menu__info {
@@ -421,8 +496,9 @@ textarea {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: local;
     height: 100%;
-    width: 100%;
+    /* width: 100%; */
     padding: 125px 0 125px 110px;
     margin-left: 240px;
     overflow: auto;
