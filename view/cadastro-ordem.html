@@ -12,8 +12,12 @@
                 <button type="button" class="noBg-button content-width"><span class="mdi mdi-account-plus-outline"></span> Cadastrar novo cliente</button>
             </div>
         </div>
+
+        <div ng-show="showEmailError" class="default-error">
+            <span class="mdi mdi-alert-outline"></span>{{mensagemErroEmail}}
+        </div>
         
-        <section ng-if="isClienteAvailable" class="dados-cliente-container column-container">
+        <section ng-show="isClienteAvailable" class="dados-cliente-container column-container">
             <h3 class="main-page-subtitle">Cliente selecionado:</h3>
             <div class="info-row">
                 <h4>Nome:</h4>       
@@ -69,7 +73,7 @@
             </div>
         </section>
 
-        <div ng-show="exibirErro" class="default-error">
+        <div ng-show="showError" class="default-error">
             <span class="mdi mdi-alert-outline"></span>{{mensagemErro}}
         </div>
     </section>

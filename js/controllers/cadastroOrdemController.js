@@ -1,6 +1,7 @@
 appModule.controller("cadastroOrdemController", function($location, $scope, clienteService, ordemService) {
 
-    $scope.exibirErro = false;
+    $scope.showError = false;
+    $scope.showEmailError = false;
     $scope.isClienteAvailable = false;
 
     var ordemservico = {
@@ -10,12 +11,21 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
 
     $scope.pesquisar = function(keyCode) {
         if(keyCode === 13){
-            pesquisarCliente();
+            if(isEmailValido($scope.pesquisa)){
+                $scope.showEmailError = false;
+                pesquisarCliente();
+            } else {
+                erroEmail("Você deve inserir um email válido");
+            }
         }
     }
 
     $scope.adicionar = function(item) {
-        adicionarItem(item);
+        if(isFormularioValido(item)){
+            adicionarItem(item);
+        } else {
+            erro("Os dados do equipamento devem ser preenchidos corretamente!");
+        }
     }
 
     $scope.enviar = function() {
@@ -32,7 +42,7 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
             $scope.cliente.endereco = toStringEndereco($scope.cliente.endereco);
             $scope.isClienteAvailable = true;
         }, function(err) {
-            console.log(err) //TRATAR ERRO DE REQUISICAO EXIBINDO MENSAGEM NA TELA
+            erroEmail(err.data.message);
             $scope.isClienteAvailable = false;
         });
     };
@@ -46,14 +56,39 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
 
     var enviarOrdem = function() {
         ordemService.insertOrdem(ordemservico).then(function(response) {
-            console.log(response);
             limparTela();
         }, function(err) {
-            console.log(err);
+            erro(err.data.message);
         })
     }
 
     // UTILS
+
+    var isEmailValido = function(pesquisa) {
+        if(pesquisa != undefined && pesquisa.email != "" && pesquisa.email != undefined){
+            return true;
+        } else {
+            $scope.isClienteAvailable = false;
+            return false
+        }
+    }
+
+    var isFormularioValido = function(item) {
+        if(item != undefined){
+            if(item.equipamento != undefined && item.descricao != undefined && item.descricao != undefined){
+                if(item.descricao.length < 25 || item.avaria.length < 15){
+                    return false;
+                } else {
+                    $scope.showError = false;
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false
+        }
+    }
 
     var toStringEndereco = function(enderecoCliente) {
         return `${enderecoCliente.logradouro}, número ${enderecoCliente.numero}, bairro ${enderecoCliente.bairro}, ${enderecoCliente.cidade}, ${enderecoCliente.estado}`;
@@ -67,9 +102,15 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
         }
     }
 
+    var erroEmail = function(message) {
+        $scope.mensagemErroEmail = message;
+        $scope.showEmailError = true;
+        return true;
+    }
+
     var erro = function(message) {
         $scope.mensagemErro = message;
-        $scope.exibirErro = true;
+        $scope.showError = true;
         return true;
     }
 
@@ -85,7 +126,7 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
         delete($scope.cliente);
         delete($scope.pesquisa);
         resetOrdemServico();
-        $scope.exibirErro = false;
+        $scope.showError = false;
         $scope.isClienteAvailable = false;
     }
 
