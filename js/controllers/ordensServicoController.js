@@ -1,6 +1,6 @@
 appModule.controller("ordensServicoController", function($location, $scope, ordemServicoService) {
     var currentPage;
-    
+
     $scope.ordensServico = [];
     $scope.pagination = [];
     $scope.isSelected = function(paginationValue) {
@@ -8,7 +8,7 @@ appModule.controller("ordensServicoController", function($location, $scope, orde
             return "selected";
         }
     };
-    
+
     var loadOrdensServico = function() {
         ordemServicoService.getOrdensServico().then(function(response) {
             $scope.ordensServico = response.data.content;

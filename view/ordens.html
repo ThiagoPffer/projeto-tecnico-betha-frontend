@@ -4,10 +4,10 @@
     <section class="ordens-container column-container gap-x">
         <div class="search-input-group">
             <div class="input-group">
-                <label class="default-label" for="cliente-search">Cliente:</label>
-                <div class="search-elements">
-                    <input ng-model="pesquisa.email" ng-keyup="pesquisar($event.keyCode)" class="default-input search d-width" id="cliente-search" type="email" placeholder="Digite o email do cliente e pressione 'Enter'">
-                    <button ng-click="pesquisar(13)" type="submit" class="default-button--filled content-width"><span class="mdi mdi-magnify"></span> Buscar</button>
+                <label class="default-label" for="ordem-search">Busca rápida:</label>
+                <div class="search-elements md-width">
+                    <input ng-model="searchInput" class="default-input search" id="ordem-search" type="text" placeholder="Digite o nome do cliente">
+                    <!-- <button type="button" class="default-button--filled content-width"><span class="mdi mdi-magnify"></span> Buscar</button> -->
                 </div>
             </div>
         </div>
@@ -18,13 +18,15 @@
                 <th>Situação</th>
                 <th>Orçamento</th>
                 <th>Pagamento</th>
+                <th>Data de criação</th>
             </tr>
-            <tr ng-click="verOrdem(ordemServico.id)" ng-repeat="ordemServico in ordensServico" class="default-tableRow">
+            <tr ng-click="verOrdem(ordemServico.id)" ng-repeat="ordemServico in ordensServico | filter:searchInput" class="default-tableRow">
                 <td>{{ordemServico.id}}</td>
                 <td>{{ordemServico.cliente}}</td>
                 <td>{{ordemServico.situacao}}</td>
-                <td>{{ordemServico.valorTotal}}</td>
+                <td>{{ordemServico.valorTotal | currency}}</td>
                 <td>{{ordemServico.pagamento}}</td>
+                <td>{{ordemServico.instante | date:'dd/MM/yyyy HH:mm'}}</td>
             </tr>
         </table>
         <div class="default-pagination">
