@@ -1,15 +1,13 @@
-appModule.controller("loginController", function($scope, $location, login, funcionarioService) {
-            
-    $scope.mensagemErro = "";
-    $scope.display_none = "d-none";
+appModule.controller("loginController", function($scope, $location, loginService, funcionarioService) {
+    
+    $scope.showError = false;
+    $scope.errorMessage = "";
     $scope.submit = function(funcionario) {
         formSubmit(funcionario);
     }
-    $scope.showError = false;
     
     var formSubmit = function(funcionario) {
-        $scope.display_none = "d-none";
-        login.authenticate(funcionario).then(function(response) {
+        loginService.authenticate(funcionario).then(function(response) {
             const authToken = response.headers().authorization;
             localStorage.setItem("authToken", authToken);
 
@@ -18,12 +16,12 @@ appModule.controller("loginController", function($scope, $location, login, funci
                 $location.path("/home");
             }, function(err) {
                 $scope.showError = true;
-                $scope.mensagemErro = "ERRO "+err.status+": "+err.data.message;
+                $scope.errorMessage = "ERRO "+err.status+": "+err.data.message;
             });
             
         }, function(err) {
-            showElement();
-            $scope.mensagemErro = "ERRO "+err.status+": "+err.data.message;
+            $scope.showError = true;
+            $scope.errorMessage = "ERRO "+err.status+": "+err.data.message;
         });
     }
 });

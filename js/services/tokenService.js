@@ -1,4 +1,4 @@
-appModule.factory("token", function(/*$http, properties*/) {
+appModule.factory("tokenService", function(/*$http, properties*/) {
 
     var _getToken = function() {
         return localStorage.getItem("authToken");

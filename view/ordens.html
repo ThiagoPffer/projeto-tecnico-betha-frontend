@@ -19,16 +19,16 @@
                 <th>Orçamento</th>
                 <th>Pagamento</th>
             </tr>
-            <tr ng-click="verOrdem(ordem.id)" ng-repeat="ordem in ordens" class="default-tableRow">
-                <td>{{ordem.id}}</td>
-                <td>{{ordem.cliente}}</td>
-                <td>{{ordem.situacao}}</td>
-                <td>{{ordem.valorTotal}}</td>
-                <td>{{ordem.pagamento}}</td>
+            <tr ng-click="verOrdem(ordemServico.id)" ng-repeat="ordemServico in ordensServico" class="default-tableRow">
+                <td>{{ordemServico.id}}</td>
+                <td>{{ordemServico.cliente}}</td>
+                <td>{{ordemServico.situacao}}</td>
+                <td>{{ordemServico.valorTotal}}</td>
+                <td>{{ordemServico.pagamento}}</td>
             </tr>
         </table>
         <div class="default-pagination">
-            <a ng-class="isSelected(pagina.value)" ng-repeat="pagina in paginacao" class="default-pagination-button" href="#">{{pagina.value}}</a>
+            <a ng-class="isSelected(page.value)" ng-repeat="page in pagination" class="default-pagination-button" href="#">{{page.value}}</a>
             <a class="default-pagination-button" href="#"><span class="mdi mdi-chevron-right"></span></a>
         </div>
     </section>

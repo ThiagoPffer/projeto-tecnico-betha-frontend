@@ -1,9 +1,9 @@
-appModule.factory("loginInterceptor", function($location, token) {
+appModule.factory("loginInterceptor", function($location, tokenService) {
     return {
         request: function(config) {
             var url = config.url;
             if(url.indexOf('view/login.html') > -1){
-                if(token.getToken() != null){
+                if(tokenService.getToken() != null){
                     $location.path("/home");
                     return config;
                 }

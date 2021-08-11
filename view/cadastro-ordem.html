@@ -6,15 +6,15 @@
             <div class="input-group">
                 <label class="default-label" for="cliente-search">Cliente:</label>
                 <div class="search-elements">
-                    <input ng-model="pesquisa.email" ng-keyup="pesquisar($event.keyCode)" class="default-input search d-width" id="cliente-search" type="email" placeholder="Digite o email do cliente e pressione 'Enter'">
-                    <button ng-click="pesquisar(13)" type="submit" class="default-button--filled content-width"><span class="mdi mdi-magnify"></span> Buscar</button>
+                    <input ng-model="searchInput.email" ng-keyup="searchEmail($event.keyCode)" class="default-input search d-width" id="cliente-search" type="email" placeholder="Digite o email do cliente e pressione 'Enter'">
+                    <button ng-click="searchEmail(13)" type="submit" class="default-button--filled content-width"><span class="mdi mdi-magnify"></span> Buscar</button>
                 </div>
                 <button type="button" class="noBg-button content-width"><span class="mdi mdi-account-plus-outline"></span> Cadastrar novo cliente</button>
             </div>
         </div>
 
         <div ng-show="showEmailError" class="default-error">
-            <span class="mdi mdi-alert-outline"></span>{{mensagemErroEmail}}
+            <span class="mdi mdi-alert-outline"></span>{{emailExceptionMessage}}
         </div>
         
         <section ng-show="isClienteAvailable" class="dados-cliente-container column-container">
@@ -40,7 +40,7 @@
         <section class="column-container">
             <h3 class="main-page-subtitle">Equipamentos</h3>
             <div class="row-container wrap gap">
-                <div ng-repeat="item in ordemservico.itens" class="item-salvo-container">
+                <div ng-repeat="item in itens" class="item-salvo-container">
                     <div class="input-group d-width">
                         <h4 class="default-label">Equipamento:</h4>
                         <p>{{item.equipamento}}</p>
@@ -68,15 +68,15 @@
                         <label class="default-label" for="equipamento-avarias">Avarias encontradas:</label>
                         <textarea ng-model="item.avaria" class="default-textarea" id="equipamento-avarias" name="equipamento-avarias" rows="10" placeholder="Digite as avarias descritas pelo cliente..." onresize="false"></textarea>
                     </div>
-                    <button ng-click="adicionar(item)" type="submit" class="default-button--outline">Salvar</button>
+                    <button ng-click="addItem(item)" type="submit" class="default-button--outline">Salvar</button>
                 </div>
             </div>
         </section>
 
         <div ng-show="showError" class="default-error">
-            <span class="mdi mdi-alert-outline"></span>{{mensagemErro}}
+            <span class="mdi mdi-alert-outline"></span>{{genericExceptionMessage}}
         </div>
     </section>
 
-    <button ng-click="enviar()" type="submit" class="default-button--filled d-width mt-64">Enviar ordem de serviço</button>
+    <button ng-click="submitOrdemServico()" type="submit" class="default-button--filled d-width mt-64">Enviar ordem de serviço</button>
 </main>

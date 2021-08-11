@@ -1,71 +1,73 @@
-appModule.controller("cadastroOrdemController", function($location, $scope, clienteService, ordemService) {
+appModule.controller("cadastroOrdemController", function($location, $scope, clienteService, ordemServicoService) {
 
     $scope.showError = false;
     $scope.showEmailError = false;
     $scope.isClienteAvailable = false;
 
-    var ordemservico = {
+    var newOrdemServico = {
         "idCliente": undefined,
         "itens": [] 
     };
 
-    $scope.pesquisar = function(keyCode) {
+    $scope.searchEmail = function(keyCode) {
         if(keyCode === 13){
-            if(isEmailValido($scope.pesquisa)){
+            if(isEmailValid($scope.searchInput)){
                 $scope.showEmailError = false;
-                pesquisarCliente();
+                searchCliente();
             } else {
-                erroEmail("Você deve inserir um email válido");
+                emailException("Você deve inserir um email válido");
             }
         }
     }
 
-    $scope.adicionar = function(item) {
-        if(isFormularioValido(item)){
-            adicionarItem(item);
+    $scope.addItem = function(item) {
+        if(isFormularyValid(item)){
+            pushNewItem(item);
         } else {
-            erro("Os dados do equipamento devem ser preenchidos corretamente!");
+            genericException("Os dados do equipamento devem ser preenchidos corretamente!");
         }
     }
 
-    $scope.enviar = function() {
-        if(!isOrdemInvalida()){
-            enviarOrdem();
+    $scope.submitOrdemServico = function() {
+        if(isOrdemServicoValid()){
+            insertNewOrdemServico();
             $location.path("/home");
+        } else {
+            genericException("Favor inserir todos os dados da ordem para lançá-la. A ordem deve conter um cliente e ao menos um equipamento cadastrado.");
         }
     }
 
-    var pesquisarCliente = function() {
-        clienteService.getCliente($scope.pesquisa.email).then(function(response) {
+    var searchCliente = function() {
+        clienteService.getCliente($scope.searchInput.email).then(function(response) {
             $scope.cliente = response.data;
-            ordemservico.idCliente = $scope.cliente.id; //CONSTRUÇAO OBJ ORDEM: SETANDO ID DO CLIENTE
+            newOrdemServico.idCliente = $scope.cliente.id; //CONSTRUÇAO OBJ ORDEM: SETANDO ID DO CLIENTE
             $scope.cliente.endereco = toStringEndereco($scope.cliente.endereco);
             $scope.isClienteAvailable = true;
         }, function(err) {
-            erroEmail(err.data.message);
+            emailException(err.data.message);
             $scope.isClienteAvailable = false;
         });
     };
 
-    var adicionarItem = function(item) {
+    var pushNewItem = function(item) {
         item.orcamento = 0.00;
-        ordemservico.itens.push(angular.copy(item));
+        newOrdemServico.itens.push(angular.copy(item));
         delete($scope.item);
-        $scope.ordemservico = ordemservico;
+        $scope.itens = newOrdemServico.itens;
     }
-
-    var enviarOrdem = function() {
-        ordemService.insertOrdem(ordemservico).then(function(response) {
-            limparTela();
+    
+    var insertNewOrdemServico = function() {
+        ordemServicoService.insertOrdemServico(newOrdemServico).then(function(response) {
+            clearComponents();
         }, function(err) {
-            erro(err.data.message);
-        })
+            genericException(err.data.message);
+        });
     }
 
     // UTILS
 
-    var isEmailValido = function(pesquisa) {
-        if(pesquisa != undefined && pesquisa.email != "" && pesquisa.email != undefined){
+    var isEmailValid = function(searchInput) {
+        if(searchInput != undefined && searchInput.email != "" && searchInput.email != undefined){
             return true;
         } else {
             $scope.isClienteAvailable = false;
@@ -73,7 +75,7 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
         }
     }
 
-    var isFormularioValido = function(item) {
+    var isFormularyValid = function(item) {
         if(item != undefined){
             if(item.equipamento != undefined && item.descricao != undefined && item.descricao != undefined){
                 if(item.descricao.length < 25 || item.avaria.length < 15){
@@ -90,41 +92,49 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
         }
     }
 
-    var toStringEndereco = function(enderecoCliente) {
-        return `${enderecoCliente.logradouro}, número ${enderecoCliente.numero}, bairro ${enderecoCliente.bairro}, ${enderecoCliente.cidade}, ${enderecoCliente.estado}`;
-    }
-
-    var isOrdemInvalida = function() {
-        if(ordemservico.idCliente === undefined || ordemservico.itens.length === 0){
-            return erro("Favor inserir todos os dados da ordem para lançá-la. A ordem deve conter um cliente e ao menos um equipamento cadastrado.");
+    var isOrdemServicoValid = function() {
+        if(newOrdemServico != undefined){
+            if(newOrdemServico.idCliente != undefined && newOrdemServico.itens != undefined){
+                if(newOrdemServico.itens.length != 0){
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
     }
 
-    var erroEmail = function(message) {
-        $scope.mensagemErroEmail = message;
+    var emailException = function(message) {
+        $scope.emailExceptionMessage = message;
         $scope.showEmailError = true;
         return true;
     }
 
-    var erro = function(message) {
-        $scope.mensagemErro = message;
+    var genericException = function(message) {
+        $scope.genericExceptionMessage = message;
         $scope.showError = true;
         return true;
     }
 
+    var toStringEndereco = function(enderecoCliente) {
+        return `${enderecoCliente.logradouro}, número ${enderecoCliente.numero}, bairro ${enderecoCliente.bairro}, ${enderecoCliente.cidade}, ${enderecoCliente.estado}`;
+    }
+
     var resetOrdemServico = function() {
-        ordemservico = {
+        newOrdemServico = {
             "idCliente": undefined,
             "itens": [] 
         };
     }
 
-    var limparTela = function(){
-        delete($scope.ordemservico);
+    var clearComponents = function(){
+        delete($scope.itens);
         delete($scope.cliente);
-        delete($scope.pesquisa);
+        delete($scope.searchInput);
         resetOrdemServico();
         $scope.showError = false;
         $scope.isClienteAvailable = false;

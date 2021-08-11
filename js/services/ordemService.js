@@ -1,15 +1,15 @@
-appModule.factory("ordemService", function($http, properties) {
+appModule.factory("ordemServicoService", function($http, properties) {
     
-    var _insertOrdem = function(ordem) {
-        return $http.post(properties.baseUrl + "/ordensservico", ordem);
+    var _insertOrdemServico = function(ordemServico) {
+        return $http.post(properties.baseUrl + "/ordensservico", ordemServico);
     }
 
-    var _getOrdens = function(ordem) {
+    var _getOrdensServico = function() {
         return $http.get(properties.baseUrl + "/ordensservico/page");
     }
     
     return {
-        insertOrdem: _insertOrdem,
-        getOrdens: _getOrdens
+        insertOrdemServico: _insertOrdemServico,
+        getOrdensServico: _getOrdensServico
     };
 });

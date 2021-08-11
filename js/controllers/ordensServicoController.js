@@ -1,34 +1,34 @@
-appModule.controller("ordensServicoController", function($location, $scope, ordemService) {
-    var paginaAtual;
+appModule.controller("ordensServicoController", function($location, $scope, ordemServicoService) {
+    var currentPage;
     
-    $scope.ordens = [];
-    $scope.paginacao = [];
-    $scope.isSelected = function(valorPaginacao) {
-        if(paginaAtual === valorPaginacao){
+    $scope.ordensServico = [];
+    $scope.pagination = [];
+    $scope.isSelected = function(paginationValue) {
+        if(currentPage === paginationValue){
             return "selected";
         }
     };
     
-    var carregarOrdens = function() {
-        ordemService.getOrdens().then(function(response) {
-            $scope.ordens = response.data.content;
-            paginaAtual = response.data.number+1;
-            carregarPaginacao(response.data.totalPages);
+    var loadOrdensServico = function() {
+        ordemServicoService.getOrdensServico().then(function(response) {
+            $scope.ordensServico = response.data.content;
+            currentPage = response.data.number+1;
+            loadPagination(response.data.totalPages);
             console.log(response);
         },function(err) {
             console.log(err);
         })
     }
 
-    var carregarPaginacao = function(totalPaginas) {
-        for(let i=1;i<=totalPaginas;i++){
-            $scope.paginacao.push({'value': i});
+    var loadPagination = function(totalPages) {
+        for(let i=1;i<=totalPages;i++){
+            $scope.pagination.push({'value': i});
         }
     }
 
-    $scope.verOrdem = function(id) {
-        $location.path("/nova-ordem");
-    }
+    // $scope.accessOrdemServico = function(id) {
+    //     $location.path("/nova-ordem");
+    // }
 
-    carregarOrdens();
+    loadOrdensServico();
 });
