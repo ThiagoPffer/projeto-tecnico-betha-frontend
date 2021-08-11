@@ -1,41 +1,48 @@
 appModule.controller("cadastroOrdemController", function($location, $scope, clienteService, ordemServicoService) {
 
     $scope.showError = false;
+    $scope.showItemError = false;
     $scope.showEmailError = false;
     $scope.isClienteAvailable = false;
 
-    var newOrdemServico = {
+    var newOrdemServico = { // DESFAZER VARIAVEL GLOBAL
         "idCliente": undefined,
         "itens": [] 
     };
 
+    // SCOPES
+
     $scope.searchEmail = function(keyCode) {
         if(keyCode === 13){
-            if(isEmailValid($scope.searchInput)){
+            if(ordemServicoService.isEmailValid($scope.searchInput)){
                 $scope.showEmailError = false;
                 searchCliente();
             } else {
+                $scope.isClienteAvailable = false;
                 emailException("Você deve inserir um email válido");
             }
         }
     }
 
     $scope.addItem = function(item) {
-        if(isFormularyValid(item)){
+        if(ordemServicoService.isFormularyValid(item)){
+            $scope.showItemError = false;
             pushNewItem(item);
         } else {
-            genericException("Os dados do equipamento devem ser preenchidos corretamente!");
+            itemException("Os dados do equipamento devem ser preenchidos corretamente!");
         }
     }
 
     $scope.submitOrdemServico = function() {
-        if(isOrdemServicoValid()){
-            insertNewOrdemServico();
+        if(ordemServicoService.isOrdemServicoValid(newOrdemServico)){
+            insertNewOrdemServico(newOrdemServico);
             $location.path("/home");
         } else {
             genericException("Favor inserir todos os dados da ordem para lançá-la. A ordem deve conter um cliente e ao menos um equipamento cadastrado.");
         }
     }
+
+    // OPERACOES
 
     var searchCliente = function() {
         clienteService.getCliente($scope.searchInput.email).then(function(response) {
@@ -56,7 +63,7 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
         $scope.itens = newOrdemServico.itens;
     }
     
-    var insertNewOrdemServico = function() {
+    var insertNewOrdemServico = function(newOrdemServico) {
         ordemServicoService.insertOrdemServico(newOrdemServico).then(function(response) {
             clearComponents();
         }, function(err) {
@@ -64,61 +71,24 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
         });
     }
 
-    // UTILS
-
-    var isEmailValid = function(searchInput) {
-        if(searchInput != undefined && searchInput.email != "" && searchInput.email != undefined){
-            return true;
-        } else {
-            $scope.isClienteAvailable = false;
-            return false
-        }
-    }
-
-    var isFormularyValid = function(item) {
-        if(item != undefined){
-            if(item.equipamento != undefined && item.descricao != undefined && item.descricao != undefined){
-                if(item.descricao.length < 25 || item.avaria.length < 15){
-                    return false;
-                } else {
-                    $scope.showError = false;
-                    return true;
-                }
-            } else {
-                return false;
-            }
-        } else {
-            return false
-        }
-    }
-
-    var isOrdemServicoValid = function() {
-        if(newOrdemServico != undefined){
-            if(newOrdemServico.idCliente != undefined && newOrdemServico.itens != undefined){
-                if(newOrdemServico.itens.length != 0){
-                    return true;
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
+    // ERROS
 
     var emailException = function(message) {
         $scope.emailExceptionMessage = message;
         $scope.showEmailError = true;
-        return true;
+    }
+
+    var itemException = function(message) {
+        $scope.itemExceptionMessage = message;
+        $scope.showItemError = true;
     }
 
     var genericException = function(message) {
         $scope.genericExceptionMessage = message;
         $scope.showError = true;
-        return true;
     }
+
+    // UTILS
 
     var toStringEndereco = function(enderecoCliente) {
         return `${enderecoCliente.logradouro}, número ${enderecoCliente.numero}, bairro ${enderecoCliente.bairro}, ${enderecoCliente.cidade}, ${enderecoCliente.estado}`;
@@ -137,6 +107,8 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
         delete($scope.searchInput);
         resetOrdemServico();
         $scope.showError = false;
+        $scope.showEmailError = false;
+        $scope.showItemError = false;
         $scope.isClienteAvailable = false;
     }
 

@@ -93,6 +93,11 @@ textarea {
     gap: 56px 0;
 }
 
+.gap-x-16{
+    gap: 16px 0;
+}
+
+
 .gap{
     gap: 56px 46px;
 }
@@ -385,6 +390,18 @@ textarea {
     width: fit-content;
     overflow: hidden;
     transition: .4s;
+    animation-name: error-card-animation;
+    animation-duration: .4s;
+}
+
+@keyframes error-card-animation {
+    from {
+        border: var(--amarelo) solid 1px;
+        background: yellowgreen;
+    }
+    to {
+        border: var(--vermelho-escuro) solid 1px;
+    }
 }
 
 .default-table{
