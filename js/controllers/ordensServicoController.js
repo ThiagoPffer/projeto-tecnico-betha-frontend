@@ -11,6 +11,16 @@ appModule.controller("ordensServicoController", function($location, $scope, orde
             return "selected";
         }
     };
+    $scope.statusColor = function(value) {
+        if(value === "EM_ANALISE" || value === "AGUARDANDO_DECISAO" || value === "PENDENTE"){
+            return "yellow";
+        } else if(value === "CANCELADA" || value === "CANCELADO"){
+            return "red"
+        } else if(value === "APROVADA" || value === "CONCLUIDA" || value === "PAGO"){
+            return "green"
+        }
+        console.log(value);
+    }
 
     var loadOrdensServico = function() {
         ordemServicoService.getOrdensServico(currentPage).then(function(response) {

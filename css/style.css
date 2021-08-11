@@ -441,18 +441,24 @@ textarea {
     background: white;
 }
 
-.default-tableRow td{
+.tableItem{
     color: var(--cinza-escuro);
     cursor: pointer;
 }
 
-.default-tableRow .situacao,
-.default-tableRow .pagamento{
+.tableItem.red{
     font-weight: bold;
+    color: var(--vermelho);
 }
 
-.default-tableRow .situacao.EM_ANALISE{
-    color: var(--vermelho);
+.tableItem.yellow{
+    font-weight: bold;
+    color: var(--amarelo);
+}
+
+.tableItem.green{
+    font-weight: bold;
+    color: var(--verde);
 }
 
 .default-pagination{
@@ -614,7 +620,6 @@ textarea {
     background-repeat: no-repeat;
     background-attachment: local;
     height: 100%;
-    /* width: 100%; */
     padding: 125px 0 125px 110px;
     margin-left: 240px;
     overflow: auto;
