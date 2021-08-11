@@ -7,7 +7,6 @@
                 <label class="default-label" for="ordem-search">Busca rápida:</label>
                 <div class="search-elements md-width">
                     <input ng-model="searchInput" class="default-input search" id="ordem-search" type="text" placeholder="Digite o nome do cliente">
-                    <!-- <button type="button" class="default-button--filled content-width"><span class="mdi mdi-magnify"></span> Buscar</button> -->
                 </div>
             </div>
         </div>
@@ -21,17 +20,19 @@
                 <th>Data de criação</th>
             </tr>
             <tr ng-click="verOrdem(ordemServico.id)" ng-repeat="ordemServico in ordensServico | filter:searchInput" class="default-tableRow">
-                <td>{{ordemServico.id}}</td>
-                <td>{{ordemServico.cliente}}</td>
-                <td>{{ordemServico.situacao}}</td>
-                <td>{{ordemServico.valorTotal | currency}}</td>
-                <td>{{ordemServico.pagamento}}</td>
-                <td>{{ordemServico.instante | date:'dd/MM/yyyy HH:mm'}}</td>
+                <td class="tableItem">{{ordemServico.id}}</td>
+                <td class="tableItem">{{ordemServico.cliente}}</td>
+                <td ng-class="styleSituacao()" class="tableItem EM_ANALISE">{{ordemServico.situacao}}</td>
+                <td class="tableItem">{{ordemServico.valorTotal | currency}}</td>
+                <td ng-class="stylePagamento()" class="tableItem">{{ordemServico.pagamento}}</td>
+                <td class="tableItem">{{ordemServico.instante | date:'dd/MM/yyyy HH:mm'}}</td>
             </tr>
         </table>
+        <div ng-show="showTableError" class="default-error lg-width">
+            <span class="mdi mdi-alert-outline"></span>{{tableErrorMessage}}
+        </div>
         <div class="default-pagination">
-            <a ng-class="isSelected(page.value)" ng-repeat="page in pagination" class="default-pagination-button" href="#">{{page.value}}</a>
-            <a class="default-pagination-button" href="#"><span class="mdi mdi-chevron-right"></span></a>
+            <a ng-class="isSelected(page.value)" ng-repeat="page in pagination" class="default-pagination-button" href="#/ordens?page={{page.value}}">{{page.value+1}}</a>
         </div>
     </section>
 </main>

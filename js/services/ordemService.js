@@ -6,8 +6,8 @@ appModule.factory("ordemServicoService", function($http, properties) {
         return $http.post(properties.baseUrl + "/ordensservico", ordemServico);
     }
 
-    var _getOrdensServico = function() {
-        return $http.get(properties.baseUrl + "/ordensservico/page");
+    var _getOrdensServico = function(pageId) {
+        return $http.get(properties.baseUrl + "/ordensservico/page?page=" + pageId);
     }
     
     // VALIDACOES

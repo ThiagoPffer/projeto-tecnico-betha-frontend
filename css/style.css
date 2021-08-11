@@ -446,6 +446,15 @@ textarea {
     cursor: pointer;
 }
 
+.default-tableRow .situacao,
+.default-tableRow .pagamento{
+    font-weight: bold;
+}
+
+.default-tableRow .situacao.EM_ANALISE{
+    color: var(--vermelho);
+}
+
 .default-pagination{
     display: flex;
     flex-direction: row;
@@ -756,4 +765,36 @@ textarea {
 
 .item-salvo-container p{
     color: var(--cinza-medio);
+}
+
+/* <===========================::Error Page::===========================> */
+
+.error-page-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+.error-page-container span{
+    font-size: 8em;
+    color: var(--primaria);
+}
+
+.error-page-container h2{
+    font-size: 4em;
+    color: var(--primaria);
+}
+
+.error-page-container p{
+    font-size: 2em;
+    color: var(--primaria);
+}
+
+.error-page-container a{
+    font-size: 1.4em;
+}
+
+.error-page-container a span{
+    font-size: 1.4em;
 }

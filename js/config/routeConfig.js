@@ -21,6 +21,11 @@ appModule.config(function($routeProvider, $locationProvider) {
         controller: "ordensServicoController"
     });
 
+    $routeProvider.when("/erro", {
+        templateUrl: "view/errorPage.html",
+        controller: "errorPageController"
+    });
+
     if(localStorage.getItem("authToken") === null){
         $routeProvider.otherwise({redirectTo: "/login"});
     } else {
