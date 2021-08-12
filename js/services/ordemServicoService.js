@@ -9,6 +9,10 @@ appModule.factory("ordemServicoService", function($http, properties) {
     var _getOrdensServico = function(pageId) {
         return $http.get(properties.baseUrl + "/ordensservico/page?page=" + pageId);
     }
+
+    var _getOneOrdemServico = function(id) {
+        return $http.get(properties.baseUrl + "/ordensservico/" + id);
+    }
     
     // VALIDACOES
 
@@ -55,6 +59,7 @@ appModule.factory("ordemServicoService", function($http, properties) {
     return {
         insertOrdemServico: _insertOrdemServico,
         getOrdensServico: _getOrdensServico,
+        getOneOrdemServico: _getOneOrdemServico,
         isEmailValid: _isEmailValid,
         isFormularyValid: _isFormularyValid,
         isOrdemServicoValid: _isOrdemServicoValid

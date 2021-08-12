@@ -19,7 +19,7 @@
                 <th>Pagamento</th>
                 <th>Data de criação</th>
             </tr>
-            <tr ng-click="verOrdem(ordemServico.id)" ng-repeat="ordemServico in ordensServico | filter:searchInput" class="default-tableRow">
+            <tr ng-click="accessOrdemServico(ordemServico.id)" ng-repeat="ordemServico in ordensServico | filter:searchInput" class="default-tableRow">
                 <td class="tableItem">{{ordemServico.id}}</td>
                 <td class="tableItem">{{ordemServico.cliente}}</td>
                 <td ng-class="statusColor(ordemServico.situacao)" class="tableItem">{{ordemServico.situacao}}</td>

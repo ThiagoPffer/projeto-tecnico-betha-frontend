@@ -21,6 +21,11 @@ appModule.config(function($routeProvider, $locationProvider) {
         controller: "ordensServicoController"
     });
 
+    $routeProvider.when("/ordens/:id", {
+        templateUrl: "view/ordemDetails.html",
+        controller: "ordemDetailsController"
+    });
+
     $routeProvider.when("/erro", {
         templateUrl: "view/errorPage.html",
         controller: "errorPageController"

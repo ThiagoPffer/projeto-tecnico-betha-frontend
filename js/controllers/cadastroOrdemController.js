@@ -48,7 +48,7 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
         clienteService.getCliente($scope.searchInput.email).then(function(response) {
             $scope.cliente = response.data;
             newOrdemServico.idCliente = $scope.cliente.id; //CONSTRUÇAO OBJ ORDEM: SETANDO ID DO CLIENTE
-            $scope.cliente.endereco = toStringEndereco($scope.cliente.endereco);
+            $scope.cliente.endereco = clienteService.toStringEndereco($scope.cliente.endereco);
             $scope.isClienteAvailable = true;
         }, function(err) {
             emailException(err.data.message);
@@ -89,10 +89,6 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
     }
 
     // UTILS
-
-    var toStringEndereco = function(enderecoCliente) {
-        return `${enderecoCliente.logradouro}, número ${enderecoCliente.numero}, bairro ${enderecoCliente.bairro}, ${enderecoCliente.cidade}, ${enderecoCliente.estado}`;
-    }
 
     var resetOrdemServico = function() {
         newOrdemServico = {

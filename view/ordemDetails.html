@@ -1,0 +1,74 @@
+<aside class="side-menu left" id="sideMenu" ng-include="'view/sidemenu.html'" ng-controller="sidemenuController"></aside>
+<main class="main-page">
+    <h2 class="main-page-title">Ordem de Servico n. {{pageId}}</h2>
+    <section class="ordens-container column-container gap-x">
+
+        <section class="row-container lg-width">
+            <div class="column-container stretch gap-x-16">
+                <section>
+                    <h3 class="default-subtitle mb-8">Detalhes:</h3>
+                    <div class="info-row">
+                        <h4>Data de criação:</h4>
+                        <p>{{ordemServico.instante | date:'dd/MM/yyyy'}}</p>
+                    </div>
+                    <div class="info-row">
+                        <h4>Orçamento final:</h4>
+                        <p>{{ordemServico.valorTotal | currency}}</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h3 class="default-subtitle mb-8">Cliente:</h3>
+                    <div class="info-row">
+                        <h4>Nome:</h4>
+                        <p>{{cliente.nome}}</p>
+                    </div>
+                    <div class="info-row">
+                        <h4>Email:</h4>
+                        <p>{{cliente.email}}</p>
+                    </div>
+                    <div class="info-row">
+                        <h4>Telefone:</h4>
+                        <p>{{cliente.telefone}}</p>
+                    </div>
+                    <div class="info-row">
+                        <h4>Endereço:</h4>
+                        <p>{{cliente.endereco}}</p>
+                    </div>
+                </section>
+            </div>
+            <div class="column-container gap-x-16">
+                <section>
+                    <h3 class="default-subtitle mb-8">Situação:</h3>
+                    <span ng-class="statusColor(ordemServico.situacao)" class="status-box">{{ordemServico.situacao}}</span>
+                </section>
+                <section>
+                    <h3 class="default-subtitle mb-8">Pagamento:</h3>
+                    <span ng-class="statusColor(ordemServico.pagamento)" class="status-box">{{ordemServico.pagamento}}</span>
+                </section>
+            </div>
+        </section>
+
+        <h3 class="default-subtitle">Equipamentos da ordem:</h3>
+        <table class="default-table">
+            <tr class="default-tableRow">
+                <th>ID</th>
+                <th>Equipamento</th>
+                <th>Orçamento</th>
+                <th>Fotos</th>
+            </tr>
+            <tr ng-click="accessItem(item.id)" ng-repeat="item in ordemServico.itens" class="default-tableRow">
+                <td class="tableItem">{{item.id}}</td>
+                <td class="tableItem">{{item.equipamento}}</td>
+                <td class="tableItem">{{item.orcamento | currency}}</td>
+                <td class="tableItem">{{item.imagens.length}}</td>
+            </tr>
+        </table>
+        <div ng-show="showTableError" class="default-error lg-width">
+            <span class="mdi mdi-alert-outline"></span>{{tableErrorMessage}}
+        </div>
+        <div class="default-pagination">
+            <a ng-class="isSelected(page.value)" ng-repeat="page in pagination" class="default-pagination-button" href="#/ordens?page={{page.value}}">{{page.value+1}}</a>
+        </div>
+    </section>
+</main>

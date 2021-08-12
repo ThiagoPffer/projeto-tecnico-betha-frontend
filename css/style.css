@@ -81,6 +81,10 @@ textarea {
     margin-top: 64px;
 }
 
+.mb-8{
+    margin-bottom: 8px;
+}
+
 .mb-26{
     margin-bottom: 26px;
 }
@@ -212,13 +216,14 @@ textarea {
 .info-row{
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: flex-start;
     width: 100%;
 }
 
 .info-row h4{
     color: var(--cinza-escuro);
     font-size: 1.125em;
+    font-weight: 500;
     margin-right: 5px;
 }
 
@@ -257,6 +262,12 @@ textarea {
     flex-direction: row;
     gap: 0 20px;
     width: 100%;
+}
+
+.default-subtitle{
+    color: var(--cinza-escuro);
+    font-size: 1.5em;
+    font-weight: 600;
 }
 
 .default-label{
@@ -770,6 +781,31 @@ textarea {
 
 .item-salvo-container p{
     color: var(--cinza-medio);
+}
+
+/* <===========================::Order Details Page::===========================> */
+
+.status-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    color: var(--cinza-escuro);
+    font-weight: 600;
+    height: 50px;
+    width: 270px;
+}
+
+.status-box.red{
+    border: 2px solid var(--vermelho);
+}
+
+.status-box.yellow{
+    border: 2px solid var(--amarelo);
+}
+
+.status-box.green{
+    border: 2px solid var(--verde);
 }
 
 /* <===========================::Error Page::===========================> */

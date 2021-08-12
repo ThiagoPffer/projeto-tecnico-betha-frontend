@@ -11,6 +11,11 @@ appModule.controller("ordensServicoController", function($location, $scope, orde
             return "selected";
         }
     };
+
+    $scope.accessOrdemServico = function(id) {
+        $location.path("/ordens/"+id);
+    }
+    
     $scope.statusColor = function(value) {
         if(value === "EM_ANALISE" || value === "AGUARDANDO_DECISAO" || value === "PENDENTE"){
             return "yellow";
@@ -42,10 +47,6 @@ appModule.controller("ordensServicoController", function($location, $scope, orde
             $scope.pagination.push({'value': i});
         }
     }
-
-    // $scope.accessOrdemServico = function(id) {
-    //     $location.path("/nova-ordem");
-    // }
 
     loadOrdensServico();
 
