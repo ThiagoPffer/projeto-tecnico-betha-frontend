@@ -1,50 +1,34 @@
-appModule.controller("ordemDetailsController", function($location, $scope, $routeParams, ordemServicoService, clienteService) {
+appModule.controller("ordemDetailsController", function($scope, $routeParams, ordemServicoService, clienteService) {
     $scope.pageId = $routeParams.id;
 
-    $scope.statusColor = function(value) {
-        if(value === "EM_ANALISE" || value === "AGUARDANDO_DECISAO" || value === "PENDENTE"){
-            return "yellow";
-        } else if(value === "CANCELADA" || value === "CANCELADO"){
-            return "red"
-        } else if(value === "APROVADA" || value === "CONCLUIDA" || value === "PAGO"){
-            return "green"
-        }
+    $scope.setStatusColor = function(value) {
+        return ordemServicoService.setStatusColor(value);
     }
 
     var loadEquipamentos = function() {
         ordemServicoService.getOneOrdemServico($scope.pageId).then(function(response) {
             $scope.ordemServico = response.data;
-            loadCliente($scope.ordemServico.cliente.id);
-            console.log(response);
-        },function(err) {
-            if(err.data.status === 404){
-                $location.path("/erro");
-            } else {
-                genericException(err.data.message);
-            }
-            console.log(err);
-        })
+            ordemServicoService.setOrdemServicoObj(response.data);
+            loadCliente();
+        }, function(err) {
+            genericException(err.data.message);
+        });
     }
 
-    var loadCliente = function(idCliente) {
-        clienteService.getClienteById(idCliente).then(function(response) {
-            $scope.cliente = response.data;
-            $scope.cliente.endereco = clienteService.toStringEndereco($scope.cliente.endereco);
-            console.log(response);
-        },function(err) {
-            if(err.data.status === 404){
-                $location.path("/erro");
-            } else {
-                genericException(err.data.message);
-            }
-            console.log(err);
-        })
+    var loadCliente = function() {
+        $scope.cliente = $scope.ordemServico.cliente;
+        $scope.cliente.endereco = clienteService.toStringEndereco($scope.cliente.endereco);
     }
+
+    // ERROS
 
     var genericException = function(message) {
         $scope.showTableError = true;
         $scope.tableErrorMessage = message;
     }
 
+    // LOADING
+
     loadEquipamentos();
+
 });

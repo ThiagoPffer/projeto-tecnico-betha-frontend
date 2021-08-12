@@ -22,9 +22,9 @@
             <tr ng-click="accessOrdemServico(ordemServico.id)" ng-repeat="ordemServico in ordensServico | filter:searchInput" class="default-tableRow">
                 <td class="tableItem">{{ordemServico.id}}</td>
                 <td class="tableItem">{{ordemServico.cliente}}</td>
-                <td ng-class="statusColor(ordemServico.situacao)" class="tableItem">{{ordemServico.situacao}}</td>
+                <td ng-class="setStatusColor(ordemServico.situacao)" class="tableItem">{{ordemServico.situacao}}</td>
                 <td class="tableItem">{{ordemServico.valorTotal | currency}}</td>
-                <td ng-class="statusColor(ordemServico.pagamento)" class="tableItem">{{ordemServico.pagamento}}</td>
+                <td ng-class="setStatusColor(ordemServico.pagamento)" class="tableItem">{{ordemServico.pagamento}}</td>
                 <td class="tableItem">{{ordemServico.instante | date:'dd/MM/yyyy HH:mm'}}</td>
             </tr>
         </table>

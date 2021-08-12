@@ -1,14 +1,6 @@
 appModule.controller("cadastroOrdemController", function($location, $scope, clienteService, ordemServicoService) {
 
-    $scope.showError = false;
-    $scope.showItemError = false;
-    $scope.showEmailError = false;
-    $scope.isClienteAvailable = false;
-
-    var newOrdemServico = { // DESFAZER VARIAVEL GLOBAL
-        "idCliente": undefined,
-        "itens": [] 
-    };
+    var newOrdemServico = ordemServicoService.getNewOrdemServico();
 
     // SCOPES
 
@@ -73,6 +65,11 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
 
     // ERROS
 
+    $scope.showError = false;
+    $scope.showItemError = false;
+    $scope.showEmailError = false;
+    $scope.isClienteAvailable = false;
+
     var emailException = function(message) {
         $scope.emailExceptionMessage = message;
         $scope.showEmailError = true;
@@ -90,18 +87,11 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
 
     // UTILS
 
-    var resetOrdemServico = function() {
-        newOrdemServico = {
-            "idCliente": undefined,
-            "itens": [] 
-        };
-    }
-
     var clearComponents = function(){
         delete($scope.itens);
         delete($scope.cliente);
         delete($scope.searchInput);
-        resetOrdemServico();
+        newOrdemServico = ordemServicoService.getNewOrdemServico();
         $scope.showError = false;
         $scope.showEmailError = false;
         $scope.showItemError = false;

@@ -1,12 +1,28 @@
 appModule.factory("ordemServicoService", function($http, properties) {
     
-    // OPERACOES NO BANCO
+    // OBJETO COMPARTILHADO
 
+    var _ordemServicoObj;
+
+    var setOrdemServicoObj = function(object) {
+        _ordemServicoObj = object;
+        console.log(_ordemServicoObj);
+    } 
+
+    var getOrdemServicoObj = function() {
+        return _ordemServicoObj;
+    } 
+
+    // OPERACOES NO BANCO
+    
     var _insertOrdemServico = function(ordemServico) {
         return $http.post(properties.baseUrl + "/ordensservico", ordemServico);
     }
 
     var _getOrdensServico = function(pageId) {
+        if(pageId === null || pageId === undefined){
+            pageId = 0;
+        }
         return $http.get(properties.baseUrl + "/ordensservico/page?page=" + pageId);
     }
 
@@ -56,12 +72,35 @@ appModule.factory("ordemServicoService", function($http, properties) {
         }
     }
 
+    //UTILS
+
+    var _getNewOrdemServico = function() {
+        return {
+            "idCliente": undefined,
+            "itens": [] 
+        };
+    }
+
+    var _setStatusColor = function(value) {
+        if(value === "EM_ANALISE" || value === "AGUARDANDO_DECISAO" || value === "PENDENTE"){
+            return "yellow";
+        } else if(value === "CANCELADA" || value === "CANCELADO"){
+            return "red"
+        } else if(value === "APROVADA" || value === "CONCLUIDA" || value === "PAGO"){
+            return "green"
+        }
+    }
+
     return {
         insertOrdemServico: _insertOrdemServico,
         getOrdensServico: _getOrdensServico,
         getOneOrdemServico: _getOneOrdemServico,
         isEmailValid: _isEmailValid,
         isFormularyValid: _isFormularyValid,
-        isOrdemServicoValid: _isOrdemServicoValid
+        isOrdemServicoValid: _isOrdemServicoValid,
+        getNewOrdemServico: _getNewOrdemServico,
+        setStatusColor: _setStatusColor,
+        setOrdemServicoObj,
+        getOrdemServicoObj
     };
 });
