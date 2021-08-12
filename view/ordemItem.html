@@ -1,0 +1,59 @@
+<aside class="side-menu left" id="sideMenu" ng-include="'view/sidemenu.html'" ng-controller="sidemenuController"></aside>
+<main class="main-page">
+    <h2 class="main-page-title">{{item.equipamento}}</h2>
+    <section class="column-container gap-x">
+        <div>
+            <section class="default-container lg-width">
+                <div class="column-container stretch gap-x-16">
+                    <section class="item-details">
+                        <h3 class="default-subtitle">Detalhes do equipamento:</h3>
+                        <p>{{item.descricao}}</p>
+                    </section>
+                    <section class="item-details">
+                        <h3 class="default-subtitle">Avarias do equipamento:</h3>
+                        <p>{{item.avaria}}</p>
+                    </section>
+                </div>
+            </section>
+            <button type="submit" class="default-button--filled mt-16 sm-width">Alterar descrição/avarias</button>
+        </div>
+    
+        <div>
+            <h3 class="default-subtitle mb-16">Imagens:</h3>
+            <section class="image-gallery">
+                <img src="/img/profile.jpg" alt="teste">
+                <img src="/img/profile.jpg" alt="teste">
+                <img src="/img/profile.jpg" alt="teste">
+                <img src="/img/profile.jpg" alt="teste">
+                <img src="/img/profile.jpg" alt="teste">
+                <img src="/img/profile.jpg" alt="teste">
+                <img src="/img/profile.jpg" alt="teste">
+                <img src="/img/profile.jpg" alt="teste">
+                <img src="/img/profile.jpg" alt="teste">
+            </section>
+            <form class="column-container gap-x-8">
+                <label class="mt-16" for="itemImg">Escolha uma imagem:</label>
+                <input type="file" accept="image/*" class="content-width" id="itemImg" name="itemImg" >
+                <button type="submit" class="noBg-button content-width"><span class="mdi mdi-image-plus"></span> Salvar</button>
+            </form>
+            <!-- <span class="mdi mdi-image-plus"></span> Adicionar imagem -->
+        </div>
+
+        <section class="content-width">
+            <h3 class="default-subtitle mb-16">Orçamento da manutenção: </h3>
+            <div>
+                <span class="lg-currency-text">R$ </span>
+                <input ng-model="item.orcamento" id="orcamento-input" type="text" class="orcamento-input lg-currency-text sm-width"  maxlength="10" oninput="this.value = this.value.replace(/[^0-9,]/g, '').replace(/(\..*)\./g, '$1');">
+            </div>
+        </section>
+    
+        <div ng-show="showTableError" class="default-error lg-width">
+            <span class="mdi mdi-alert-outline"></span>{{tableErrorMessage}}
+        </div>
+    
+        <div class="row-container gap-y">
+            <button type="submit" class="default-button--filled sm-width">Salvar alterações</button>
+            <button type="submit" class="default-button--outline sm-width">Cancelar</button>
+        </div>
+    </section>
+</main>

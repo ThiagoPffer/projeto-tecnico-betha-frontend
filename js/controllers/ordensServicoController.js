@@ -11,14 +11,13 @@ appModule.controller("ordensServicoController", function($location, $scope, orde
     }
 
     // PAGINACAO
-
+    
+    $scope.pagination = [];
     var currentPage = $location.search().page;
     
     if(currentPage === undefined){
         currentPage = 0;
     }
-
-    $scope.pagination = [];
     
     $scope.isSelected = function(paginationValue) {
         if(currentPage == paginationValue){

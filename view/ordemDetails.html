@@ -3,7 +3,7 @@
     <h2 class="main-page-title">Ordem de Servico n. {{pageId}}</h2>
     <section class="ordens-container column-container gap-x">
 
-        <section class="row-container lg-width">
+        <section class="default-container row-container">
             <div class="column-container stretch gap-x-16">
                 <section>
                     <h3 class="default-subtitle mb-8">Detalhes:</h3>
@@ -49,26 +49,36 @@
             </div>
         </section>
 
-        <h3 class="default-subtitle">Equipamentos da ordem:</h3>
-        <table class="default-table">
-            <tr class="default-tableRow">
-                <th>ID</th>
-                <th>Equipamento</th>
-                <th>Orçamento</th>
-                <th>Fotos</th>
-            </tr>
-            <tr ng-click="accessItem(item.id)" ng-repeat="item in ordemServico.itens" class="default-tableRow">
-                <td class="tableItem">{{item.id}}</td>
-                <td class="tableItem">{{item.equipamento}}</td>
-                <td class="tableItem">{{item.orcamento | currency}}</td>
-                <td class="tableItem">{{item.imagens.length}}</td>
-            </tr>
-        </table>
+        <section class="ordem-details-table">
+            <h3 class="default-subtitle">Equipamentos da ordem:</h3>
+            <table class="default-table">
+                <tr class="default-tableRow">
+                    <th>ID</th>
+                    <th>Equipamento</th>
+                    <th>Orçamento</th>
+                    <th>Fotos</th>
+                </tr>
+                <tr ng-click="accessItem(pageId, item.id)" ng-repeat="item in ordemServico.itens" class="default-tableRow">
+                    <td class="tableItem">{{item.id}}</td>
+                    <td class="tableItem">{{item.equipamento}}</td>
+                    <td class="tableItem">{{item.orcamento | currency}}</td>
+                    <td class="tableItem">{{item.imagens.length}}</td>
+                </tr>
+            </table>
+        </section>
+
         <div ng-show="showTableError" class="default-error lg-width">
             <span class="mdi mdi-alert-outline"></span>{{tableErrorMessage}}
         </div>
-        <div class="default-pagination">
-            <a ng-class="isSelected(page.value)" ng-repeat="page in pagination" class="default-pagination-button" href="#/ordens?page={{page.value}}">{{page.value+1}}</a>
-        </div>
+
+        <section class="checkbox-section md-width">
+            <div class="checkbox-row">
+                <input type="checkbox" id="email-check">
+                <label class="default-label" for="email-check">Enviar email para o cliente</label>
+            </div>
+            <p>Se esta opção estiver marcada ao salvar as alterações, a situação da ordem de serviço será alterada para AGUARDANDO_DECISAO e nenhuma alteração poderá ser feita até que o cliente envie uma resposta.</p>
+        </section>
+
+        <button type="submit" class="default-button--filled sm-width">Salvar alterações</button>
     </section>
 </main>

@@ -6,12 +6,24 @@ appModule.factory("ordemServicoService", function($http, properties) {
 
     var setOrdemServicoObj = function(object) {
         _ordemServicoObj = object;
-        console.log(_ordemServicoObj);
     } 
 
     var getOrdemServicoObj = function() {
         return _ordemServicoObj;
-    } 
+    }
+
+    var _getItemById = function(idItem) {
+        var itens = getOrdemServicoObj().itens;
+        var itemObj;
+
+        itens.forEach(item => {
+            if(item.id == idItem){
+                itemObj = item;
+            }
+        });
+
+        return itemObj;
+    }
 
     // OPERACOES NO BANCO
     
@@ -26,7 +38,7 @@ appModule.factory("ordemServicoService", function($http, properties) {
         return $http.get(properties.baseUrl + "/ordensservico/page?page=" + pageId);
     }
 
-    var _getOneOrdemServico = function(id) {
+    var _getOrdemServicoById = function(id) {
         return $http.get(properties.baseUrl + "/ordensservico/" + id);
     }
     
@@ -74,7 +86,7 @@ appModule.factory("ordemServicoService", function($http, properties) {
 
     //UTILS
 
-    var _getNewOrdemServico = function() {
+    var _getEmptyOrdemServicoDTO = function() {
         return {
             "idCliente": undefined,
             "itens": [] 
@@ -94,13 +106,14 @@ appModule.factory("ordemServicoService", function($http, properties) {
     return {
         insertOrdemServico: _insertOrdemServico,
         getOrdensServico: _getOrdensServico,
-        getOneOrdemServico: _getOneOrdemServico,
+        getOrdemServicoById: _getOrdemServicoById,
         isEmailValid: _isEmailValid,
         isFormularyValid: _isFormularyValid,
         isOrdemServicoValid: _isOrdemServicoValid,
-        getNewOrdemServico: _getNewOrdemServico,
+        getEmptyOrdemServicoDTO: _getEmptyOrdemServicoDTO,
         setStatusColor: _setStatusColor,
         setOrdemServicoObj,
-        getOrdemServicoObj
+        getOrdemServicoObj,
+        getItemById: _getItemById
     };
 });

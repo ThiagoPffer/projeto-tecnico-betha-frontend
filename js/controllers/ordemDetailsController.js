@@ -1,22 +1,19 @@
-appModule.controller("ordemDetailsController", function($scope, $routeParams, ordemServicoService, clienteService) {
+appModule.controller("ordemDetailsController", function($location, $scope, $routeParams, ordemServicoService, clienteService, loadOrdemServico) {
     $scope.pageId = $routeParams.id;
+
+    $scope.accessItem = function(idOrdem, idItem){
+        $location.path("/ordens/"+idOrdem+"/itens/"+idItem);
+    }
 
     $scope.setStatusColor = function(value) {
         return ordemServicoService.setStatusColor(value);
     }
 
-    var loadEquipamentos = function() {
-        ordemServicoService.getOneOrdemServico($scope.pageId).then(function(response) {
-            $scope.ordemServico = response.data;
-            ordemServicoService.setOrdemServicoObj(response.data);
-            loadCliente();
-        }, function(err) {
-            genericException(err.data.message);
-        });
-    }
+    $scope.ordemServico = loadOrdemServico.data;
+    ordemServicoService.setOrdemServicoObj(loadOrdemServico.data);
 
     var loadCliente = function() {
-        $scope.cliente = $scope.ordemServico.cliente;
+        $scope.cliente = ordemServicoService.getOrdemServicoObj().cliente;
         $scope.cliente.endereco = clienteService.toStringEndereco($scope.cliente.endereco);
     }
 
@@ -29,6 +26,5 @@ appModule.controller("ordemDetailsController", function($scope, $routeParams, or
 
     // LOADING
 
-    loadEquipamentos();
-
+    loadCliente();
 });

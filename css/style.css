@@ -36,6 +36,7 @@ body{
     width: 4px;
 }
 
+
 ::-webkit-scrollbar-track {
     background: transparent;
 }
@@ -67,10 +68,18 @@ textarea {
     resize: none;
 }
 
+input{
+    background: none;
+}
+
 /* <===========================::Utilities===========================> */
 
 .mt-0{
     margin-top: 0;
+}
+
+.mt-16{
+    margin-top: 16px;
 }
 
 .mt-32{
@@ -85,6 +94,10 @@ textarea {
     margin-bottom: 8px;
 }
 
+.mb-16{
+    margin-bottom: 16px;
+}
+
 .mb-26{
     margin-bottom: 26px;
 }
@@ -97,10 +110,13 @@ textarea {
     gap: 56px 0;
 }
 
+.gap-x-8{
+    gap: 8px 0;
+}
+
 .gap-x-16{
     gap: 16px 0;
 }
-
 
 .gap{
     gap: 56px 46px;
@@ -167,7 +183,7 @@ textarea {
 }
 
 .lg-width{
-    max-width: 880px;
+    max-width: 960px;
 }
 
 .md-width{
@@ -267,7 +283,7 @@ textarea {
 .default-subtitle{
     color: var(--cinza-escuro);
     font-size: 1.5em;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .default-label{
@@ -280,11 +296,18 @@ textarea {
     font-weight: bold;
 }
 
+.lg-currency-text{
+    color: var(--primaria);
+    font-size: 3em;
+    font-weight: 500;
+}
+
 .default-input{
     font-size: 1em;
     font-weight: 400;
     color: var(--cinza-escuro);
     height: 50px;
+    background: white;
     border: 1px solid var(--cinza-medio);
     border-radius: 4px;
     width: 100%;
@@ -334,11 +357,11 @@ textarea {
 }
 
 .default-button--filled:hover{
-    background-color: var(--primaria-escuro);
+    opacity: .8;
 }
 
 .default-button--filled:disabled:hover{
-    background-color: var(--primaria);
+    opacity: .5;
 }
 
 .default-button--outline{
@@ -359,13 +382,11 @@ textarea {
 }
 
 .default-button--outline:hover{
-    color: white;
-    background-color: var(--primaria);
+    opacity: .6;
 }
 
 .default-button--outline:disabled:hover{
-    color: var(--primaria);
-    background-color: white;
+    opacity: .5;
 }
 
 .noBg-button{
@@ -420,7 +441,8 @@ textarea {
     border-collapse: collapse;
     border-spacing: 0;
     border-left: 2px solid var(--primaria);
-    margin-left: -110px;
+    margin-left: -90px;
+    margin-right: -90px;
 }
 
 .default-tableRow{
@@ -498,6 +520,17 @@ textarea {
 .default-pagination-button.selected{
     background: var(--primaria);
     color: white;
+}
+
+.default-container{
+    padding: 30px;
+    background: white;
+    border: 1px solid var(--cinza-medio);
+    box-shadow: rgba(0, 0, 0, 0.1) 2px 5px 8px;
+}
+
+.default-container p {
+    color: var(--cinza-medio);
 }
 
 /* <===========================::Side Menu::===========================> */
@@ -631,7 +664,7 @@ textarea {
     background-repeat: no-repeat;
     background-attachment: local;
     height: 100%;
-    padding: 125px 0 125px 110px;
+    padding: 125px 90px 125px 90px;
     margin-left: 240px;
     overflow: auto;
 }
@@ -698,7 +731,7 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 460px;
+    width: 420px;
     height: 210px;
     background: white;
     border: 1px solid var(--primaria);
@@ -785,6 +818,19 @@ textarea {
 
 /* <===========================::Order Details Page::===========================> */
 
+.ordem-details-table{
+    display: flex;
+    flex-direction: column;
+    gap: 24px 0;
+    width: 100%;
+}
+
+.ordem-details-table .default-table{
+    width: 100%;
+    margin-left: 0;
+    border-right: 2px solid var(--primaria);
+}
+
 .status-box{
     display: flex;
     align-items: center;
@@ -806,6 +852,101 @@ textarea {
 
 .status-box.green{
     border: 2px solid var(--verde);
+}
+
+.checkbox-section{
+    display: flex;
+    flex-direction: column;
+    gap: 16px 0;
+    background: white;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid var(--primaria);
+}
+
+.checkbox-section p{
+    color: var(--cinza-medio);
+}
+
+.checkbox-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0 8px;
+}
+
+.checkbox-row input{
+    width: 22.5px;
+    height: 22.5px;
+    background-color: red;
+    cursor: pointer;
+}
+
+.checkbox-row .default-label{
+    font-size: 1em;
+    color: var(--cinza-escuro);
+    margin: 0;
+    cursor: pointer
+}
+
+.checkbox-row .default-label:hover{
+    color: var(--primaria);
+}
+
+/* <===========================::Item Details Page::===========================> */
+
+.item-details{
+    display: flex;
+    flex-direction: column;
+    gap: 8px 0;
+}
+
+.orcamento-input{
+    width: auto !important;
+    max-width: 250px;
+}
+
+.orcamento-input:hover{
+    opacity: .6;
+}
+
+.image-gallery{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    width: fit-content;
+    max-width: 100%;
+    background: white;
+    overflow-x: auto;
+    border: 1px solid var(--primaria);
+    gap: 16px;
+    padding: 15px;
+}
+
+.image-gallery::-webkit-scrollbar{
+    height: 8px;
+}
+
+.image-gallery::-webkit-scrollbar-track{
+    background-color: #d0d1fa;
+    height: 8px;
+    width: 8px;
+}
+
+.image-gallery::-webkit-scrollbar-track:hover{
+    background-color: #b5b6ff;
+}
+
+.image-gallery img {
+    width: 250px;
+    height: 250px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.10) 0 4px 4px 0;
+}
+
+.image-gallery img:hover{
+    opacity: .6;
 }
 
 /* <===========================::Error Page::===========================> */

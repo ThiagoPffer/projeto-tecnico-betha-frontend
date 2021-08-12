@@ -1,6 +1,6 @@
 appModule.controller("cadastroOrdemController", function($location, $scope, clienteService, ordemServicoService) {
 
-    var newOrdemServico = ordemServicoService.getNewOrdemServico();
+    var newOrdemServico = ordemServicoService.getEmptyOrdemServicoDTO();
 
     // SCOPES
 
@@ -91,7 +91,7 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
         delete($scope.itens);
         delete($scope.cliente);
         delete($scope.searchInput);
-        newOrdemServico = ordemServicoService.getNewOrdemServico();
+        newOrdemServico = ordemServicoService.getEmptyOrdemServicoDTO();
         $scope.showError = false;
         $scope.showEmailError = false;
         $scope.showItemError = false;

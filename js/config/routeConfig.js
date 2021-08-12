@@ -28,7 +28,18 @@ appModule.config(function($routeProvider, $locationProvider) {
 
     $routeProvider.when("/ordens/:id", {
         templateUrl: "view/ordemDetails.html",
-        controller: "ordemDetailsController"
+        controller: "ordemDetailsController",
+        resolve: {
+            loadOrdemServico: function(ordemServicoService, $location) {
+                var ordemId = $location.path().split("/ordens/").pop();
+                return ordemServicoService.getOrdemServicoById(ordemId);
+            }
+        }
+    });
+
+    $routeProvider.when("/ordens/:idOrdem/itens/:idItem", {
+        templateUrl: "view/ordemItem.html",
+        controller: "ordemItemController"
     });
 
     $routeProvider.when("/erro", {
