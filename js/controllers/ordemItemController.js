@@ -9,11 +9,11 @@ appModule.controller("ordemItemController", function($location, $scope, $routePa
 
     
     $scope.add = function() {
-        var f = document.getElementById('itemImg').files[0],
-            r = new FileReader();
+        var file = document.getElementById('itemImg').files[0],
+            reader = new FileReader();
     
-        r.onloadend = function(e) {
-            var data = e.target.result;
+        reader.onloadend = function(event) {
+            var data = event.target.result;   
             ordemServicoService.uploadImage($routeParams.idOrdem, $routeParams.idItem, data).then(function(response) {
                 console.log(response);
             }, function(err) {
@@ -21,7 +21,7 @@ appModule.controller("ordemItemController", function($location, $scope, $routePa
             });
         }
     
-        r.readAsBinaryString(f);
+        reader.readAsBinaryString(file);
     }
 
 

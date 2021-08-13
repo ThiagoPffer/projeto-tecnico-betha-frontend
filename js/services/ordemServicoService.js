@@ -27,8 +27,17 @@ appModule.factory("ordemServicoService", function($http, properties) {
 
     // OPERACOES NO BANCO
     
-    var _uploadImage = function(idOrdem, idItem, image) {
-        return $http.post(properties.baseUrl + "/ordensservico/"+idOrdem+"/itens/"+idItem+"/fotos", image);
+    var _uploadImage = function(idOrdem, idItem, data) {
+        
+        var blobImage = new Blob([data] , {type:'image/jpeg'});
+        console.log(blobImage);
+
+        var formData = new FormData();
+        formData.append('file', blobImage, "image.jpg");
+
+        return $http.post(properties.baseUrl + "/ordensservico/"+idOrdem+"/itens/"+idItem+"/fotos", formData, {
+            headers: {'Content-Type': undefined}
+        });
     }
 
     var _insertOrdemServico = function(ordemServico) {

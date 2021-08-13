@@ -106,6 +106,10 @@ input{
     gap: 0 46px;
 }
 
+.gap-y-16{
+    gap: 0 16px;
+}
+
 .gap-x{
     gap: 56px 0;
 }
@@ -334,6 +338,29 @@ input{
 .default-input:focus,
 .default-textarea:focus{
     border: 1px solid var(--primaria);
+}
+
+.default-back-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--cinza-claro);
+    border-radius: 50%;
+    transition: .2s ease-out;
+    margin-bottom: 15px;
+}
+
+.default-back-button:hover{
+    opacity: .6;
+}
+
+.default-back-button span{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 4em;
+    color: var(--primaria);
+    margin: 0;
 }
 
 .default-button--filled{
@@ -956,6 +983,7 @@ input{
     color: var(--primaria);
     font-size: 2em;
     font-weight: 500;
+    text-align: center;
     margin: 0 50px;
     opacity: .4;
 }

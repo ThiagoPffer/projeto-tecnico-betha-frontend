@@ -1,5 +1,6 @@
 <aside class="side-menu left" id="sideMenu" ng-include="'view/sidemenu.html'" ng-controller="sidemenuController"></aside>
 <main class="main-page">
+    <back-button></back-button>
     <h2 class="main-page-title">{{item.equipamento}}</h2>
     <section class="column-container gap-x">
         <div>
@@ -24,7 +25,7 @@
                 <img ng-repeat="imagem in item.imagens" ng-src="{{uri+imagem.nomeArquivo}}" alt="teste">
                 <h4 ng-show="showImageError"><span class="mdi mdi-image-remove"></span> Este equipamento não possui nenhuma foto cadastrada</h4>
             </section>
-            <form class="row-container mt-16">
+            <form class="row-container mt-16 gap-y-16">
                 <div class="column-container">
                     <label class="stretch" for="itemImg">Escolha uma imagem:</label>
                     <input type="file" accept="image/*" class="content-width" id="itemImg" name="itemImg" >
