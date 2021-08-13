@@ -915,8 +915,11 @@ input{
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
+    align-items: center;
+
     width: fit-content;
     max-width: 100%;
+    min-height: 282px;
     background: white;
     overflow-x: auto;
     border: 1px solid var(--primaria);
@@ -947,6 +950,14 @@ input{
 
 .image-gallery img:hover{
     opacity: .6;
+}
+
+.image-gallery h4{
+    color: var(--primaria);
+    font-size: 2em;
+    font-weight: 500;
+    margin: 0 50px;
+    opacity: .4;
 }
 
 /* <===========================::Error Page::===========================> */

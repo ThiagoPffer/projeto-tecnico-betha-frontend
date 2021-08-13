@@ -27,6 +27,10 @@ appModule.factory("ordemServicoService", function($http, properties) {
 
     // OPERACOES NO BANCO
     
+    var _uploadImage = function(idOrdem, idItem, image) {
+        return $http.post(properties.baseUrl + "/ordensservico/"+idOrdem+"/itens/"+idItem+"/fotos", image);
+    }
+
     var _insertOrdemServico = function(ordemServico) {
         return $http.post(properties.baseUrl + "/ordensservico", ordemServico);
     }
@@ -114,6 +118,7 @@ appModule.factory("ordemServicoService", function($http, properties) {
         setStatusColor: _setStatusColor,
         setOrdemServicoObj,
         getOrdemServicoObj,
-        getItemById: _getItemById
+        getItemById: _getItemById,
+        uploadImage: _uploadImage
     };
 });
