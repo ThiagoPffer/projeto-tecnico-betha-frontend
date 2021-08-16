@@ -27,6 +27,10 @@ appModule.factory("ordemServicoService", function($http, properties) {
 
     // OPERACOES NO BANCO
     
+    var _deleteImage = function(idOrdem, idItem, idImagem) {
+        return $http.delete(properties.baseUrl + "/ordensservico/"+idOrdem+"/itens/"+idItem+"/fotos/"+idImagem);
+    }
+
     var _uploadImage = function(idOrdem, idItem, file) {
         var formData = new FormData();
         formData.append('file', file, file.name);
@@ -124,6 +128,7 @@ appModule.factory("ordemServicoService", function($http, properties) {
         setOrdemServicoObj,
         getOrdemServicoObj,
         getItemById: _getItemById,
-        uploadImage: _uploadImage
+        uploadImage: _uploadImage,
+        deleteImage: _deleteImage
     };
 });

@@ -24,7 +24,7 @@
             <section class="image-gallery">
                 <div class="image-container" ng-repeat="imagem in item.imagens">
                     <div class="imgButton-container">
-                        <button><span class="mdi mdi-delete-outline"></span></button>
+                        <button ng-click="onDeleteImage(imagem)"><span class="mdi mdi-delete-outline"></span></button>
                         <button><span class="mdi mdi-arrow-expand"></span></button>
                     </div>
                     <img ng-src="{{uri+imagem.nomeArquivo}}" alt="teste">
@@ -38,6 +38,9 @@
                 </div>
                 <button ng-click="onUploadImage()" class="noBg-button content-width"><span class="mdi mdi-image-plus"></span> Salvar imagem</button>
             </form>
+            <div ng-show="showImageUploadError" class="default-error lg-width mt-16">
+                <span class="mdi mdi-alert-outline"></span>{{imageUploadErrorMessage}}
+            </div>
         </div>
 
         <section class="content-width">
