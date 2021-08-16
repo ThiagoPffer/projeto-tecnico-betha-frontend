@@ -22,7 +22,13 @@
         <div>
             <h3 class="default-subtitle mb-16">Imagens:</h3>
             <section class="image-gallery">
-                <img ng-repeat="imagem in item.imagens" ng-src="{{uri+imagem.nomeArquivo}}" alt="teste">
+                <div class="image-container" ng-repeat="imagem in item.imagens">
+                    <div class="imgButton-container">
+                        <button><span class="mdi mdi-delete-outline"></span></button>
+                        <button><span class="mdi mdi-arrow-expand"></span></button>
+                    </div>
+                    <img ng-src="{{uri+imagem.nomeArquivo}}" alt="teste">
+                </div>
                 <h4 ng-show="showImageError"><span class="mdi mdi-image-remove"></span> Este equipamento não possui nenhuma foto cadastrada</h4>
             </section>
             <form class="row-container mt-16 gap-y-16">
@@ -30,9 +36,8 @@
                     <label class="stretch" for="itemImg">Escolha uma imagem:</label>
                     <input type="file" accept="image/*" class="content-width" id="itemImg" name="itemImg" >
                 </div>
-                <button ng-click="add()" class="noBg-button content-width"><span class="mdi mdi-image-plus"></span> Salvar imagem</button>
+                <button ng-click="onUploadImage()" class="noBg-button content-width"><span class="mdi mdi-image-plus"></span> Salvar imagem</button>
             </form>
-            <!-- <span class="mdi mdi-image-plus"></span> Adicionar imagem -->
         </div>
 
         <section class="content-width">

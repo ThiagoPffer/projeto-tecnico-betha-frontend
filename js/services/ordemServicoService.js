@@ -27,13 +27,9 @@ appModule.factory("ordemServicoService", function($http, properties) {
 
     // OPERACOES NO BANCO
     
-    var _uploadImage = function(idOrdem, idItem, data) {
-        
-        var blobImage = new Blob([data] , {type:'image/jpeg'});
-        console.log(blobImage);
-
+    var _uploadImage = function(idOrdem, idItem, file) {
         var formData = new FormData();
-        formData.append('file', blobImage, "image.jpg");
+        formData.append('file', file, file.name);
 
         return $http.post(properties.baseUrl + "/ordensservico/"+idOrdem+"/itens/"+idItem+"/fotos", formData, {
             headers: {'Content-Type': undefined}

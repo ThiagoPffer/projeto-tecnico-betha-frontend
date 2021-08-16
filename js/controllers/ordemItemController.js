@@ -8,22 +8,17 @@ appModule.controller("ordemItemController", function($location, $scope, $routePa
     $scope.item = ordemServicoService.getItemById($routeParams.idItem);
 
     
-    $scope.add = function() {
-        var file = document.getElementById('itemImg').files[0],
-            reader = new FileReader();
+    $scope.onUploadImage = function() {
+        var file = document.getElementById('itemImg').files[0];
     
-        reader.onloadend = function(event) {
-            var data = event.target.result;   
-            ordemServicoService.uploadImage($routeParams.idOrdem, $routeParams.idItem, data).then(function(response) {
-                console.log(response);
-            }, function(err) {
-                console.log(err);
-            });
-        }
-    
-        reader.readAsBinaryString(file);
-    }
+        console.log(file.name);
 
+        ordemServicoService.uploadImage($routeParams.idOrdem, $routeParams.idItem, file).then(function(response) {
+            console.log(response);
+        }, function(err) {
+            console.log(err);
+        });
+    }
 
     if($scope.item.imagens.length === 0){
         $scope.showImageError = true;
