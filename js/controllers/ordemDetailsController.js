@@ -10,6 +10,7 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
     }
 
     $scope.ordemServico = loadOrdemServico.data;
+    console.log(loadOrdemServico.data);
     ordemServicoService.setOrdemServicoObj(loadOrdemServico.data);
 
     var loadCliente = function() {

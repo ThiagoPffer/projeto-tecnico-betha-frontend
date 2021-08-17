@@ -1,11 +1,20 @@
 appModule.controller("ordemItemController", function($location, $scope, $routeParams, ordemServicoService, properties, Popeye) {
-    var ordemServicoObj;
+    var ordemServicoDTO;
 
-    if(ordemServicoService.getOrdemServicoObj() === undefined){
+    if(ordemServicoService.getOrdemServicoDTO() === undefined){
         $location.path("/ordens/"+$routeParams.idOrdem);
     } else{
-        ordemServicoObj = ordemServicoService.getOrdemServicoObj();
+        ordemServicoDTO = ordemServicoService.getOrdemServicoDTO();
     }
+
+    
+    ordemServicoService.getOrdemServicoById($routeParams.idOrdem).then(function(response) {
+        console.log(response);
+    },function(err) {
+        console.log(err);
+    })
+
+    console.log(ordemServicoDTO);
 
     $scope.showImageError = false;
     $scope.showImageUploadError = false;
@@ -37,16 +46,17 @@ appModule.controller("ordemItemController", function($location, $scope, $routePa
         });
     }
 
-    // $scope.onSaveAllChanges = function(item) {
-    //     ordemServicoService.setItem(item);
-    //     let ordemServico = ordemServicoService.getOrdemServicoObj();
-    //     console.log(ordemServico);
-    //     ordemServicoService.updateOrdemServico(ordemServico).then(function(response) {
-    //         console.log(response);
-    //     }, function(err) {
-    //         console.log(err);
-    //     });
-    // }
+    $scope.onSaveAllChanges = function(item) {
+        ordemServicoService.setItem(item);
+        let ordemServicoDTO = ordemServicoService.getOrdemServicoDTO();
+        console.log(ordemServicoDTO);
+        ordemServicoService.updateOrdemServico(ordemServicoDTO).then(function(response) {
+            $location.path('ordens/'+$routeParams.idOrdem)
+            console.log(response);
+        }, function(err) {
+            console.log(err);
+        });
+    }
 
     // MODAL
 

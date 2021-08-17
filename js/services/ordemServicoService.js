@@ -35,6 +35,9 @@ appModule.factory("ordemServicoService", function($http, properties) {
             }
         }
         
+        console.log(newItem);
+        console.log(itens);
+
         ordem.itens = itens;
         setOrdemServicoObj(ordem);
     }
@@ -58,9 +61,10 @@ appModule.factory("ordemServicoService", function($http, properties) {
         return $http.post(properties.baseUrl + "/ordensservico", ordemServico);
     }
 
-    // var _updateOrdemServico = function(ordemServico) {
-    //     return $http.put(properties.baseUrl + "/ordensservico/" + ordemServico.id, ordemServico);
-    // }
+    var _updateOrdemServico = function(ordemServicoDTO) {
+        console.log(ordemServicoDTO)
+        return $http.put(properties.baseUrl + "/ordensservico/" + getOrdemServicoObj().id, ordemServicoDTO);
+    }
 
     var _getOrdensServico = function(pageId) {
         if(pageId === null || pageId === undefined){
@@ -124,6 +128,18 @@ appModule.factory("ordemServicoService", function($http, properties) {
         };
     }
 
+    var _getOrdemServicoDTO = function() {
+        if(getOrdemServicoObj() != undefined){
+            return {
+                "idCliente": getOrdemServicoObj().cliente.id,
+                "itens": getOrdemServicoObj().itens
+            };
+        } else {
+            return undefined;
+        }
+        
+    }
+
     var _setStatusColor = function(value) {
         if(value === "EM_ANALISE" || value === "AGUARDANDO_DECISAO" || value === "PENDENTE"){
             return "yellow";
@@ -143,6 +159,7 @@ appModule.factory("ordemServicoService", function($http, properties) {
         isFormularyValid: _isFormularyValid,
         isOrdemServicoValid: _isOrdemServicoValid,
         getEmptyOrdemServicoDTO: _getEmptyOrdemServicoDTO,
+        getOrdemServicoDTO: _getOrdemServicoDTO,
         setStatusColor: _setStatusColor,
         setOrdemServicoObj,
         getOrdemServicoObj,
