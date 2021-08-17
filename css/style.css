@@ -996,6 +996,17 @@ input{
     z-index: 3;
 }
 
+.imgButton-container a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgButton-container a span{
+    font-size: 1.6em !important;
+    margin: 0;
+}
+
 .imgButton-container button span{
     font-size: 2em;
     margin: 0;
@@ -1005,7 +1016,8 @@ input{
     color: var(--vermelho);
 }
 
-.imgButton-container button:hover{
+.imgButton-container button:hover,
+.imgButton-container a:hover{
     color: var(--primaria);
 }
 

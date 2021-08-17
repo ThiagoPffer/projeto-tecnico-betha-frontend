@@ -25,7 +25,7 @@
                 <div class="image-container" ng-repeat="imagem in item.imagens">
                     <div class="imgButton-container">
                         <button ng-click="onDeleteImage(imagem)"><span class="mdi mdi-delete-outline"></span></button>
-                        <button><span class="mdi mdi-arrow-expand"></span></button>
+                        <a href="{{uri+imagem.nomeArquivo}}" target="blank"><span class="mdi mdi-arrow-expand"></span></a>
                     </div>
                     <img ng-src="{{uri+imagem.nomeArquivo}}" alt="teste">
                 </div>

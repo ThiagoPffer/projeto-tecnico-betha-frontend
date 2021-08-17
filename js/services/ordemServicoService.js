@@ -116,6 +116,15 @@ appModule.factory("ordemServicoService", function($http, properties) {
         }
     }
 
+    var _formatOrcamentoInput = function(orcamento) {
+        var newOrcamento = orcamento.toString();
+        newOrcamento.replace('.', ',');
+        if(newOrcamento.indexOf(',' < -1)){
+            newOrcamento += ",00";
+        }
+        return newOrcamento;
+    }
+
     return {
         insertOrdemServico: _insertOrdemServico,
         getOrdensServico: _getOrdensServico,
@@ -129,6 +138,7 @@ appModule.factory("ordemServicoService", function($http, properties) {
         getOrdemServicoObj,
         getItemById: _getItemById,
         uploadImage: _uploadImage,
-        deleteImage: _deleteImage
+        deleteImage: _deleteImage,
+        formatOrcamentoInput: _formatOrcamentoInput
     };
 });

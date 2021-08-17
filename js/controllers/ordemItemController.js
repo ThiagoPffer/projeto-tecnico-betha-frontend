@@ -7,15 +7,12 @@ appModule.controller("ordemItemController", function($location, $scope, $routePa
     $scope.showImageUploadError = false;
     $scope.uri = properties.imageBaseUrl;
     $scope.item = ordemServicoService.getItemById($routeParams.idItem);
-
     
     $scope.onDeleteImage = function(imagem) {
         ordemServicoService.deleteImage($routeParams.idOrdem, $routeParams.idItem, imagem.id).then(function(response) {
             var indexImg = $scope.item.imagens.indexOf(imagem);
             $scope.item.imagens.splice(indexImg, 1);
-            if($scope.item.imagens.length === 0){
-                $scope.showImageError = true;
-            }
+            verifyImageList();
         },function(err) {
             console.log(err);
         });
@@ -30,35 +27,27 @@ appModule.controller("ordemItemController", function($location, $scope, $routePa
 
         ordemServicoService.uploadImage($routeParams.idOrdem, $routeParams.idItem, file).then(function(response) { 
             $scope.showImageError = false;
-            preparePreviewObject(response.headers());
-            console.log(response);
+            $scope.item.imagens.push(response.data);
         }, function(err) {
             console.log(err);
         });
     }
 
-    if($scope.item.imagens.length === 0){
-        $scope.showImageError = true;
-    }
-
-    if($scope.item.orcamento.toString().indexOf('.' < -1)){
-        $scope.item.orcamento = $scope.item.orcamento + ",00";
-    }
-    $scope.item.orcamento = $scope.item.orcamento.toString().replace('.', ',');
-
-    var preparePreviewObject = function(headers) {
-        // let imgObj = {
-        //     "id": undefined,
-        //     "uri": 
-        // }
-        // $scope.item.imagens.push(imgObj);
-        console.log(headers);
-    }
-
     // ERROS 
+
+    var verifyImageList = function() {
+        if($scope.item.imagens.length === 0){
+            $scope.showImageError = true;
+        }
+    }
 
     var genericException = function(message) {
         $scope.showImageUploadError = true;
         $scope.imageUploadErrorMessage = message;
     }
+
+    // INIT
+
+    verifyImageList();
+    $scope.item.orcamento = ordemServicoService.formatOrcamentoInput($scope.item.orcamento);
 });
