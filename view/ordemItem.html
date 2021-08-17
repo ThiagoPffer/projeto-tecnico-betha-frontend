@@ -16,7 +16,7 @@
                     </section>
                 </div>
             </section>
-            <button type="submit" class="default-button--filled mt-16 sm-width">Alterar descrição/avarias</button>
+            <button type="button" ng-click="openModal()" class="default-button--filled mt-16 sm-width">Alterar descrição/avarias</button>
         </div>
     
         <div>
@@ -47,7 +47,7 @@
             <h3 class="default-subtitle mb-16">Orçamento da manutenção: </h3>
             <div>
                 <span class="lg-currency-text">R$ </span>
-                <input ng-model="item.orcamento" id="orcamento-input" type="text" class="orcamento-input lg-currency-text sm-width"  maxlength="10" oninput="this.value = this.value.replace(/[^0-9,]/g, '').replace(/(\..*)\./g, '$1');">
+                <input ng-model="item.orcamento" id="orcamento-input" type="number" step="0.01" class="orcamento-input lg-currency-text sm-width"  maxlength="10">
             </div>
         </section>
     
@@ -56,7 +56,7 @@
         </div>
     
         <div class="row-container gap-y">
-            <button type="submit" class="default-button--filled sm-width">Salvar alterações</button>
+            <button ng-click="onSaveAllChanges(item)" type="submit" class="default-button--filled sm-width">Salvar alterações</button>
             <button type="submit" class="default-button--outline sm-width">Cancelar</button>
         </div>
     </section>

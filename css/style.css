@@ -306,6 +306,11 @@ input{
     font-weight: 500;
 }
 
+.default-input-container{
+    display: flex;
+    gap: 16px;
+}
+
 .default-input{
     font-size: 1em;
     font-weight: 400;
@@ -1068,4 +1073,14 @@ input{
 
 .error-page-container a span{
     font-size: 1.4em;
+}
+
+/* <===========================:: MODAL ::===========================> */
+
+.popeye-modal-container{
+    background-color: rgba(224, 224, 224, 0.514) !important;
+}
+
+.popeye-modal{
+    margin-left: 240px;
 }

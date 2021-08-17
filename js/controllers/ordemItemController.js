@@ -1,8 +1,12 @@
-appModule.controller("ordemItemController", function($location, $scope, $routeParams, ordemServicoService, properties) {
-    var ordemServicoObj = ordemServicoService.getOrdemServicoObj();
-    if(ordemServicoObj === undefined){
+appModule.controller("ordemItemController", function($location, $scope, $routeParams, ordemServicoService, properties, Popeye) {
+    var ordemServicoObj;
+
+    if(ordemServicoService.getOrdemServicoObj() === undefined){
         $location.path("/ordens/"+$routeParams.idOrdem);
+    } else{
+        ordemServicoObj = ordemServicoService.getOrdemServicoObj();
     }
+
     $scope.showImageError = false;
     $scope.showImageUploadError = false;
     $scope.uri = properties.imageBaseUrl;
@@ -33,6 +37,35 @@ appModule.controller("ordemItemController", function($location, $scope, $routePa
         });
     }
 
+    // $scope.onSaveAllChanges = function(item) {
+    //     ordemServicoService.setItem(item);
+    //     let ordemServico = ordemServicoService.getOrdemServicoObj();
+    //     console.log(ordemServico);
+    //     ordemServicoService.updateOrdemServico(ordemServico).then(function(response) {
+    //         console.log(response);
+    //     }, function(err) {
+    //         console.log(err);
+    //     });
+    // }
+
+    // MODAL
+
+    $scope.openModal = function() {
+        var modal = Popeye.openModal({
+            templateUrl: "view/modal-item.html",
+            controller: "modalItemController",
+            resolve: {
+                itemData: function() {
+                    return {
+                        item: $scope.item,
+                        idItem: $routeParams.idItem,
+                        idOrdem: $routeParams.idOrdem
+                    }
+                }
+            }
+        });
+    }
+
     // ERROS 
 
     var verifyImageList = function() {
@@ -49,5 +82,4 @@ appModule.controller("ordemItemController", function($location, $scope, $routePa
     // INIT
 
     verifyImageList();
-    $scope.item.orcamento = ordemServicoService.formatOrcamentoInput($scope.item.orcamento);
 });

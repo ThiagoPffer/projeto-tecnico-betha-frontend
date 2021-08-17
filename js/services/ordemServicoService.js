@@ -25,6 +25,20 @@ appModule.factory("ordemServicoService", function($http, properties) {
         return itemObj;
     }
 
+    var _setItem = function(newItem) {
+        var ordem = getOrdemServicoObj()
+        var itens = ordem.itens;
+
+        for(let i = 0; i < itens.length; i++){
+            if(itens[i].id === newItem.id){
+                itens[i] = newItem;
+            }
+        }
+        
+        ordem.itens = itens;
+        setOrdemServicoObj(ordem);
+    }
+
     // OPERACOES NO BANCO
     
     var _deleteImage = function(idOrdem, idItem, idImagem) {
@@ -43,6 +57,10 @@ appModule.factory("ordemServicoService", function($http, properties) {
     var _insertOrdemServico = function(ordemServico) {
         return $http.post(properties.baseUrl + "/ordensservico", ordemServico);
     }
+
+    // var _updateOrdemServico = function(ordemServico) {
+    //     return $http.put(properties.baseUrl + "/ordensservico/" + ordemServico.id, ordemServico);
+    // }
 
     var _getOrdensServico = function(pageId) {
         if(pageId === null || pageId === undefined){
@@ -116,17 +134,9 @@ appModule.factory("ordemServicoService", function($http, properties) {
         }
     }
 
-    var _formatOrcamentoInput = function(orcamento) {
-        var newOrcamento = orcamento.toString();
-        newOrcamento.replace('.', ',');
-        if(newOrcamento.indexOf(',' < -1)){
-            newOrcamento += ",00";
-        }
-        return newOrcamento;
-    }
-
     return {
         insertOrdemServico: _insertOrdemServico,
+        updateOrdemServico: _updateOrdemServico,
         getOrdensServico: _getOrdensServico,
         getOrdemServicoById: _getOrdemServicoById,
         isEmailValid: _isEmailValid,
@@ -137,8 +147,8 @@ appModule.factory("ordemServicoService", function($http, properties) {
         setOrdemServicoObj,
         getOrdemServicoObj,
         getItemById: _getItemById,
+        setItem: _setItem,
         uploadImage: _uploadImage,
-        deleteImage: _deleteImage,
-        formatOrcamentoInput: _formatOrcamentoInput
+        deleteImage: _deleteImage
     };
 });

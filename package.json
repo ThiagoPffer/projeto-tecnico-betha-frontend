@@ -1,0 +1,21 @@
+{
+  "name": "projeto_tecnico_frontend",
+  "version": "1.0.0",
+  "description": "Projeto desenvolvido durante o periodo de Estagio na Betha Sistemas",
+  "main": "index.html",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.services.betha.cloud/thiago.ramos/projeto_tecnico_frontend.git"
+  },
+  "author": "Thiago Piffer",
+  "license": "ISC",
+  "dependencies": {
+    "angular-popeye": "^1.0.5"
+  }
+}

@@ -1,0 +1,17 @@
+<section class="gap-x-16 column-container">
+    <div class="input-group">
+        <label class="default-label" for="equipamento-modal-desc">Descrição do equipamento:</label>
+        <textarea ng-model="changedItem.descricao" class="default-textarea" id="equipamento-modal-desc" name="equipamento-modal-desc" rows="10" placeholder="Descreva o equipamento entregue pelo cliente..." onresize="false"></textarea>
+    </div>
+    <div class="input-group">
+        <label class="default-label" for="equipamento-modal-avarias">Avarias encontradas:</label>
+        <textarea ng-model="changedItem.avaria" class="default-textarea" id="equipamento-modal-avarias" name="equipamento-modal-avarias" rows="10" placeholder="Digite as avarias descritas pelo cliente..." onresize="false"></textarea>
+    </div>
+    <div class="row-container justify-space-between gap-y-16">
+        <button ng-click="saveChanges(changedItem)" type="submit" class="default-button--filled stretch">Salvar</button>
+        <button ng-click="closeModal()" type="submit" class="default-button--outline stretch">Cancelar</button>
+    </div>
+    <div ng-show="showItemError" class="default-error">
+        <span class="mdi mdi-alert-outline"></span>{{itemExceptionMessage}}
+    </div>
+</section>

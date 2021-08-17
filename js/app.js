@@ -1,1 +1,1 @@
-var appModule = angular.module("projetoTecnico", ["ngRoute"]);
+var appModule = angular.module("projetoTecnico", ["ngRoute", "pathgather.popeye"]);
