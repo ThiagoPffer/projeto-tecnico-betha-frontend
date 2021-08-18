@@ -1,4 +1,4 @@
-appModule.controller("ordemDetailsController", function($location, $scope, $routeParams, ordemServicoService, clienteService, loadOrdemServico) {
+appModule.controller("ordemDetailsController", function($location, $scope, $routeParams, ordemServicoService, clienteService, loadOrdemServico, Popeye) {
     $scope.pageId = $routeParams.id;
 
     $scope.accessItem = function(idOrdem, idItem){
@@ -12,9 +12,27 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
     $scope.ordemServico = loadOrdemServico.data;
     ordemServicoService.setOrdemServicoObj(loadOrdemServico.data);
 
+    console.log(loadOrdemServico.data.itens)
+
     var loadCliente = function() {
         $scope.cliente = ordemServicoService.getOrdemServicoObj().cliente;
         $scope.cliente.endereco = clienteService.toStringEndereco($scope.cliente.endereco);
+    }
+
+    $scope.openImageModal = function(idItem) {
+        var modalImage = Popeye.openModal({
+            templateUrl: "view/modal-image.html",
+            controller: "modalImageController",
+            resolve: {
+                imageData: function() {
+                    return {
+                        item: ordemServicoService.getItemById(idItem),
+                        idItem: idItem,
+                        idOrdem: $routeParams.id
+                    }
+                }
+            }
+        });
     }
 
     // ERROS

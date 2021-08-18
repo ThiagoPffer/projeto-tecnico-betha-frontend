@@ -90,6 +90,10 @@ input{
     margin-top: 64px;
 }
 
+.ml-8{
+    margin-left: 8px;
+}
+
 .mb-8{
     margin-bottom: 8px;
 }
@@ -212,6 +216,11 @@ input{
 
 .full-width{
     width: 100%;
+}
+
+.z-index-100{
+    position: absolute;
+    z-index: 100;
 }
 
 /* <===========================::Defaults::===========================> */
@@ -442,6 +451,22 @@ input{
     border: 1px solid var(--primaria);
 }
 
+.tiny-button{
+    background: rgb(169, 253, 169);
+    padding: 10px;
+    border-radius: 4px;
+    color: green;
+    border: 1px solid transparent;
+    font-size: .8em;
+    font-weight: 500;
+    transition: .2s ease-out;
+}
+
+.tiny-button:hover{
+    border: 1px solid green;
+    opacity: .8;
+}
+
 .default-error{
     display: flex;
     flex-direction: row;
@@ -499,7 +524,6 @@ input{
 .default-tableRow td{
     text-align: left;
     border: none;
-    width: 16.6%;
 }
 
 .default-tableRow th{
@@ -948,8 +972,7 @@ input{
     flex-wrap: nowrap;
     flex-direction: row;
     align-items: center;
-
-    width: fit-content;
+    width: 100%;
     max-width: 100%;
     min-height: 282px;
     background: white;

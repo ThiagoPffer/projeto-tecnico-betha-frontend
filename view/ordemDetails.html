@@ -59,11 +59,17 @@
                     <th>Orçamento</th>
                     <th>Fotos</th>
                 </tr>
-                <tr ng-click="accessItem(pageId, item.id)" ng-repeat="item in ordemServico.itens" class="default-tableRow">
+                <tr ng-repeat="item in ordemServico.itens" class="default-tableRow">
                     <td class="tableItem">{{item.id}}</td>
                     <td class="tableItem">{{item.equipamento}}</td>
                     <td class="tableItem">{{item.orcamento | currency}}</td>
                     <td class="tableItem">{{item.imagens.length}}</td>
+                    <td class="tableItem sm-width">
+                        <div class="row-container gap-y-16">
+                            <button ng-click="openImageModal(item.id)" class="tiny-button">Ver/adicionar imagens</button>
+                            <button ng-click="accessItem(pageId, item.id)" class="tiny-button">Ver Equipamento</button>
+                        </div>
+                    </td>
                 </tr>
             </table>
         </section>

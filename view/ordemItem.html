@@ -18,30 +18,6 @@
             </section>
             <button ng-show="canChangeItem" type="button" ng-click="openModalItem()" class="default-button--filled mt-16 sm-width">Alterar descrição/avarias</button>
         </div>
-    
-        <div>
-            <h3 class="default-subtitle mb-16">Imagens:</h3>
-            <section class="image-gallery">
-                <div class="image-container" ng-repeat="imagem in item.imagens">
-                    <div class="imgButton-container">
-                        <button ng-show="canChangeItem" ng-click="onDeleteImage(imagem)"><span class="mdi mdi-delete-outline"></span></button>
-                        <a href="{{uri+imagem.nomeArquivo}}" target="blank"><span class="mdi mdi-arrow-expand"></span></a>
-                    </div>
-                    <img ng-src="{{uri+imagem.nomeArquivo}}" alt="teste">
-                </div>
-                <h4 ng-show="showImageGalleryError"><span class="mdi mdi-image-remove"></span> Este equipamento não possui nenhuma foto cadastrada</h4>
-            </section>
-            <form ng-show="canChangeItem" class="row-container mt-16 gap-y-16">
-                <div class="column-container">
-                    <label class="stretch" for="itemImg">Escolha uma imagem:</label>
-                    <input type="file" accept="image/*" class="content-width" id="itemImg" name="itemImg" >
-                </div>
-                <button ng-click="onUploadImage()" class="noBg-button content-width"><span class="mdi mdi-image-plus"></span> Salvar imagem</button>
-            </form>
-            <div ng-show="showImageUploadError" class="default-error lg-width mt-16">
-                <span class="mdi mdi-alert-outline"></span>{{imageUploadErrorMessage}}
-            </div>
-        </div>
 
         <section class="content-width">
             <h3 class="default-subtitle mb-16">Orçamento da manutenção: </h3>
