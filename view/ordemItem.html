@@ -16,15 +16,15 @@
                     </section>
                 </div>
             </section>
-            <button ng-show="canChangeItem" type="button" ng-click="openModalItem()" class="default-button--filled mt-16 sm-width">Alterar descrição/avarias</button>
+            <button ng-show="canChangeComponent" type="button" ng-click="openModalItem()" class="default-button--filled mt-16 sm-width">Alterar descrição/avarias</button>
         </div>
 
         <section class="content-width">
             <h3 class="default-subtitle mb-16">Orçamento da manutenção: </h3>
             <div>
                 <span class="lg-currency-text">R$ </span>
-                <span ng-show="!canChangeItem" class="lg-currency-text">{{item.orcamento}}</span>
-                <input ng-show="canChangeItem" ng-model="item.orcamento" id="orcamento-input" type="number" step="0.01" class="orcamento-input lg-currency-text sm-width"  maxlength="10">
+                <span ng-show="!canChangeComponent" class="lg-currency-text">{{item.orcamento}}</span>
+                <input ng-show="canChangeComponent" ng-model="item.orcamento" id="orcamento-input" type="number" step="0.01" class="orcamento-input lg-currency-text sm-width"  maxlength="10">
             </div>
         </section>
     
@@ -33,7 +33,7 @@
         </div>
     
         <div class="row-container gap-y">
-            <button ng-show="canChangeItem" ng-click="onSaveAllChanges(item)" type="submit" class="default-button--filled sm-width">Salvar alterações</button>
+            <button ng-show="canChangeComponent" ng-click="onSaveAllChanges(item)" type="submit" class="default-button--filled sm-width">Salvar alterações</button>
             <button ng-click="onCancelChanges()" type="submit" class="default-button--outline sm-width">Cancelar</button>
         </div>
     </section>

@@ -13,7 +13,7 @@ appModule.controller("ordemItemController", function($location, $scope, $routePa
     // SCOPES
 
     $scope.showSavingError = false;
-    $scope.canChangeItem = ordemServicoService.canObjectsBeChanged();
+    $scope.canChangeComponent = ordemServicoService.canObjectsBeChanged();
     $scope.uri = properties.imageBaseUrl;
     $scope.item = ordemServicoService.getItemById($routeParams.idItem);
     

@@ -82,6 +82,10 @@ appModule.factory("ordemServicoService", function($http, properties) {
     var _getOrdemServicoById = function(id) {
         return $http.get(properties.baseUrl + "/ordensservico/" + id);
     }
+
+    var _updateSituacao = function(idOrdem, situacao) {
+        return $http.put(properties.baseUrl + "/ordensservico/" + idOrdem + "/situacoes?value=" + situacao);
+    }
     
     // VALIDACOES
 
@@ -184,6 +188,7 @@ appModule.factory("ordemServicoService", function($http, properties) {
         getItemById: _getItemById,
         setItem: _setItem,
         uploadImage: _uploadImage,
-        deleteImage: _deleteImage
+        deleteImage: _deleteImage,
+        updateSituacao: _updateSituacao
     };
 });

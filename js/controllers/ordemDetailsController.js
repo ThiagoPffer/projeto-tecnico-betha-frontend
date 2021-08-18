@@ -1,5 +1,11 @@
-appModule.controller("ordemDetailsController", function($location, $scope, $routeParams, ordemServicoService, clienteService, loadOrdemServico, Popeye) {
+appModule.controller("ordemDetailsController", function($location, $scope, $routeParams, $route, ordemServicoService, clienteService, loadOrdemServico, Popeye) {
+
+    // INIT
+
+    ordemServicoService.setOrdemServicoObj(loadOrdemServico.data);
     $scope.pageId = $routeParams.id;
+    $scope.ordemServico = ordemServicoService.getOrdemServicoObj();
+    $scope.canChangeComponent = ordemServicoService.canObjectsBeChanged();
 
     $scope.accessItem = function(idOrdem, idItem){
         $location.path("/ordens/"+idOrdem+"/itens/"+idItem);
@@ -8,9 +14,6 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
     $scope.setStatusColor = function(value) {
         return ordemServicoService.setStatusColor(value);
     }
-
-    $scope.ordemServico = loadOrdemServico.data;
-    ordemServicoService.setOrdemServicoObj(loadOrdemServico.data);
 
     var loadCliente = function() {
         $scope.cliente = ordemServicoService.getOrdemServicoObj().cliente;
@@ -31,6 +34,20 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
                 }
             }
         });
+    }
+
+    $scope.updateSituacao = function(situacao) {
+        ordemServicoService.updateSituacao($routeParams.id, situacao).then(function(response) {
+            $route.reload();
+            alert("Ordem enviada para o cliente com sucesso!");
+        }, function(err) {
+            console.log(err);
+        });
+    }
+
+    $scope.isEmailCheckboxActivated = function() {
+        var checkBox = document.getElementById('email-check');
+        return checkBox.checked
     }
 
     // ERROS

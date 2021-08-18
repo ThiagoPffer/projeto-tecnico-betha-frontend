@@ -4,7 +4,7 @@ appModule.controller("modalImageController", function($scope, properties, ordemS
 
     $scope.showImageGalleryError = false;
     $scope.showImageUploadError = false;
-    $scope.canChangeItem = ordemServicoService.canObjectsBeChanged();
+    $scope.canChangeComponent = ordemServicoService.canObjectsBeChanged();
     $scope.uri = properties.imageBaseUrl;
     $scope.item = imageData.item;
 
