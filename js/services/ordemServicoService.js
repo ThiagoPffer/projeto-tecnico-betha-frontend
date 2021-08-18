@@ -1,4 +1,4 @@
-appModule.factory("ordemServicoService", function($http, properties) {
+appModule.factory("ordemServicoService", function($http, properties, tokenService) {
     
     // OBJETO COMPARTILHADO
 
@@ -84,7 +84,7 @@ appModule.factory("ordemServicoService", function($http, properties) {
     }
 
     var _updateSituacao = function(idOrdem, situacao) {
-        return $http.put(properties.baseUrl + "/ordensservico/" + idOrdem + "/situacoes?value=" + situacao);
+        return $http.post(properties.baseUrl + "/ordensservico/" + idOrdem + "/situacoes?token="+tokenService.getToken().slice(7)+"&value=" + situacao);
     }
     
     // VALIDACOES
