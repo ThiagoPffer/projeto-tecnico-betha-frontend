@@ -422,6 +422,11 @@ input{
     transition: .2s ease-out;
 }
 
+.default-button--outline.red{
+    border: 1px solid var(--vermelho);
+    color: var(--vermelho);
+}
+
 .default-button--outline:hover{
     opacity: .6;
 }

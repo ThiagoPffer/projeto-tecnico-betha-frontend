@@ -99,7 +99,7 @@ appModule.factory("ordemServicoService", function($http, properties, tokenServic
 
     var _isFormularyValid = function(item) {
         if(item != undefined){
-            if(item.equipamento != undefined && item.descricao != undefined && item.descricao != undefined){
+            if(item.equipamento != undefined && item.descricao != undefined && item.avaria != undefined){
                 if(item.descricao.length < 25 || item.avaria.length < 15){
                     return false;
                 } else {

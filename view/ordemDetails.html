@@ -77,15 +77,18 @@
         <div ng-show="showTableError" class="default-error lg-width">
             <span class="mdi mdi-alert-outline"></span>{{tableErrorMessage}}
         </div>
-
+        
         <section ng-show="canChangeComponent" class="checkbox-section md-width">
             <div class="checkbox-row">
-                <input ng-model="checkbox.selected" type="checkbox" id="email-check">
+                <input ng-model="checkbox.email.selected" type="checkbox" id="email-check">
                 <label class="default-label" for="email-check">Enviar email para o cliente</label>
             </div>
             <p>Se esta opção estiver marcada ao salvar as alterações, a situação da ordem de serviço será alterada para AGUARDANDO_DECISAO e nenhuma alteração poderá ser feita a partir deste ponto.</p>
         </section>
 
-        <button ng-click="updateSituacao('AGUARDANDO_DECISAO')" ng-show="isEmailCheckboxActivated()" type="submit" class="default-button--filled sm-width">Confirmar</button>
+        <div class="row-container gap-y-16">
+            <button ng-click="updateSituacao('AGUARDANDO_DECISAO')" ng-show="isEmailCheckboxActivated()" type="submit" class="default-button--filled sm-width">Confirmar</button>
+            <button ng-click="openCancelConfirmationModal()" ng-show="canCancelOrdemServico()" type="submit" class="default-button--outline red sm-width">Cancelar ordem</button>
+        </div>
     </section>
 </main>

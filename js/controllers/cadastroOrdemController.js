@@ -57,6 +57,7 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
     
     var insertNewOrdemServico = function(newOrdemServico) {
         ordemServicoService.insertOrdemServico(newOrdemServico).then(function(response) {
+            alert("Ordem de serviço criada com sucesso!");
             clearComponents();
         }, function(err) {
             genericException(err.data.message);

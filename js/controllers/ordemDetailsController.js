@@ -5,7 +5,16 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
     ordemServicoService.setOrdemServicoObj(loadOrdemServico.data);
     $scope.pageId = $routeParams.id;
     $scope.ordemServico = ordemServicoService.getOrdemServicoObj();
+
     $scope.canChangeComponent = ordemServicoService.canObjectsBeChanged();
+
+    $scope.canCancelOrdemServico = function() {
+        if(ordemServicoService.getSituacaoOrdemServico() != "EM_ANALISE"){
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     $scope.accessItem = function(idOrdem, idItem){
         $location.path("/ordens/"+idOrdem+"/itens/"+idItem);
@@ -36,10 +45,24 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
         });
     }
 
+    $scope.openCancelConfirmationModal = function(idItem) {
+        var modalCancelConfirmation = Popeye.openModal({
+            templateUrl: "view/modal-cancel-confirmation.html",
+            controller: "modalCancelConfirmationController",
+            resolve: {
+                modalCancelData: function() {
+                    return {
+                        idOrdem: $routeParams.id
+                    }
+                }
+            }
+        });
+    }
+
     $scope.updateSituacao = function(situacao) {
         ordemServicoService.updateSituacao($routeParams.id, situacao).then(function(response) {
             $route.reload();
-            alert("Ordem enviada para o cliente com sucesso!");
+            alert("A situação da ordem foi alterada para " + situacao);
         }, function(err) {
             console.log(err);
         });
