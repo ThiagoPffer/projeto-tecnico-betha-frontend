@@ -7,7 +7,6 @@ appModule.controller("modalItemController", function($scope, $route, ordemServic
 
     $scope.saveChanges = function(item) {
         ordemServicoService.setItem(item);
-        console.log(ordemServicoService.getOrdemServicoDTO());
         $scope.closeModal();
         $route.reload()
     }

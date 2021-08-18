@@ -12,6 +12,8 @@ appModule.factory("ordemServicoService", function($http, properties) {
         return _ordemServicoObj;
     }
 
+    // OBJETO COMPARTILHADO > OPERACOES COM ITENS
+    
     var _getItemById = function(idItem) {
         var itens = _getOrdemServicoObj().itens;
         var itemObj;
@@ -34,19 +36,18 @@ appModule.factory("ordemServicoService", function($http, properties) {
                 itens[i] = newItem;
             }
         }
-        
-        console.log(newItem);
-        console.log(itens);
 
         ordem.itens = itens;
         _setOrdemServicoObj(ordem);
     }
 
+    // OBJETO COMPARTILHADO > SITUACAO
+
     var _getSituacaoOrdemServico = function() {
         return _getOrdemServicoObj().situacao;
     };
 
-    // OPERACOES NO BANCO
+    // OPERACOES NO BANCO > IMAGENS
     
     var _deleteImage = function(idOrdem, idItem, idImagem) {
         return $http.delete(properties.baseUrl + "/ordensservico/"+idOrdem+"/itens/"+idItem+"/fotos/"+idImagem);
@@ -61,12 +62,13 @@ appModule.factory("ordemServicoService", function($http, properties) {
         });
     }
 
+    // OPERACOES NO BANCO > ORDEM DE SERVICO
+
     var _insertOrdemServico = function(ordemServico) {
         return $http.post(properties.baseUrl + "/ordensservico", ordemServico);
     }
 
     var _updateOrdemServico = function(ordemServicoDTO) {
-        console.log(ordemServicoDTO)
         return $http.put(properties.baseUrl + "/ordensservico/" + _getOrdemServicoObj().id, ordemServicoDTO);
     }
 
@@ -123,7 +125,7 @@ appModule.factory("ordemServicoService", function($http, properties) {
         }
     }
 
-    //UTILS
+    // UTILS > DTO DE ORDEM DE SERVICO
 
     var _getEmptyOrdemServicoDTO = function() {
         return {
@@ -143,6 +145,8 @@ appModule.factory("ordemServicoService", function($http, properties) {
         }
         
     }
+
+    // UTILS > OUTROS
 
     var _setStatusColor = function(value) {
         if(value === "EM_ANALISE" || value === "AGUARDANDO_DECISAO" || value === "PENDENTE"){

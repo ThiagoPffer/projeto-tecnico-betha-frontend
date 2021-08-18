@@ -1,4 +1,7 @@
 appModule.controller("ordemItemController", function($location, $scope, $routeParams, ordemServicoService, properties, Popeye) {
+    
+    // VERIFICAÇÕES INICIAIS
+
     var ordemServicoDTO;
 
     if(ordemServicoService.getOrdemServicoDTO() === undefined){
@@ -13,20 +16,24 @@ appModule.controller("ordemItemController", function($location, $scope, $routePa
         $scope.canChangeItem = false;
     }
 
-    console.log(ordemServicoService.getSituacaoOrdemServico());
+    // SCOPES
 
-    $scope.showImageError = false;
+    $scope.showImageGalleryError = false;
     $scope.showImageUploadError = false;
+    $scope.showSavingError = false;
+
     $scope.uri = properties.imageBaseUrl;
     $scope.item = ordemServicoService.getItemById($routeParams.idItem);
     
+    // OPERAÇÕES
+
     $scope.onDeleteImage = function(imagem) {
         ordemServicoService.deleteImage($routeParams.idOrdem, $routeParams.idItem, imagem.id).then(function(response) {
             var indexImg = $scope.item.imagens.indexOf(imagem);
             $scope.item.imagens.splice(indexImg, 1);
             verifyImageList();
         },function(err) {
-            console.log(err);
+            imageSelectionException(err.message);
         });
     }
 
@@ -34,26 +41,24 @@ appModule.controller("ordemItemController", function($location, $scope, $routePa
         var file = document.getElementById('itemImg').files[0];
 
         if(file === null || file === undefined){
-            genericException("Selecione uma imagem antes de salvar!");
+            imageSelectionException("Selecione uma imagem antes de salvar!");
         }
 
         ordemServicoService.uploadImage($routeParams.idOrdem, $routeParams.idItem, file).then(function(response) { 
-            $scope.showImageError = false;
+            $scope.showImageGalleryError = false;
             $scope.item.imagens.push(response.data);
         }, function(err) {
-            console.log(err);
+            imageSelectionException(err.message);
         });
     }
 
     $scope.onSaveAllChanges = function(item) {
         ordemServicoService.setItem(item);
         let ordemServicoDTO = ordemServicoService.getOrdemServicoDTO();
-        console.log(ordemServicoDTO);
         ordemServicoService.updateOrdemServico(ordemServicoDTO).then(function(response) {
             $location.path('ordens/'+$routeParams.idOrdem)
-            console.log(response);
         }, function(err) {
-            console.log(err);
+            savingException(err.message);
         });
     }
 
@@ -63,8 +68,8 @@ appModule.controller("ordemItemController", function($location, $scope, $routePa
 
     // MODAL
 
-    $scope.openModal = function() {
-        var modal = Popeye.openModal({
+    $scope.openModalItem = function() {
+        var modalItem = Popeye.openModal({
             templateUrl: "view/modal-item.html",
             controller: "modalItemController",
             resolve: {
@@ -83,13 +88,18 @@ appModule.controller("ordemItemController", function($location, $scope, $routePa
 
     var verifyImageList = function() {
         if($scope.item.imagens.length === 0){
-            $scope.showImageError = true;
+            $scope.showImageGalleryError = true;
         }
     }
 
-    var genericException = function(message) {
+    var imageSelectionException = function(message) {
         $scope.showImageUploadError = true;
         $scope.imageUploadErrorMessage = message;
+    }
+
+    var savingException = function(message) {
+        $scope.showSavingError = true;
+        $scope.savingErrorMessage = message;
     }
 
     // INIT

@@ -16,7 +16,7 @@
                     </section>
                 </div>
             </section>
-            <button ng-show="canChangeItem" type="button" ng-click="openModal()" class="default-button--filled mt-16 sm-width">Alterar descrição/avarias</button>
+            <button ng-show="canChangeItem" type="button" ng-click="openModalItem()" class="default-button--filled mt-16 sm-width">Alterar descrição/avarias</button>
         </div>
     
         <div>
@@ -29,7 +29,7 @@
                     </div>
                     <img ng-src="{{uri+imagem.nomeArquivo}}" alt="teste">
                 </div>
-                <h4 ng-show="showImageError"><span class="mdi mdi-image-remove"></span> Este equipamento não possui nenhuma foto cadastrada</h4>
+                <h4 ng-show="showImageGalleryError"><span class="mdi mdi-image-remove"></span> Este equipamento não possui nenhuma foto cadastrada</h4>
             </section>
             <form ng-show="canChangeItem" class="row-container mt-16 gap-y-16">
                 <div class="column-container">
@@ -47,12 +47,13 @@
             <h3 class="default-subtitle mb-16">Orçamento da manutenção: </h3>
             <div>
                 <span class="lg-currency-text">R$ </span>
-                <input ng-model="item.orcamento" id="orcamento-input" type="number" step="0.01" class="orcamento-input lg-currency-text sm-width"  maxlength="10">
+                <span ng-show="!canChangeItem" class="lg-currency-text">{{item.orcamento}}</span>
+                <input ng-show="canChangeItem" ng-model="item.orcamento" id="orcamento-input" type="number" step="0.01" class="orcamento-input lg-currency-text sm-width"  maxlength="10">
             </div>
         </section>
     
-        <div ng-show="showTableError" class="default-error lg-width">
-            <span class="mdi mdi-alert-outline"></span>{{tableErrorMessage}}
+        <div ng-show="showSavingError" class="default-error lg-width">
+            <span class="mdi mdi-alert-outline"></span>{{savingErrorMessage}}
         </div>
     
         <div class="row-container gap-y">
