@@ -7,14 +7,13 @@ appModule.controller("ordemItemController", function($location, $scope, $routePa
         ordemServicoDTO = ordemServicoService.getOrdemServicoDTO();
     }
 
-    
-    ordemServicoService.getOrdemServicoById($routeParams.idOrdem).then(function(response) {
-        console.log(response);
-    },function(err) {
-        console.log(err);
-    })
+    if(ordemServicoService.getSituacaoOrdemServico() == "EM_ANALISE"){
+        $scope.canChangeItem = true;
+    } else {
+        $scope.canChangeItem = false;
+    }
 
-    console.log(ordemServicoDTO);
+    console.log(ordemServicoService.getSituacaoOrdemServico());
 
     $scope.showImageError = false;
     $scope.showImageUploadError = false;
@@ -56,6 +55,10 @@ appModule.controller("ordemItemController", function($location, $scope, $routePa
         }, function(err) {
             console.log(err);
         });
+    }
+
+    $scope.onCancelChanges = function() {
+        $location.path('/ordens/'+$routeParams.idOrdem);
     }
 
     // MODAL

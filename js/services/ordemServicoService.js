@@ -4,16 +4,16 @@ appModule.factory("ordemServicoService", function($http, properties) {
 
     var _ordemServicoObj;
 
-    var setOrdemServicoObj = function(object) {
+    var _setOrdemServicoObj = function(object) {
         _ordemServicoObj = object;
     } 
 
-    var getOrdemServicoObj = function() {
+    var _getOrdemServicoObj = function() {
         return _ordemServicoObj;
     }
 
     var _getItemById = function(idItem) {
-        var itens = getOrdemServicoObj().itens;
+        var itens = _getOrdemServicoObj().itens;
         var itemObj;
 
         itens.forEach(item => {
@@ -26,7 +26,7 @@ appModule.factory("ordemServicoService", function($http, properties) {
     }
 
     var _setItem = function(newItem) {
-        var ordem = getOrdemServicoObj()
+        var ordem = _getOrdemServicoObj()
         var itens = ordem.itens;
 
         for(let i = 0; i < itens.length; i++){
@@ -39,8 +39,12 @@ appModule.factory("ordemServicoService", function($http, properties) {
         console.log(itens);
 
         ordem.itens = itens;
-        setOrdemServicoObj(ordem);
+        _setOrdemServicoObj(ordem);
     }
+
+    var _getSituacaoOrdemServico = function() {
+        return _getOrdemServicoObj().situacao;
+    };
 
     // OPERACOES NO BANCO
     
@@ -63,7 +67,7 @@ appModule.factory("ordemServicoService", function($http, properties) {
 
     var _updateOrdemServico = function(ordemServicoDTO) {
         console.log(ordemServicoDTO)
-        return $http.put(properties.baseUrl + "/ordensservico/" + getOrdemServicoObj().id, ordemServicoDTO);
+        return $http.put(properties.baseUrl + "/ordensservico/" + _getOrdemServicoObj().id, ordemServicoDTO);
     }
 
     var _getOrdensServico = function(pageId) {
@@ -129,10 +133,10 @@ appModule.factory("ordemServicoService", function($http, properties) {
     }
 
     var _getOrdemServicoDTO = function() {
-        if(getOrdemServicoObj() != undefined){
+        if(_getOrdemServicoObj() != undefined){
             return {
-                "idCliente": getOrdemServicoObj().cliente.id,
-                "itens": getOrdemServicoObj().itens
+                "idCliente": _getOrdemServicoObj().cliente.id,
+                "itens": _getOrdemServicoObj().itens
             };
         } else {
             return undefined;
@@ -161,8 +165,9 @@ appModule.factory("ordemServicoService", function($http, properties) {
         getEmptyOrdemServicoDTO: _getEmptyOrdemServicoDTO,
         getOrdemServicoDTO: _getOrdemServicoDTO,
         setStatusColor: _setStatusColor,
-        setOrdemServicoObj,
-        getOrdemServicoObj,
+        setOrdemServicoObj: _setOrdemServicoObj,
+        getOrdemServicoObj: _getOrdemServicoObj,
+        getSituacaoOrdemServico: _getSituacaoOrdemServico,
         getItemById: _getItemById,
         setItem: _setItem,
         uploadImage: _uploadImage,

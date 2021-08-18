@@ -16,7 +16,7 @@
                     </section>
                 </div>
             </section>
-            <button type="button" ng-click="openModal()" class="default-button--filled mt-16 sm-width">Alterar descrição/avarias</button>
+            <button ng-show="canChangeItem" type="button" ng-click="openModal()" class="default-button--filled mt-16 sm-width">Alterar descrição/avarias</button>
         </div>
     
         <div>
@@ -24,14 +24,14 @@
             <section class="image-gallery">
                 <div class="image-container" ng-repeat="imagem in item.imagens">
                     <div class="imgButton-container">
-                        <button ng-click="onDeleteImage(imagem)"><span class="mdi mdi-delete-outline"></span></button>
+                        <button ng-show="canChangeItem" ng-click="onDeleteImage(imagem)"><span class="mdi mdi-delete-outline"></span></button>
                         <a href="{{uri+imagem.nomeArquivo}}" target="blank"><span class="mdi mdi-arrow-expand"></span></a>
                     </div>
                     <img ng-src="{{uri+imagem.nomeArquivo}}" alt="teste">
                 </div>
                 <h4 ng-show="showImageError"><span class="mdi mdi-image-remove"></span> Este equipamento não possui nenhuma foto cadastrada</h4>
             </section>
-            <form class="row-container mt-16 gap-y-16">
+            <form ng-show="canChangeItem" class="row-container mt-16 gap-y-16">
                 <div class="column-container">
                     <label class="stretch" for="itemImg">Escolha uma imagem:</label>
                     <input type="file" accept="image/*" class="content-width" id="itemImg" name="itemImg" >
@@ -56,8 +56,8 @@
         </div>
     
         <div class="row-container gap-y">
-            <button ng-click="onSaveAllChanges(item)" type="submit" class="default-button--filled sm-width">Salvar alterações</button>
-            <button type="submit" class="default-button--outline sm-width">Cancelar</button>
+            <button ng-show="canChangeItem" ng-click="onSaveAllChanges(item)" type="submit" class="default-button--filled sm-width">Salvar alterações</button>
+            <button ng-click="onCancelChanges()" type="submit" class="default-button--outline sm-width">Cancelar</button>
         </div>
     </section>
 </main>
