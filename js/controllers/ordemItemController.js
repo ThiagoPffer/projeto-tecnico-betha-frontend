@@ -1,6 +1,6 @@
 appModule.controller("ordemItemController", function($location, $scope, $routeParams, ordemServicoService, properties, Popeye) {
     
-    // VERIFICAÇÕES INICIAIS
+    // INIT
 
     var ordemServicoDTO;
 
@@ -10,15 +10,10 @@ appModule.controller("ordemItemController", function($location, $scope, $routePa
         ordemServicoDTO = ordemServicoService.getOrdemServicoDTO();
     }
 
-    if(ordemServicoService.getSituacaoOrdemServico() == "EM_ANALISE"){
-        $scope.canChangeItem = true;
-    } else {
-        $scope.canChangeItem = false;
-    }
-
     // SCOPES
 
     $scope.showSavingError = false;
+    $scope.canChangeItem = ordemServicoService.canObjectsBeChanged();
     $scope.uri = properties.imageBaseUrl;
     $scope.item = ordemServicoService.getItemById($routeParams.idItem);
     

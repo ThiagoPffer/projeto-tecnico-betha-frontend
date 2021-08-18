@@ -12,8 +12,6 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
     $scope.ordemServico = loadOrdemServico.data;
     ordemServicoService.setOrdemServicoObj(loadOrdemServico.data);
 
-    console.log(loadOrdemServico.data.itens)
-
     var loadCliente = function() {
         $scope.cliente = ordemServicoService.getOrdemServicoObj().cliente;
         $scope.cliente.endereco = clienteService.toStringEndereco($scope.cliente.endereco);

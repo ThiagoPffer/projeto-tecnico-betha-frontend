@@ -158,6 +158,14 @@ appModule.factory("ordemServicoService", function($http, properties) {
         }
     }
 
+    var _canObjectsBeChanged = function() {
+        if(_getSituacaoOrdemServico() == "EM_ANALISE"){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     return {
         insertOrdemServico: _insertOrdemServico,
         updateOrdemServico: _updateOrdemServico,
@@ -169,6 +177,7 @@ appModule.factory("ordemServicoService", function($http, properties) {
         getEmptyOrdemServicoDTO: _getEmptyOrdemServicoDTO,
         getOrdemServicoDTO: _getOrdemServicoDTO,
         setStatusColor: _setStatusColor,
+        canObjectsBeChanged: _canObjectsBeChanged,
         setOrdemServicoObj: _setOrdemServicoObj,
         getOrdemServicoObj: _getOrdemServicoObj,
         getSituacaoOrdemServico: _getSituacaoOrdemServico,

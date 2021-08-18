@@ -1,14 +1,10 @@
 appModule.controller("modalImageController", function($scope, properties, ordemServicoService, Popeye, imageData) {
 
-    if(ordemServicoService.getSituacaoOrdemServico() == "EM_ANALISE"){
-        $scope.canChangeItem = true;
-    } else {
-        $scope.canChangeItem = false;
-    }
+    // SCOPES    
 
     $scope.showImageGalleryError = false;
     $scope.showImageUploadError = false;
-
+    $scope.canChangeItem = ordemServicoService.canObjectsBeChanged();
     $scope.uri = properties.imageBaseUrl;
     $scope.item = imageData.item;
 
