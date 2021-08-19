@@ -4,6 +4,10 @@ appModule.factory("clienteService", function($http, properties) {
         return $http.post(properties.baseUrl + "/clientes/", cliente);
     }
 
+    var _updateCliente = function(cliente, idCliente) {
+        return $http.put(properties.baseUrl + "/clientes/" + idCliente, cliente);
+    } 
+
     var _getClientes = function(pageId) {
         if(pageId === null || pageId === undefined){
             pageId = 0;
@@ -25,6 +29,7 @@ appModule.factory("clienteService", function($http, properties) {
 
     return {
         insertCliente: _insertCliente,
+        updateCliente: _updateCliente,
         getClientes: _getClientes,
         getCliente: _getCliente,
         getClienteById: _getClienteById,

@@ -56,6 +56,17 @@ appModule.config(function($routeProvider, $locationProvider) {
             }
         }
     });
+    
+    $routeProvider.when("/clientes/:idCliente", {
+        templateUrl: "view/clienteDetails.html",
+        controller: "clienteDetailsController",
+        resolve: {
+            loadCliente: function(clienteService, $location) {
+                var idCliente = $location.path().split("/clientes/").pop();
+                return clienteService.getClienteById(idCliente);
+            }
+        }
+    });
 
     $routeProvider.when("/erro", {
         templateUrl: "view/errorPage.html",

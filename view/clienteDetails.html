@@ -1,0 +1,60 @@
+<aside class="side-menu left" id="sideMenu" ng-include="'view/sidemenu.html'" ng-controller="sidemenuController"></aside>
+<main class="main-page">
+    <back-button></back-button>
+    <h2 class="main-page-title">Novo Cliente</h2>
+    <section class="column-container gap-x-16 mb-32">
+        <div class="row-container gap-y-16">
+            <div class="input-group d-width">
+                <label class="default-label" for="cliente-name">Nome completo:</label>
+                <input ng-model="cliente.nome" class="default-input" id="cliente-name" type="text" placeholder="Digite nome e sobrenome...">
+            </div>
+            <div class="input-group d-width">
+                <label class="default-label" for="cliente-email">Email:</label>
+                <input ng-model="cliente.email" class="default-input" id="cliente-email" type="email" placeholder="Digite o email do cliente...">
+            </div>
+        </div>
+        <div class="input-group d-width">
+            <label class="default-label" for="cliente-phone">Telefone:</label>
+            <input ng-model="cliente.telefone" class="default-input" id="cliente-phone" type="text" placeholder="(99) 99999-9999">
+        </div>
+    </section>
+    <h3 class="main-page-subtitle">Endereço:</h3>
+    <section class="column-container gap-x-16">
+        <div class="row-container gap-y-16">
+            <div class="input-group d-width">
+                <label class="default-label" for="endereco-street">Logradouro:</label>
+                <input ng-model="cliente.endereco.logradouro" class="default-input" id="endereco-street" type="text" placeholder="Ex: Rua Fulano Beltrano...">
+            </div>
+            <div class="input-group d-width">
+                <label class="default-label" for="endereco-city">Cidade:</label>
+                <input ng-model="cliente.endereco.cidade" class="default-input" id="endereco-city" type="text" placeholder="Insira a cidade do cliente...">
+            </div>
+        </div>
+        <div class="row-container gap-y-16">
+            <div class="input-group d-width">
+                <label class="default-label" for="endereco-number">Número:</label>
+                <input ng-model="cliente.endereco.numero" class="default-input" id="endereco-number" type="text" placeholder="Número residencial...">
+            </div>
+            <div class="input-group d-width">
+                <label class="default-label" for="endereco-state">Estado:</label>
+                <input ng-model="cliente.endereco.estado" class="default-input" id="endereco-state" type="text" placeholder="Insira a UF do cliente...">
+            </div>
+        </div>
+        <div class="input-group d-width">
+            <label class="default-label" for="endereco-district">Bairro:</label>
+            <input ng-model="cliente.endereco.bairro" class="default-input" id="endereco-district" type="text" placeholder="Insira o bairro do cliente...">
+        </div>
+    </section>
+
+    <div class="row-container mt-64 gap-y-16">
+        <button ng-click="onSubmitClienteChanges(cliente, cliente.id)" type="submit" class="default-button--filled sm-width">Confirmar alterações</button>
+        <button ng-click="goBack()" type="submit" class="default-button--outline sm-width">Voltar</button>
+    </div>
+
+    <div class="mt-16">
+        <div ng-show="showClienteError" class="default-error d-width ">
+            <span class="mdi mdi-alert-outline"></span>{{clienteErrorMessage}}
+        </div>
+    </div>
+
+</main>
