@@ -427,6 +427,11 @@ input{
     color: var(--vermelho);
 }
 
+.default-button--outline.green{
+    border: 1px solid var(--verde);
+    color: var(--verde);
+}
+
 .default-button--outline:hover{
     opacity: .6;
 }

@@ -16,6 +16,14 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
         }
     }
 
+    $scope.canFinishOrdemServico = function() {
+        if(ordemServicoService.getSituacaoOrdemServico() != "APROVADA"){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     $scope.accessItem = function(idOrdem, idItem){
         $location.path("/ordens/"+idOrdem+"/itens/"+idItem);
     }
