@@ -47,6 +47,15 @@ appModule.config(function($routeProvider, $locationProvider) {
         controller: "novoClienteController",
     });
 
+    $routeProvider.when("/clientes/", {
+        templateUrl: "view/clientes.html",
+        controller: "clientesController",
+        resolve: {
+            loadClientes: function(clienteService, $location) {
+                return clienteService.getClientes($location.search().page);
+            }
+        }
+    });
 
     $routeProvider.when("/erro", {
         templateUrl: "view/errorPage.html",

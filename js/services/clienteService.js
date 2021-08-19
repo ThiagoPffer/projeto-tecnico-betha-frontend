@@ -4,6 +4,13 @@ appModule.factory("clienteService", function($http, properties) {
         return $http.post(properties.baseUrl + "/clientes/", cliente);
     }
 
+    var _getClientes = function(pageId) {
+        if(pageId === null || pageId === undefined){
+            pageId = 0;
+        }
+        return $http.get(properties.baseUrl + "/clientes/page?page=" + pageId);
+    }
+
     var _getCliente = function(email) {
         return $http.get(properties.baseUrl + "/clientes/email?value=" + email);
     }
@@ -18,6 +25,7 @@ appModule.factory("clienteService", function($http, properties) {
 
     return {
         insertCliente: _insertCliente,
+        getClientes: _getClientes,
         getCliente: _getCliente,
         getClienteById: _getClienteById,
         toStringEndereco: _toStringEndereco
