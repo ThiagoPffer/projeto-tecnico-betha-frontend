@@ -124,5 +124,6 @@ dist
 
 #outras dependencias
 emailTeste/
+htmlteste.html
 
 # End of https://www.toptal.com/developers/gitignore/api/node

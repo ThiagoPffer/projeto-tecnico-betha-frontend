@@ -8,21 +8,14 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
 
     $scope.canChangeComponent = ordemServicoService.canObjectsBeChanged();
 
-    $scope.canCancelOrdemServico = function() {
-        if(ordemServicoService.getSituacaoOrdemServico() != "EM_ANALISE"){
-            return false;
-        } else {
-            return true;
-        }
+    var loadCliente = function() {
+        $scope.cliente = ordemServicoService.getOrdemServicoObj().cliente;
+        $scope.cliente.endereco = clienteService.toStringEndereco($scope.cliente.endereco);
     }
 
-    $scope.canFinishOrdemServico = function() {
-        if(ordemServicoService.getSituacaoOrdemServico() != "APROVADA"){
-            return false;
-        } else {
-            return true;
-        }
-    }
+    loadCliente();
+
+    // OPERACOES
 
     $scope.accessItem = function(idOrdem, idItem){
         $location.path("/ordens/"+idOrdem+"/itens/"+idItem);
@@ -32,10 +25,16 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
         return ordemServicoService.setStatusColor(value);
     }
 
-    var loadCliente = function() {
-        $scope.cliente = ordemServicoService.getOrdemServicoObj().cliente;
-        $scope.cliente.endereco = clienteService.toStringEndereco($scope.cliente.endereco);
+    $scope.updateSituacao = function(situacao) {
+        ordemServicoService.updateSituacao($routeParams.id, situacao).then(function(response) {
+            $route.reload();
+            alert("A situação da ordem foi alterada para " + situacao);
+        }, function(err) {
+            console.log(err);
+        });
     }
+
+    // MODAL
 
     $scope.openImageModal = function(idItem) {
         var modalImage = Popeye.openModal({
@@ -67,15 +66,24 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
         });
     }
 
-    $scope.updateSituacao = function(situacao) {
-        ordemServicoService.updateSituacao($routeParams.id, situacao).then(function(response) {
-            $route.reload();
-            alert("A situação da ordem foi alterada para " + situacao);
-        }, function(err) {
-            console.log(err);
-        });
+    // VERIFICAOES
+
+    $scope.canCancelOrdemServico = function() {
+        if(ordemServicoService.getSituacaoOrdemServico() != "EM_ANALISE"){
+            return false;
+        } else {
+            return true;
+        }
     }
 
+    $scope.canFinishOrdemServico = function() {
+        if(ordemServicoService.getSituacaoOrdemServico() != "APROVADA"){
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
     $scope.isEmailCheckboxActivated = function() {
         var checkBox = document.getElementById('email-check');
         return checkBox.checked
@@ -88,7 +96,4 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
         $scope.tableErrorMessage = message;
     }
 
-    // INIT
-
-    loadCliente();
 });
