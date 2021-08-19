@@ -28,6 +28,7 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
     $scope.submitOrdemServico = function() {
         if(ordemServicoService.isOrdemServicoValid(newOrdemServico)){
             insertNewOrdemServico(newOrdemServico);
+            alert("Ordem de serviço criada com sucesso!");
             $location.path("/ordens");
         } else {
             genericException("Favor inserir todos os dados da ordem para lançá-la. A ordem deve conter um cliente e ao menos um equipamento cadastrado.");
@@ -57,7 +58,6 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
     
     var insertNewOrdemServico = function(newOrdemServico) {
         ordemServicoService.insertOrdemServico(newOrdemServico).then(function(response) {
-            alert("Ordem de serviço criada com sucesso!");
             clearComponents();
         }, function(err) {
             genericException(err.data.message);

@@ -1,4 +1,4 @@
-appModule.controller("ordemDetailsController", function($location, $scope, $routeParams, $route, ordemServicoService, clienteService, loadOrdemServico, Popeye) {
+appModule.controller("ordemDetailsController", function($location, $scope, $routeParams, $route, ordemServicoService, clienteService, loadOrdemServico, userData, Popeye) {
 
     // INIT
 
@@ -47,6 +47,9 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
                         idItem: idItem,
                         idOrdem: $routeParams.id
                     }
+                },
+                userData: function() {
+                    return userData;
                 }
             }
         });
@@ -66,7 +69,7 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
         });
     }
 
-    // VERIFICAOES
+    // VERIFICACOES
 
     $scope.canCancelOrdemServico = function() {
         if(ordemServicoService.getSituacaoOrdemServico() != "EM_ANALISE"){
@@ -86,7 +89,19 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
     
     $scope.isEmailCheckboxActivated = function() {
         var checkBox = document.getElementById('email-check');
-        return checkBox.checked
+        if(checkBox != null){
+            return checkBox.checked
+        } else {
+            return false;
+        }
+    }
+
+    $scope.isPermitted = function() {
+        if(userData.tipo === "ADMINISTRADOR" || userData.tipo === "TECNICO"){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // ERROS

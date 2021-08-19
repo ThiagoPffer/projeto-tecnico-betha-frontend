@@ -1,0 +1,11 @@
+<aside class="side-menu left" id="sideMenu" ng-include="'view/sidemenu.html'" ng-controller="sidemenuController"></aside>
+<main class="main-page">
+    <section class="error-page-container">
+        <span class="mdi mdi-alert-outline"></span>
+        <h2>Ocorreu um erro</h2>
+        <p>Você não tem permissão para acessar esta página!</p>
+
+        <a class="noBg-button d-width mt-32" href="#/home"><span class="mdi mdi-home-outline"></span>Ir para a home page</a>
+        <a class="noBg-button d-width mt-16" href ng-click="logOut()"><span class="mdi mdi-exit-to-app"></span>Sair da conta</a>
+    </section>
+</main>

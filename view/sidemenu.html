@@ -22,7 +22,7 @@
                 <li class="side-menu__subitem"><a href="#/ordens">
                     <span class="mdi mdi-file-document-multiple-outline"></span>Ordens cadastradas
                 </a></li>
-                <li class="side-menu__subitem"><a href="#/nova-ordem">
+                <li ng-show="isNotTecnico()" class="side-menu__subitem"><a href="#/nova-ordem">
                     <span class="mdi mdi-file-plus-outline"></span>Nova ordem
                 </a></li>
             </ul>
@@ -35,21 +35,21 @@
                 <li class="side-menu__subitem"><a href="#/clientes">
                     <span class="mdi mdi-account-multiple-outline"></span>Clientes cadastrados
                 </a></li>
-                <li class="side-menu__subitem"><a href="#/novo-cliente">
+                <li ng-show="isNotTecnico()" class="side-menu__subitem"><a href="#/novo-cliente">
                     <span class="mdi mdi-account-plus-outline"></span>Novo cliente
                 </a></li>
             </ul>
         </accordion>
-        <accordion ng-show="isPermitted()">
+        <accordion ng-show="isAdministrador()">
             <a>
                 <span class="mdi mdi-chevron-down"></span>Funcionários
             </a>
             <ul class="side-menu__list">
                 <li class="side-menu__subitem"><a href="#/funcionarios">
-                    <span class="mdi mdi-close"></span>Lista de Funcionários
+                    <span class="mdi mdi-account-multiple"></span>Lista de Funcionários
                 </a></li>
                 <li class="side-menu__subitem"><a href="#/novo-funcionario">
-                    <span class="mdi mdi-close"></span>Novo Funcionário
+                    <span class="mdi mdi-account-tie-outline"></span>Novo Funcionário
                 </a></li>
             </ul>
         </accordion>

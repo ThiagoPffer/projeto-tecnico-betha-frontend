@@ -23,8 +23,8 @@
             <h3 class="default-subtitle mb-16">Orçamento da manutenção: </h3>
             <div>
                 <span class="lg-currency-text">R$ </span>
-                <span ng-show="!canChangeComponent" class="lg-currency-text">{{item.orcamento}}</span>
-                <input ng-show="canChangeComponent" ng-model="item.orcamento" id="orcamento-input" type="number" step="0.01" class="orcamento-input lg-currency-text sm-width"  maxlength="10">
+                <span ng-if="!canChangeComponent || !isPermitted()" class="lg-currency-text">{{item.orcamento}}</span>
+                <input ng-if="canChangeComponent && isPermitted()" ng-model="item.orcamento" id="orcamento-input" type="number" step="0.01" class="orcamento-input lg-currency-text sm-width"  maxlength="10">
             </div>
         </section>
     

@@ -1,6 +1,7 @@
-appModule.controller("clienteDetailsController", function($location, $scope, clienteService, loadCliente) {
+appModule.controller("clienteDetailsController", function($location, $scope, clienteService, loadCliente, userData) {
 
     $scope.cliente = loadCliente.data;
+    $scope.nomeCliente = loadCliente.data.nome
     $scope.goBack = function() {
         $location.path("/clientes");
     }
@@ -41,6 +42,16 @@ appModule.controller("clienteDetailsController", function($location, $scope, cli
                 clienteException(err.data.message);
             }
         });
+    }
+
+    // VERIFICACOES
+
+    $scope.isNotTecnico = function() {
+        if(userData.tipo != "TECNICO"){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // ERROS

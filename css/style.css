@@ -494,7 +494,7 @@ input{
 .noBg-button,
 .tiny-button {
     animation-name: button-enter-animation;
-    animation-duration: .2s;
+    animation-duration: .4s;
 }
 
 @keyframes button-enter-animation {

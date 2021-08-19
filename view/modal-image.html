@@ -10,7 +10,7 @@
         </div>
         <h4 ng-show="showImageGalleryError"><span class="mdi mdi-image-remove"></span> Este equipamento não possui nenhuma foto cadastrada</h4>
     </section>
-    <form ng-show="canChangeComponent" class="row-container justify-space-between mt-16 gap-y-16">
+    <form ng-show="canChangeComponent && isPermitted()" class="row-container justify-space-between mt-16 gap-y-16">
         <div class="column-container">
             <label class="stretch" for="itemImg">Escolha uma imagem:</label>
             <input type="file" accept="image/*" class="content-width" id="itemImg" name="itemImg" >

@@ -16,8 +16,16 @@ appModule.controller("sidemenuController", function($scope, $location, funcionar
         $location.path("/login");
     };
 
-    $scope.isPermitted = function() {
+    $scope.isAdministrador = function() {
         if(userData.tipo === "ADMINISTRADOR"){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    $scope.isNotTecnico = function() {
+        if(userData.tipo != "TECNICO"){
             return true;
         } else {
             return false;

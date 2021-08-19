@@ -1,4 +1,4 @@
-appModule.controller("ordemItemController", function($location, $scope, $routeParams, ordemServicoService, properties, Popeye) {
+appModule.controller("ordemItemController", function($location, $scope, $routeParams, ordemServicoService, properties, Popeye, userData) {
     
     // INIT
 
@@ -49,6 +49,16 @@ appModule.controller("ordemItemController", function($location, $scope, $routePa
                 }
             }
         });
+    }
+
+    // VERIFICACOES
+
+    $scope.isPermitted = function() {
+        if(userData.tipo === "ADMINISTRADOR" || userData.tipo === "TECNICO"){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // ERROS 

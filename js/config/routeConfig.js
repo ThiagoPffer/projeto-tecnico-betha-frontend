@@ -8,7 +8,12 @@ appModule.config(function($routeProvider, $locationProvider) {
 
     $routeProvider.when("/home", {
         templateUrl: "view/home.html",
-        controller: "homeController"
+        controller: "homeController",
+        resolve: {
+            userData: function(funcionarioService) {
+                return funcionarioService.getFromLocalStorage();
+            }
+        }
     });
 
     $routeProvider.when("/nova-ordem", {
@@ -33,13 +38,21 @@ appModule.config(function($routeProvider, $locationProvider) {
             loadOrdemServico: function(ordemServicoService, $location) {
                 var ordemId = $location.path().split("/ordens/").pop();
                 return ordemServicoService.getOrdemServicoById(ordemId);
+            },
+            userData: function(funcionarioService) {
+                return funcionarioService.getFromLocalStorage();
             }
         }
     });
 
     $routeProvider.when("/ordens/:idOrdem/itens/:idItem", {
         templateUrl: "view/ordemItem.html",
-        controller: "ordemItemController"
+        controller: "ordemItemController",
+        resolve: {
+            userData: function(funcionarioService) {
+                return funcionarioService.getFromLocalStorage();
+            }
+        }
     });
 
     $routeProvider.when("/novo-cliente/", {
@@ -64,6 +77,9 @@ appModule.config(function($routeProvider, $locationProvider) {
             loadCliente: function(clienteService, $location) {
                 var idCliente = $location.path().split("/clientes/").pop();
                 return clienteService.getClienteById(idCliente);
+            },
+            userData: function(funcionarioService) {
+                return funcionarioService.getFromLocalStorage();
             }
         }
     });
@@ -72,6 +88,13 @@ appModule.config(function($routeProvider, $locationProvider) {
         templateUrl: "view/errorPage.html",
         controller: "errorPageController"
     });
+
+    $routeProvider.when("/erro-autorizacao", {
+        templateUrl: "view/authorizationErrorPage.html",
+        controller: "errorPageController"
+    });
+
+    
 
     if(localStorage.getItem("authToken") === null){
         $routeProvider.otherwise({redirectTo: "/login"});

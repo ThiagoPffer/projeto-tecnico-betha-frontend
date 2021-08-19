@@ -1,4 +1,4 @@
-appModule.controller("loginController", function($scope, $location, loginService, funcionarioService) {
+appModule.controller("loginController", function($scope, $location, $route, loginService, funcionarioService) {
     
     $scope.showError = false;
     $scope.errorMessage = "";

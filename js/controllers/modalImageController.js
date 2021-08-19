@@ -1,4 +1,4 @@
-appModule.controller("modalImageController", function($scope, properties, ordemServicoService, Popeye, imageData) {
+appModule.controller("modalImageController", function($scope, properties, ordemServicoService, imageData, userData) {
 
     // SCOPES    
 
@@ -35,7 +35,15 @@ appModule.controller("modalImageController", function($scope, properties, ordemS
         });
     }
 
-    // VERIFICATIONS
+    // VERIFICACOES
+
+    $scope.isPermitted = function() {
+        if(userData.tipo === "ADMINISTRADOR" || userData.tipo === "TECNICO"){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     var verifyImageList = function() {
         if($scope.item.imagens.length === 0){
