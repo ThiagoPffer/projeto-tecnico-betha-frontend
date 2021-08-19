@@ -40,6 +40,19 @@
                 </a></li>
             </ul>
         </accordion>
+        <accordion ng-show="isPermitted()">
+            <a>
+                <span class="mdi mdi-chevron-down"></span>Funcionários
+            </a>
+            <ul class="side-menu__list">
+                <li class="side-menu__subitem"><a href="#/funcionarios">
+                    <span class="mdi mdi-close"></span>Lista de Funcionários
+                </a></li>
+                <li class="side-menu__subitem"><a href="#/novo-funcionario">
+                    <span class="mdi mdi-close"></span>Novo Funcionário
+                </a></li>
+            </ul>
+        </accordion>
         <accordion>
             <a>
                 <span class="mdi mdi-chevron-down"></span>Conta
