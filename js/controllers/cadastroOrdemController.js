@@ -28,7 +28,7 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
     $scope.submitOrdemServico = function() {
         if(ordemServicoService.isOrdemServicoValid(newOrdemServico)){
             insertNewOrdemServico(newOrdemServico);
-            $location.path("/home");
+            $location.path("/ordens");
         } else {
             genericException("Favor inserir todos os dados da ordem para lançá-la. A ordem deve conter um cliente e ao menos um equipamento cadastrado.");
         }

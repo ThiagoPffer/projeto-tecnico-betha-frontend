@@ -42,6 +42,12 @@ appModule.config(function($routeProvider, $locationProvider) {
         controller: "ordemItemController"
     });
 
+    $routeProvider.when("/novo-cliente/", {
+        templateUrl: "view/novoCliente.html",
+        controller: "novoClienteController",
+    });
+
+
     $routeProvider.when("/erro", {
         templateUrl: "view/errorPage.html",
         controller: "errorPageController"

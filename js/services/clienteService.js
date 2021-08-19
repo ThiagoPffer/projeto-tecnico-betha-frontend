@@ -1,5 +1,9 @@
 appModule.factory("clienteService", function($http, properties) {
     
+    var _insertCliente = function(cliente) {
+        return $http.post(properties.baseUrl + "/clientes/", cliente);
+    }
+
     var _getCliente = function(email) {
         return $http.get(properties.baseUrl + "/clientes/email?value=" + email);
     }
@@ -13,6 +17,7 @@ appModule.factory("clienteService", function($http, properties) {
     }
 
     return {
+        insertCliente: _insertCliente,
         getCliente: _getCliente,
         getClienteById: _getClienteById,
         toStringEndereco: _toStringEndereco
