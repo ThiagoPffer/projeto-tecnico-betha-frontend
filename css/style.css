@@ -82,6 +82,10 @@ input{
     margin-top: 0;
 }
 
+.mt-8{
+    margin-top: 8px;
+}
+
 .mt-16{
     margin-top: 16px;
 }
@@ -303,6 +307,12 @@ input{
     flex-direction: row;
     gap: 0 20px;
     width: 100%;
+}
+
+.default-text{
+    color: var(--cinza-medio);
+    font-size: 1em;
+    font-weight: 400;
 }
 
 .default-subtitle{

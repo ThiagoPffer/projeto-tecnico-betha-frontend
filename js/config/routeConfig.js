@@ -6,6 +6,11 @@ appModule.config(function($routeProvider, $locationProvider) {
         controller: "loginController"
     });
 
+    $routeProvider.when("/forgot", {
+        templateUrl: "view/forgot.html",
+        controller: "forgotController"
+    });
+
     $routeProvider.when("/home", {
         templateUrl: "view/home.html",
         controller: "homeController",

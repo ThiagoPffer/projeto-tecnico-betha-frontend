@@ -1,0 +1,20 @@
+<main class="login_background">
+    <div class="login_window">
+        <img class="login_window_logo" src="img/logo-betha.svg" alt="logo betha">
+        <div ng-show="showError" class="default-error">
+            <span class="mdi mdi-alert-outline"></span>{{errorMessage}}
+        </div>
+        <div ng-show="loginForm.email.$invalid && loginForm.email.$dirty" class="default-error">
+            <span class="mdi mdi-alert-outline"></span> Você deve inserir um email válido!
+        </div>
+        <form name="loginForm">
+            <div class="input-group mb-26">
+                <label class="default-label" for="email-login">Email</label>
+                <input class="default-input" id="email-login" name="email" ng-model="emailFuncionario.email" ng-required="true" type="email" placeholder="Insira um email válido">
+            </div>
+            <button type="submit" class="default-button--filled" ng-disabled="loginForm.$invalid" ng-click="submitPasswordEmail(emailFuncionario)">Enviar email</button>
+            <button type="button" class="default-button--outline mt-16" ng-click="goBack()">Voltar</button>
+            <p class="default-text mt-8">Será enviado um email permitindo o acesso à nova senha</p>
+        </form>
+    </div>
+</main>
