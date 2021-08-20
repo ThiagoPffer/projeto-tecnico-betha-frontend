@@ -5,7 +5,7 @@ appModule.factory("errorInterceptor", function($q, $location) {
                 console.log(error.data);
                 $location.path("/login");
             }
-            if(error.status === 404){
+            if(error.status === 404 && error.data.path.indexOf('/email') === -1){
                 console.log(error.data);
                 $location.path("/erro");
             }

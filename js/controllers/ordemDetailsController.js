@@ -5,7 +5,6 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
     ordemServicoService.setOrdemServicoObj(loadOrdemServico.data);
     $scope.pageId = $routeParams.id;
     $scope.ordemServico = ordemServicoService.getOrdemServicoObj();
-
     $scope.canChangeComponent = ordemServicoService.canObjectsBeChanged();
 
     var loadCliente = function() {
@@ -25,10 +24,30 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
         return ordemServicoService.setStatusColor(value);
     }
 
+    $scope.onConfirmOrdemServicoChanges = function() {
+        if($scope.isEmailCheckboxActivated() && $scope.isPagamentoCheckboxActivated()){
+            updateEstadoPagamento('PAGO');
+            $scope.updateSituacao('AGUARDANDO_DECISAO');
+        } else if($scope.isEmailCheckboxActivated()){
+            $scope.updateSituacao('AGUARDANDO_DECISAO');
+        } else if($scope.isPagamentoCheckboxActivated()){
+            updateEstadoPagamento('PAGO');
+        }
+    }
+
     $scope.updateSituacao = function(situacao) {
         ordemServicoService.updateSituacao($routeParams.id, situacao).then(function(response) {
             $route.reload();
             alert("A situação da ordem foi alterada para " + situacao);
+        }, function(err) {
+            console.log(err);
+        });
+    }
+    
+    var updateEstadoPagamento = function(estadoPagamento) {
+        ordemServicoService.updateEstadoPagamento($routeParams.id, estadoPagamento).then(function(response) {
+            alert("O estado do pagamento da ordem foi alterado para " + estadoPagamento);
+            console.log(response);
         }, function(err) {
             console.log(err);
         });
@@ -86,9 +105,26 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
             return true;
         }
     }
+
+    $scope.isOrdemServicoPaga = function(estadoPagamento) {
+        if(estadoPagamento === "PAGO"){
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     $scope.isEmailCheckboxActivated = function() {
         var checkBox = document.getElementById('email-check');
+        if(checkBox != null){
+            return checkBox.checked
+        } else {
+            return false;
+        }
+    }
+
+    $scope.isPagamentoCheckboxActivated = function() {
+        var checkBox = document.getElementById('pagamento-check');
         if(checkBox != null){
             return checkBox.checked
         } else {
@@ -103,6 +139,15 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
             return false;
         }
     }
+    
+    $scope.isNotTecnico = function() {
+        if(userData.tipo != "TECNICO"){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     // ERROS
 

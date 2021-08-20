@@ -87,6 +87,10 @@ appModule.factory("ordemServicoService", function($http, properties, tokenServic
         return $http.post(properties.baseUrl + "/ordensservico/" + idOrdem + "/situacoes?token="+tokenService.getToken().slice(7)+"&value=" + situacao);
     }
     
+    var _updateEstadoPagamento = function(idOrdem, estadoPagamento) {
+        return $http.put(properties.baseUrl + "/ordensservico/" + idOrdem + "/pagamentos?value=" + estadoPagamento);
+    }
+
     // VALIDACOES
 
     var _isEmailValid = function(searchInput) {
@@ -189,6 +193,7 @@ appModule.factory("ordemServicoService", function($http, properties, tokenServic
         setItem: _setItem,
         uploadImage: _uploadImage,
         deleteImage: _deleteImage,
-        updateSituacao: _updateSituacao
+        updateSituacao: _updateSituacao,
+        updateEstadoPagamento: _updateEstadoPagamento
     };
 });
