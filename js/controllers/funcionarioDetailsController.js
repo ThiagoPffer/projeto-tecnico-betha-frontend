@@ -1,12 +1,15 @@
-appModule.controller("funcionarioDetailsController", function($location, $scope, funcionarioService, loadFuncionario) {
+appModule.controller("funcionarioDetailsController", function($location, $scope, funcionarioService, loadFuncionario, userData) {
+
+    // INIT
 
     $scope.funcionario = loadFuncionario.data;
     $scope.nomeFuncionario = loadFuncionario.data.nome
-    $scope.goBack = function() {
-        $location.path("/funcionarios");
+    $scope.goHome = function() {
+        $location.path("/home");
     }
-
     $scope.tiposFuncionario = ["ADMINISTRADOR", "TECNICO", "RECEPCIONISTA"];
+
+    // OPERACOES
 
     $scope.onSubmitFuncionarioChanges = function(funcionario, idFuncionario){
         if(funcionario === undefined){
@@ -39,6 +42,16 @@ appModule.controller("funcionarioDetailsController", function($location, $scope,
                 funcionarioException(err.data.message);
             }
         });
+    }
+
+    // VERIFICACOES
+
+    $scope.isAdministrador = function() {
+        if(userData.tipo === "ADMINISTRADOR"){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // ERROS

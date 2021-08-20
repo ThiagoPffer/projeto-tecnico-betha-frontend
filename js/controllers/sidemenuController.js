@@ -5,7 +5,8 @@ appModule.controller("sidemenuController", function($scope, $location, funcionar
     }
 
     var userData = funcionarioService.getFromLocalStorage();
-
+    $scope.idUser = userData.id;
+    
     if(!(userData === null)){
         $scope.userName = userData.nome;
         $scope.userType = userData.tipo;
@@ -15,6 +16,8 @@ appModule.controller("sidemenuController", function($scope, $location, funcionar
         funcionarioService.clearLocalStorage();
         $location.path("/login");
     };
+
+    // VERIFICACOES
 
     $scope.isAdministrador = function() {
         if(userData.tipo === "ADMINISTRADOR"){

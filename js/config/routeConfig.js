@@ -95,6 +95,9 @@ appModule.config(function($routeProvider, $locationProvider) {
         resolve: {
             loadFuncionarios: function(funcionarioService, $location) {
                 return funcionarioService.getFuncionarios($location.search().page);
+            },
+            userData: function(funcionarioService) {
+                return funcionarioService.getFromLocalStorage();
             }
         }
     });
