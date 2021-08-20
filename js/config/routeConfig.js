@@ -84,6 +84,35 @@ appModule.config(function($routeProvider, $locationProvider) {
         }
     });
 
+    $routeProvider.when("/novo-funcionario/", {
+        templateUrl: "view/novoFuncionario.html",
+        controller: "novoFuncionarioController",
+    });
+
+    $routeProvider.when("/funcionarios/", {
+        templateUrl: "view/funcionarios.html",
+        controller: "funcionariosController",
+        resolve: {
+            loadFuncionarios: function(funcionarioService, $location) {
+                return funcionarioService.getFuncionarios($location.search().page);
+            }
+        }
+    });
+
+    $routeProvider.when("/funcionarios/:idFuncionario", {
+        templateUrl: "view/funcionarioDetails.html",
+        controller: "funcionarioDetailsController",
+        resolve: {
+            loadFuncionario: function(funcionarioService, $location) {
+                var idFuncionario = $location.path().split("/funcionarios/").pop();
+                return funcionarioService.getFuncionarioById(idFuncionario);
+            },
+            userData: function(funcionarioService) {
+                return funcionarioService.getFromLocalStorage();
+            }
+        }
+    });
+
     $routeProvider.when("/erro", {
         templateUrl: "view/errorPage.html",
         controller: "errorPageController"

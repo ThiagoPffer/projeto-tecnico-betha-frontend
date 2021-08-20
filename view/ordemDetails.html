@@ -79,7 +79,7 @@
             <span class="mdi mdi-alert-outline"></span>{{tableErrorMessage}}
         </div>
         
-        <section ng-if="canChangeComponent && isPermitted()" class="checkbox-section md-width">
+        <section ng-if="canChangeComponent && isNotRecepcionista()" class="checkbox-section md-width">
             <div class="checkbox-row">
                 <input ng-model="checkbox.email.selected" type="checkbox" id="email-check">
                 <label class="default-label" for="email-check">Enviar email para o cliente</label>
@@ -88,8 +88,8 @@
         </section>
 
         <div class="row-container gap-y-16">
-            <button ng-click="updateSituacao('AGUARDANDO_DECISAO')" ng-if="isEmailCheckboxActivated() && isPermitted()" type="submit" class="default-button--filled sm-width">Confirmar</button>
-            <button ng-click="updateSituacao('CONCLUIDA')" ng-if="canFinishOrdemServico() && isPermitted()" type="submit" class="default-button--outline green sm-width">Concluir ordem</button>
+            <button ng-click="updateSituacao('AGUARDANDO_DECISAO')" ng-if="isEmailCheckboxActivated() && isNotRecepcionista()" type="submit" class="default-button--filled sm-width">Confirmar</button>
+            <button ng-click="updateSituacao('CONCLUIDA')" ng-if="canFinishOrdemServico() && isNotRecepcionista()" type="submit" class="default-button--outline green sm-width">Concluir ordem</button>
             <button ng-click="openCancelConfirmationModal()" ng-show="canCancelOrdemServico()" type="submit" class="default-button--outline red sm-width">Cancelar ordem</button>
         </div>
     </section>

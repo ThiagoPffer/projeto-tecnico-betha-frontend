@@ -96,8 +96,8 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
         }
     }
 
-    $scope.isPermitted = function() {
-        if(userData.tipo === "ADMINISTRADOR" || userData.tipo === "TECNICO"){
+    $scope.isNotRecepcionista = function() {
+        if(userData.tipo != "RECEPCIONISTA"){
             return true;
         } else {
             return false;

@@ -1,16 +1,16 @@
-appModule.controller("clientesController", function($location, $scope, loadClientes) {
+appModule.controller("funcionariosController", function($location, $scope, loadFuncionarios) {
 
-    $scope.clientes = loadClientes.data.content;
+    $scope.funcionarios = loadFuncionarios.data.content;
 
-    $scope.accessClienteData = function(idCliente) {
-        $location.path("/clientes/"+idCliente);
+    $scope.accessFuncionarioData = function(idFuncionario) {
+        $location.path("/funcionarios/"+idFuncionario);
     }
 
     // PAGINACAO
 
     $scope.pagination = [];
     var currentPage = $location.search().page;
-    
+
     if(currentPage === undefined){
         currentPage = 0;
     }
@@ -27,7 +27,7 @@ appModule.controller("clientesController", function($location, $scope, loadClien
         }
     }
     
-    loadPagination(loadClientes.data.totalPages);
+    loadPagination(loadFuncionarios.data.totalPages);
 
     // ERROS
 

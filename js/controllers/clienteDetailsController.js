@@ -8,7 +8,7 @@ appModule.controller("clienteDetailsController", function($location, $scope, cli
 
     $scope.onSubmitClienteChanges = function(cliente, idCliente){
         if(cliente === undefined){
-            return clienteException("Insira todos os dados do cliente para cadastrar!");
+            return clienteException("Insira todos os dados do cliente para modificar!");
         } else {
             let clienteDTO = {
                 "nome": cliente.nome,

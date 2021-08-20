@@ -37,8 +37,8 @@ appModule.controller("modalImageController", function($scope, properties, ordemS
 
     // VERIFICACOES
 
-    $scope.isPermitted = function() {
-        if(userData.tipo === "ADMINISTRADOR" || userData.tipo === "TECNICO"){
+    $scope.isNotRecepcionista = function() {
+        if(userData.tipo != "RECEPCIONISTA"){
             return true;
         } else {
             return false;

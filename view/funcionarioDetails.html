@@ -1,0 +1,40 @@
+<aside class="side-menu left" id="sideMenu" ng-include="'view/sidemenu.html'" ng-controller="sidemenuController"></aside>
+<main class="main-page">
+    <back-button></back-button>
+    <h2 class="main-page-title">Funcionário: {{nomeFuncionario}}</h2>
+    <section class="column-container gap-x-16 mb-32">
+        <div class="row-container gap-y-16">
+            <div class="input-group d-width">
+                <label class="default-label" for="funcionario-name">Nome completo:</label>
+                <input ng-model="funcionario.nome" class="default-input" id="funcionario-name" type="text" placeholder="Digite nome e sobrenome...">
+            </div>
+            <div class="input-group d-width">
+                <label class="default-label" for="funcionario-email">Email:</label>
+                <input ng-model="funcionario.email" class="default-input" id="funcionario-email" type="email" placeholder="Digite o email do funcionário...">
+            </div>
+        </div>
+    </section>
+    
+    <section class="column-container gap-x-16 mb-32">
+        <div class="row-container gap-y-16">
+            <div class="input-group d-width">
+                <label class="default-label" for="tipo-funcionario">Selecione o tipo (cargo):</label>
+                <select ng-model="funcionario.tipo" ng-options="tipo for tipo in tiposFuncionario" class="default-input" id="tipo-funcionario" >
+                    <option value="">Selecione um tipo</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <div class="row-container mt-64 gap-y-16">
+        <button ng-click="onSubmitFuncionarioChanges(funcionario, funcionario.id)" type="submit" class="default-button--filled sm-width">Confirmar cadastro</button>
+        <button ng-click="goHome()" type="submit" class="default-button--outline sm-width">Cancelar</button>
+    </div>
+
+    <div class="mt-16">
+        <div ng-show="showFuncionarioError" class="default-error d-width ">
+            <span class="mdi mdi-alert-outline"></span>{{funcionarioErrorMessage}}
+        </div>
+    </div>
+
+</main>

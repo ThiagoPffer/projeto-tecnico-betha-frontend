@@ -1,13 +1,13 @@
 <aside class="side-menu left" id="sideMenu" ng-include="'view/sidemenu.html'" ng-controller="sidemenuController"></aside>
 <main class="main-page">
     <back-button></back-button>
-    <h2 class="main-page-title">Clientes</h2>
+    <h2 class="main-page-title">Funcionários</h2>
     <section class="ordens-container column-container gap-x">
         <div class="search-input-group">
             <div class="input-group">
                 <label class="default-label" for="ordem-search">Busca rápida:</label>
                 <div class="search-elements md-width">
-                    <input ng-model="searchInput" class="default-input search" id="ordem-search" type="text" placeholder="Digite o nome do cliente">
+                    <input ng-model="searchInput" class="default-input search" id="ordem-search" type="text" placeholder="Digite o nome do funcionario">
                 </div>
             </div>
         </div>
@@ -16,20 +16,20 @@
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Email</th>
-                <th>Telefone</th>
+                <th>Tipo</th>
             </tr>
-            <tr ng-click="accessClienteData(cliente.id)" ng-repeat="cliente in clientes | filter:searchInput" class="default-tableRow">
-                <td class="tableItem">{{cliente.id}}</td>
-                <td class="tableItem">{{cliente.nome}}</td>
-                <td class="tableItem"><b>{{cliente.email}}</b></td>
-                <td class="tableItem">{{cliente.telefone}}</td>
+            <tr ng-click="accessFuncionarioData(funcionario.id)" ng-repeat="funcionario in funcionarios | filter:searchInput" class="default-tableRow">
+                <td class="tableItem">{{funcionario.id}}</td>
+                <td class="tableItem">{{funcionario.nome}}</td>
+                <td class="tableItem"><b>{{funcionario.email}}</b></td>
+                <td class="tableItem">{{funcionario.tipo}}</td>
             </tr>
         </table>
         <div ng-show="showTableError" class="default-error lg-width">
             <span class="mdi mdi-alert-outline"></span>{{tableErrorMessage}}
         </div>
         <div class="default-pagination">
-            <a ng-class="isSelected(page.value)" ng-repeat="page in pagination" class="default-pagination-button" href="#/clientes?page={{page.value}}">{{page.value+1}}</a>
+            <a ng-class="isSelected(page.value)" ng-repeat="page in pagination" class="default-pagination-button" href="#/funcionarios?page={{page.value}}">{{page.value+1}}</a>
         </div>
     </section>
 </main>

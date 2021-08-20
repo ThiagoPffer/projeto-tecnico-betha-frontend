@@ -3,14 +3,14 @@
     <section class="image-gallery">
         <div class="image-container" ng-repeat="imagem in item.imagens">
             <div class="imgButton-container">
-                <button ng-show="canChangeComponent" ng-click="onDeleteImage(imagem)"><span class="mdi mdi-delete-outline"></span></button>
+                <button ng-show="canChangeComponent && isNotRecepcionista()" ng-click="onDeleteImage(imagem)"><span class="mdi mdi-delete-outline"></span></button>
                 <a href="{{uri+imagem.nomeArquivo}}" target="blank"><span class="mdi mdi-arrow-expand"></span></a>
             </div>
             <img ng-src="{{uri+imagem.nomeArquivo}}" alt="teste">
         </div>
         <h4 ng-show="showImageGalleryError"><span class="mdi mdi-image-remove"></span> Este equipamento não possui nenhuma foto cadastrada</h4>
     </section>
-    <form ng-show="canChangeComponent && isPermitted()" class="row-container justify-space-between mt-16 gap-y-16">
+    <form ng-show="canChangeComponent && isNotRecepcionista()" class="row-container justify-space-between mt-16 gap-y-16">
         <div class="column-container">
             <label class="stretch" for="itemImg">Escolha uma imagem:</label>
             <input type="file" accept="image/*" class="content-width" id="itemImg" name="itemImg" >

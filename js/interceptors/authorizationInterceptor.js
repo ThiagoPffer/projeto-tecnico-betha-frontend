@@ -3,7 +3,7 @@ appModule.factory("authorizationInterceptor", function($q, $location) {
     var _accessVerification = function(url, userData) {
         if(userData.tipo != "ADMINISTRADOR"){
             if(url.indexOf('/funcionarios') > -1 
-            || url.indexOf('/novo-funcionario') > -1){
+            || url.indexOf('/novoFuncionario') > -1){
                 $location.path("/erro-autorizacao");
             }
         }
