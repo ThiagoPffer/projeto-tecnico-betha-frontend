@@ -231,7 +231,7 @@ input{
 }
 
 .full-width{
-    width: 100%;
+    min-width: 100%;
 }
 
 .z-index-100{
@@ -756,6 +756,18 @@ input{
     width: 100%;
 }
 
+
+.side-menu footer{
+    color: var(--cinza-medio);
+    font-weight: 300;
+    text-align: center;
+    width: 100%;
+    background: var(--cinza-claro);
+    padding: 15px 25px;
+    position: absolute;
+    bottom: 0;
+}
+
 /* <===========================::Main page::===========================> */
 
 .main-page{
@@ -831,7 +843,7 @@ input{
 
 .home-page-button{
     font-size: 1.5em;
-    font-weight: 500;
+    font-weight: 400;
     color: var(--cinza-medio);
     display: flex;
     align-items: center;
@@ -839,7 +851,7 @@ input{
     width: 420px;
     height: 210px;
     background: white;
-    border: 1px solid var(--primaria);
+    border: 1px solid var(--cinza-claro);
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.15) 0 4px 4px;
     transition: .2s ease-out;
@@ -847,6 +859,8 @@ input{
 }
 
 .home-page-button:hover{
+    color: var(--primaria-escuro);
+    border: 1px solid var(--primaria);
     transform: translateY(-10px);
     box-shadow: rgba(0, 0, 0, 0.10) 0 14px 14px;
 }
@@ -1026,7 +1040,7 @@ input{
     min-height: 282px;
     background: white;
     overflow-x: auto;
-    border: 1px solid var(--primaria);
+    /* border: 1px solid var(--primaria); */
     gap: 16px;
     padding: 15px;
 }

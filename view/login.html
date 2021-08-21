@@ -1,13 +1,13 @@
 <main class="login_background">
     <div class="login_window">
         <img class="login_window_logo" src="img/logo-betha.svg" alt="logo betha">
-        <div ng-show="showError" class="default-error">
+        <div ng-show="showError" class="default-error full-width">
             <span class="mdi mdi-alert-outline"></span>{{errorMessage}}
         </div>
-        <div ng-show="loginForm.email.$invalid && loginForm.email.$dirty" class="default-error">
+        <div ng-show="loginForm.email.$invalid && loginForm.email.$dirty" class="default-error full-width">
             <span class="mdi mdi-alert-outline"></span> Você deve inserir um email válido!
         </div>
-        <div ng-show="loginForm.senha.$invalid && loginForm.senha.$dirty" class="default-error">
+        <div ng-show="loginForm.senha.$invalid && loginForm.senha.$dirty" class="default-error full-width">
             <span class="mdi mdi-alert-outline"></span> A senha não pode ser vazia!
         </div>
         <form name="loginForm">
