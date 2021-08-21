@@ -487,7 +487,7 @@ input{
     background: rgb(169, 253, 169);
     padding: 10px;
     border-radius: 4px;
-    color: green;
+    color: var(--verde);
     border: 1px solid transparent;
     font-size: .8em;
     font-weight: 500;
@@ -948,6 +948,15 @@ input{
     width: 100%;
     margin-left: 0;
     border-right: 2px solid var(--primaria);
+}
+
+.ordem-details-table .default-tableRow th,
+.ordem-details-table .default-tableRow td{
+    width: 8%;
+}
+
+.ordem-details-table .default-table .tableItem{
+    cursor: default;
 }
 
 .status-box{
