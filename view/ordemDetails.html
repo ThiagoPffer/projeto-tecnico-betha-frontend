@@ -88,7 +88,7 @@
                 <p>Se esta opção estiver marcada ao salvar as alterações, a situação da ordem de serviço será alterada para AGUARDANDO_DECISAO e nenhuma alteração poderá ser feita a partir deste ponto.</p>
             </section>
     
-            <section ng-show="!isOrdemServicoPaga(ordemServico.pagamento) && isNotTecnico()" class="checkbox-section md-width">
+            <section ng-if="isOrdemServicoPagamentoPendente(ordemServico.pagamento) && isNotTecnico()" class="checkbox-section md-width">
                 <div class="checkbox-row">
                     <input ng-model="checkbox.pagamento.selected" type="checkbox" id="pagamento-check">
                     <label class="default-label" for="pagamento-check">O cliente pagou pelo serviço</label>

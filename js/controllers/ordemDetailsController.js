@@ -32,6 +32,7 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
             $scope.updateSituacao('AGUARDANDO_DECISAO');
         } else if($scope.isPagamentoCheckboxActivated()){
             updateEstadoPagamento('PAGO');
+            $route.reload();
         }
     }
 
@@ -47,7 +48,6 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
     var updateEstadoPagamento = function(estadoPagamento) {
         ordemServicoService.updateEstadoPagamento($routeParams.id, estadoPagamento).then(function(response) {
             alert("O estado do pagamento da ordem foi alterado para " + estadoPagamento);
-            console.log(response);
         }, function(err) {
             console.log(err);
         });
@@ -106,8 +106,8 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
         }
     }
 
-    $scope.isOrdemServicoPaga = function(estadoPagamento) {
-        if(estadoPagamento === "PAGO"){
+    $scope.isOrdemServicoPagamentoPendente = function(estadoPagamento) {
+        if(estadoPagamento === "PENDENTE"){
             return true;
         } else {
             return false;
