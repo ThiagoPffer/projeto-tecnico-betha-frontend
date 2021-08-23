@@ -2,26 +2,21 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
 
     // INIT
 
-    ordemServicoService.setOrdemServicoObj(loadOrdemServico.data);
     $scope.pageId = $routeParams.id;
-    $scope.ordemServico = ordemServicoService.getOrdemServicoObj();
+    ordemServicoService.setOrdemServicoObj(loadOrdemServico.data);
+    $scope.ordemServico = loadOrdemServico.data;
     $scope.canChangeComponent = ordemServicoService.canObjectsBeChanged();
+    $scope.cliente = loadOrdemServico.data.cliente;
+    $scope.cliente.endereco = clienteService.toStringEndereco($scope.cliente.endereco);
 
-    var loadCliente = function() {
-        $scope.cliente = ordemServicoService.getOrdemServicoObj().cliente;
-        $scope.cliente.endereco = clienteService.toStringEndereco($scope.cliente.endereco);
+    $scope.setColorBasedOnStatus = function(situacao) {
+        return ordemServicoService.setColorBasedOnStatus(situacao);
     }
-
-    loadCliente();
 
     // OPERACOES
 
-    $scope.accessItem = function(idOrdem, idItem){
+    $scope.onAccessItem = function(idOrdem, idItem){
         $location.path("/ordens/"+idOrdem+"/itens/"+idItem);
-    }
-
-    $scope.setStatusColor = function(value) {
-        return ordemServicoService.setStatusColor(value);
     }
 
     $scope.onConfirmOrdemServicoChanges = function() {
@@ -146,14 +141,6 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
         } else {
             return false;
         }
-    }
-
-
-    // ERROS
-
-    var genericException = function(message) {
-        $scope.showTableError = true;
-        $scope.tableErrorMessage = message;
     }
 
 });

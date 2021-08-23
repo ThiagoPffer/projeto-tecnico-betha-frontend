@@ -1,13 +1,17 @@
 appModule.controller("ordensServicoController", function($location, $scope, ordemServicoService, loadOrdensServico) {
 
-    $scope.ordensServico = loadOrdensServico.data.content;    
+    // INIT
+
+    $scope.ordensServico = loadOrdensServico.data.content;
+    
+    $scope.setColorBasedOnStatus = function(situacao) {
+        return ordemServicoService.setColorBasedOnStatus(situacao);
+    }
+
+    // OPERACOES
 
     $scope.accessOrdemServico = function(id) {
         $location.path("/ordens/"+id);
-    }
-    
-    $scope.setStatusColor = function(value) {
-        return ordemServicoService.setStatusColor(value);
     }
 
     // PAGINACAO
@@ -32,11 +36,4 @@ appModule.controller("ordensServicoController", function($location, $scope, orde
     }
     
     loadPagination(loadOrdensServico.data.totalPages);
-
-    // ERROS
-
-    var genericException = function(message) {
-        $scope.showTableError = true;
-        $scope.tableErrorMessage = message;
-    }
 });

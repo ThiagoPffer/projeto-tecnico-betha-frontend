@@ -41,11 +41,11 @@
             <div class="column-container gap-x-16">
                 <section>
                     <h3 class="default-subtitle mb-8">Situação:</h3>
-                    <span ng-class="setStatusColor(ordemServico.situacao)" class="status-box">{{ordemServico.situacao}}</span>
+                    <span ng-class="setColorBasedOnStatus(ordemServico.situacao)" class="status-box">{{ordemServico.situacao}}</span>
                 </section>
                 <section>
                     <h3 class="default-subtitle mb-8">Pagamento:</h3>
-                    <span ng-class="setStatusColor(ordemServico.pagamento)" class="status-box">{{ordemServico.pagamento}}</span>
+                    <span ng-class="setColorBasedOnStatus(ordemServico.pagamento)" class="status-box">{{ordemServico.pagamento}}</span>
                 </section>
             </div>
         </section>
@@ -68,7 +68,7 @@
                     <td class="tableItem sm-width">
                         <div class="row-container gap-y-16">
                             <button ng-click="openImageModal(item.id)" class="tiny-button">Ver/adicionar imagens</button>
-                            <button ng-click="accessItem(pageId, item.id)" class="tiny-button">Ver Equipamento</button>
+                            <button ng-click="onAccessItem(pageId, item.id)" class="tiny-button">Ver Equipamento</button>
                         </div>
                     </td>
                 </tr>

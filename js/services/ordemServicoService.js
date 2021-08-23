@@ -156,12 +156,12 @@ appModule.factory("ordemServicoService", function($http, properties, tokenServic
 
     // UTILS > OUTROS
 
-    var _setStatusColor = function(value) {
-        if(value === "EM_ANALISE" || value === "AGUARDANDO_DECISAO" || value === "PENDENTE"){
+    var _setColorBasedOnStatus = function(situacao) {
+        if(situacao === "EM_ANALISE" || situacao === "AGUARDANDO_DECISAO" || situacao === "PENDENTE"){
             return "yellow";
-        } else if(value === "CANCELADA" || value === "CANCELADO"){
+        } else if(situacao === "CANCELADA" || situacao === "CANCELADO"){
             return "red"
-        } else if(value === "APROVADA" || value === "CONCLUIDA" || value === "PAGO"){
+        } else if(situacao === "APROVADA" || situacao === "CONCLUIDA" || situacao === "PAGO"){
             return "green"
         }
     }
@@ -184,7 +184,7 @@ appModule.factory("ordemServicoService", function($http, properties, tokenServic
         isOrdemServicoValid: _isOrdemServicoValid,
         getEmptyOrdemServicoDTO: _getEmptyOrdemServicoDTO,
         getOrdemServicoDTO: _getOrdemServicoDTO,
-        setStatusColor: _setStatusColor,
+        setColorBasedOnStatus: _setColorBasedOnStatus,
         canObjectsBeChanged: _canObjectsBeChanged,
         setOrdemServicoObj: _setOrdemServicoObj,
         getOrdemServicoObj: _getOrdemServicoObj,

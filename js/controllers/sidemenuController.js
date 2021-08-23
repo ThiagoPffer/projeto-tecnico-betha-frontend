@@ -1,5 +1,7 @@
 appModule.controller("sidemenuController", function($scope, $location, funcionarioService, tokenService) {
 
+    // INIT
+
     if(tokenService.getToken()===null){
         $location.path('/login');
     }
@@ -11,6 +13,8 @@ appModule.controller("sidemenuController", function($scope, $location, funcionar
         $scope.userName = userData.nome;
         $scope.userType = userData.tipo;
     }
+
+    // OPERACOES
 
     $scope.logOut = function() {
         funcionarioService.clearLocalStorage();

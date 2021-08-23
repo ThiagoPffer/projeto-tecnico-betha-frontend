@@ -27,7 +27,7 @@ appModule.config(function($routeProvider, $locationProvider) {
     });
 
     $routeProvider.when("/ordens", {
-        templateUrl: "view/ordens.html",
+        templateUrl: "view/ordensServico.html",
         controller: "ordensServicoController",
         resolve: {
             loadOrdensServico: function(ordemServicoService, $location) {
