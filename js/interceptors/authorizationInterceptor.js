@@ -28,9 +28,9 @@ appModule.factory("authorizationInterceptor", function($q, $location) {
             _accessVerification(url, userData);
             return config;
         },
-        responseError: function(error) {
-            console.log(error)
-            return $q.reject(error);
+        responseError: function(rejection) {
+            console.log(rejection)
+            return $q.reject(rejection);
         }
     };
 });

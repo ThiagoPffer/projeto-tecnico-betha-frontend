@@ -4,4 +4,5 @@ appModule.config(function($httpProvider) {
     $httpProvider.interceptors.push("tokenInterceptor");
     $httpProvider.interceptors.push("loginInterceptor");
     $httpProvider.interceptors.push("errorInterceptor");
+    $httpProvider.interceptors.push("loadingInterceptor");
 });

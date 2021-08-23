@@ -15,8 +15,14 @@
             <label class="stretch" for="itemImg">Escolha uma imagem:</label>
             <input type="file" accept="image/*" class="content-width" id="itemImg" name="itemImg" >
         </div>
+        <div ng-show="loading" class="loading-container">
+            <img src="img/loading_spinner.gif" alt="loading">
+            <h3 class="default-text blue">Carregando..</h3>
+        </div>
         <button ng-click="onUploadImage()" class="noBg-button content-width"><span class="mdi mdi-image-plus"></span> Salvar imagem</button>
+
     </form>
+
     <div ng-show="showImageUploadError" class="default-error lg-width mt-16">
         <span class="mdi mdi-alert-outline"></span>{{imageUploadErrorMessage}}
     </div>

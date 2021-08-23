@@ -1,15 +1,15 @@
 appModule.factory("errorInterceptor", function($q, $location) {
     return {
-        responseError: function(error) {
-            if(error.status === 401 || error.status === 403){
-                console.log(error.data);
+        responseError: function(rejection) {
+            if(rejection.status === 401 || rejection.status === 403){
+                console.log(rejection.data);
                 $location.path("/login");
             }
-            if(error.status === 404 && error.data.path.indexOf('/email') === -1){
-                console.log(error.data);
+            if(rejection.status === 404 && rejection.data.path.indexOf('/email') === -1){
+                console.log(rejection.data);
                 $location.path("/erro");
             }
-            return $q.reject(error);
+            return $q.reject(rejection);
         }
     };
 });

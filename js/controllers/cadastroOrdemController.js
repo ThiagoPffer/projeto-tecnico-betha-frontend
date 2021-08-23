@@ -40,7 +40,7 @@ appModule.controller("cadastroOrdemController", function($location, $scope, clie
     var searchCliente = function() {
         clienteService.getCliente($scope.searchInput.email).then(function(response) {
             $scope.cliente = response.data;
-            newOrdemServico.idCliente = $scope.cliente.id; //CONSTRUÇAO OBJ ORDEM: SETANDO ID DO CLIENTE
+            newOrdemServico.idCliente = $scope.cliente.id;
             $scope.cliente.endereco = clienteService.toStringEndereco($scope.cliente.endereco);
             $scope.isClienteAvailable = true;
         }, function(err) {

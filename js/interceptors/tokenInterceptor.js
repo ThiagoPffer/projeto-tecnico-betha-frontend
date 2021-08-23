@@ -12,12 +12,11 @@ appModule.factory("tokenInterceptor", function($q, $location, tokenService) {
 
             return config;
         },
-        responseError: function(error) {
-            if(error.status === 401 || error.status === 403){
-                console.log(error.data); // TRATAR ERRO / VER COM O MICHEL SE É NECESSÁRIO TRATAR LOCALMENTE
+        responseError: function(rejection) {
+            if(rejection.status === 401 || rejection.status === 403){
                 $location.path("/login");
             }
-            return $q.reject(error);
+            return $q.reject(rejection);
         }
     };
 });

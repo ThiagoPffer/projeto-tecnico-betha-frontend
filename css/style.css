@@ -315,6 +315,10 @@ input{
     font-weight: 400;
 }
 
+.default-text.blue{
+    color: var(--primaria);
+}
+
 .default-subtitle{
     color: var(--cinza-escuro);
     font-size: 1.5em;
@@ -503,11 +507,11 @@ input{
 .default-button--outline,
 .noBg-button,
 .tiny-button {
-    animation-name: button-enter-animation;
+    animation-name: enter-animation;
     animation-duration: .4s;
 }
 
-@keyframes button-enter-animation {
+@keyframes enter-animation {
     from {
         opacity: 0;
     }
@@ -1178,4 +1182,21 @@ input{
 
 .popeye-modal{
     margin-left: 240px;
+}
+
+/* <===========================:: LOADING ::===========================> */
+
+.loading-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    animation-name: enter-animation;
+    animation-duration: .2s;
+}
+
+.loading-container img{
+    width: 50px;
+    height: 50px;
 }
