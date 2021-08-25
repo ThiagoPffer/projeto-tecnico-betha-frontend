@@ -1,6 +1,6 @@
 <header class="side-menu__header">
     <div class="row-container">
-        <img src="img/profile.jpg" alt="Foto de perfil do usuário">
+        <img ng-src="img/profile.jpg" alt="Foto de perfil do usuário">
         <div class="side-menu__info">
             <h4>{{userName}}</h4>
             <p>{{userType}}</p>
@@ -22,7 +22,7 @@
                 <li class="side-menu__subitem"><a href="#/ordens">
                     <span class="mdi mdi-file-document-multiple-outline"></span>Ordens cadastradas
                 </a></li>
-                <li ng-show="isNotTecnico()" class="side-menu__subitem"><a href="#/nova-ordem">
+                <li ng-if="isNotTecnico()" class="side-menu__subitem"><a href="#/nova-ordem">
                     <span class="mdi mdi-file-plus-outline"></span>Nova ordem
                 </a></li>
             </ul>
@@ -35,12 +35,12 @@
                 <li class="side-menu__subitem"><a href="#/clientes">
                     <span class="mdi mdi-account-multiple-outline"></span>Clientes cadastrados
                 </a></li>
-                <li ng-show="isNotTecnico()" class="side-menu__subitem"><a href="#/novo-cliente">
+                <li ng-if="isNotTecnico()" class="side-menu__subitem"><a href="#/novo-cliente">
                     <span class="mdi mdi-account-plus-outline"></span>Novo cliente
                 </a></li>
             </ul>
         </accordion>
-        <accordion ng-show="isAdministrador()">
+        <accordion ng-if="isAdministrador()">
             <a>
                 <span class="mdi mdi-chevron-down"></span>Funcionários
             </a>

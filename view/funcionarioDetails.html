@@ -27,7 +27,7 @@
     </section>
 
     <div class="row-container mt-64 gap-y-16">
-        <button ng-show="isAdministrador()" ng-click="onSubmitFuncionarioChanges(funcionario, funcionario.id)" type="submit" class="default-button--filled sm-width">Confirmar</button>
+        <button ng-if="isAdministrador()" ng-click="onSubmitFuncionarioChanges(funcionario, funcionario.id)" type="submit" class="default-button--filled sm-width">Confirmar</button>
         <button ng-click="goHome()" type="submit" class="default-button--outline sm-width">Voltar</button>
     </div>
 

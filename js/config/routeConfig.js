@@ -22,7 +22,7 @@ appModule.config(function($routeProvider, $locationProvider) {
     });
 
     $routeProvider.when("/nova-ordem", {
-        templateUrl: "view/cadastro-ordem.html",
+        templateUrl: "view/novaOrdem.html",
         controller: "cadastroOrdemController"
     });
 

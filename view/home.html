@@ -4,9 +4,9 @@
     <section class="home-page-container">
         <a class="home-page-button" href="#/ordens">Ordens de serviço</a>
         <a class="home-page-button" href="#/clientes">Clientes</a>
-        <a ng-show="isNotTecnico()" class="home-page-button" href="#/nova-ordem">Nova Ordem de serviço</a>
-        <a ng-show="isNotTecnico()" class="home-page-button" href="#/novo-cliente">Novo cliente</a>
-        <a ng-show="isAdministrador()" class="home-page-button" href="#/funcionarios">Funcionários</a>
-        <a ng-show="isAdministrador()" class="home-page-button" href="#/novo-funcionario">Novo funcionário</a>
+        <a ng-if="isNotTecnico()" class="home-page-button" href="#/nova-ordem">Nova Ordem de serviço</a>
+        <a ng-if="isNotTecnico()" class="home-page-button" href="#/novo-cliente">Novo cliente</a>
+        <a ng-if="isAdministrador()" class="home-page-button" href="#/funcionarios">Funcionários</a>
+        <a ng-if="isAdministrador()" class="home-page-button" href="#/novo-funcionario">Novo funcionário</a>
     </section>
 </main>

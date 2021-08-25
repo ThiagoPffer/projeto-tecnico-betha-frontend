@@ -37,7 +37,7 @@ appModule.controller("ordemItemController", function($location, $scope, $routePa
 
     $scope.openModalItem = function() {
         var modalItem = Popeye.openModal({
-            templateUrl: "view/modal-item.html",
+            templateUrl: "view/modalItemDetails.html",
             controller: "modalItemController",
             resolve: {
                 itemData: function() {

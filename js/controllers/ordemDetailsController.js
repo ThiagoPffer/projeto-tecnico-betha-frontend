@@ -20,21 +20,17 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
     }
 
     $scope.onConfirmOrdemServicoChanges = function() {
-        if($scope.isEmailCheckboxActivated() && $scope.isPagamentoCheckboxActivated()){
-            updateEstadoPagamento('PAGO');
-            $scope.updateSituacao('AGUARDANDO_DECISAO');
-        } else if($scope.isEmailCheckboxActivated()){
+        if($scope.isEmailCheckboxActivated()){
             $scope.updateSituacao('AGUARDANDO_DECISAO');
         } else if($scope.isPagamentoCheckboxActivated()){
             updateEstadoPagamento('PAGO');
-            $route.reload();
         }
     }
 
     $scope.updateSituacao = function(situacao) {
         ordemServicoService.updateSituacao($routeParams.id, situacao).then(function(response) {
-            $route.reload();
             alert("A situação da ordem foi alterada para " + situacao);
+            $route.reload();
         }, function(err) {
             console.log(err);
         });
@@ -43,6 +39,7 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
     var updateEstadoPagamento = function(estadoPagamento) {
         ordemServicoService.updateEstadoPagamento($routeParams.id, estadoPagamento).then(function(response) {
             alert("O estado do pagamento da ordem foi alterado para " + estadoPagamento);
+            $route.reload();
         }, function(err) {
             console.log(err);
         });
@@ -52,7 +49,7 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
 
     $scope.openImageModal = function(idItem) {
         var modalImage = Popeye.openModal({
-            templateUrl: "view/modal-image.html",
+            templateUrl: "view/modalImages.html",
             controller: "modalImageController",
             resolve: {
                 imageData: function() {
@@ -71,7 +68,7 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
 
     $scope.openCancelConfirmationModal = function(idItem) {
         var modalCancelConfirmation = Popeye.openModal({
-            templateUrl: "view/modal-cancel-confirmation.html",
+            templateUrl: "view/modalCancelConfirmation.html",
             controller: "modalCancelConfirmationController",
             resolve: {
                 modalCancelData: function() {
@@ -86,10 +83,11 @@ appModule.controller("ordemDetailsController", function($location, $scope, $rout
     // VERIFICACOES
 
     $scope.canCancelOrdemServico = function() {
-        if(ordemServicoService.getSituacaoOrdemServico() != "EM_ANALISE"){
-            return false;
-        } else {
+        if(ordemServicoService.getSituacaoOrdemServico() === "EM_ANALISE" 
+        || ordemServicoService.getSituacaoOrdemServico() === "AGUARDANDO_DECISAO"){
             return true;
+        } else {
+            return false;
         }
     }
 

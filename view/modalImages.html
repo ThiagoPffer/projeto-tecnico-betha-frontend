@@ -3,19 +3,19 @@
     <section class="image-gallery">
         <div class="image-container" ng-repeat="imagem in item.imagens">
             <div class="imgButton-container">
-                <button ng-show="canChangeComponent && isNotRecepcionista()" ng-click="onDeleteImage(imagem)"><span class="mdi mdi-delete-outline"></span></button>
+                <button ng-if="canChangeComponent && isNotRecepcionista()" ng-click="onDeleteImage(imagem)"><span class="mdi mdi-delete-outline"></span></button>
                 <a href="{{uri+imagem.nomeArquivo}}" target="blank"><span class="mdi mdi-arrow-expand"></span></a>
             </div>
             <img ng-src="{{uri+imagem.nomeArquivo}}" alt="teste">
         </div>
         <h4 ng-show="showImageGalleryError"><span class="mdi mdi-image-remove"></span> Este equipamento não possui nenhuma foto cadastrada</h4>
     </section>
-    <form ng-show="canChangeComponent && isNotRecepcionista()" class="row-container justify-space-between mt-16 gap-y-16">
+    <form ng-if="canChangeComponent && isNotRecepcionista()" class="row-container justify-space-between mt-16 gap-y-16">
         <div class="column-container">
             <label class="stretch" for="itemImg">Escolha uma imagem:</label>
             <input type="file" accept="image/*" class="content-width" id="itemImg" name="itemImg" >
         </div>
-        <div ng-show="loading" class="loading-container">
+        <div ng-if="loading" class="loading-container">
             <img src="img/loading_spinner.gif" alt="loading">
             <h3 class="default-text blue">Carregando..</h3>
         </div>
